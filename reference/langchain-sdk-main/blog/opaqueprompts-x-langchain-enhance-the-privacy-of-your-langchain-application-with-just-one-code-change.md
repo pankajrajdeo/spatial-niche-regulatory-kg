@@ -1,0 +1,120 @@
+---
+title: "OpaquePrompts x LangChain: Enhance the privacy of your LangChain application with just one code change"
+description: "Add privacy to your LangChain app with one line of code. OpaquePrompts hides sensitive data from LLM providers like OpenAI."
+source: "https://www.langchain.com/blog/opaqueprompts-x-langchain-enhance-the-privacy-of-your-langchain-application-with-just-one-code-change"
+category: "blog"
+published: "2023-09-12T14:17:15.000Z"
+author: "LangChain Accounts"
+tags: [blog, opaqueprompts-x-langchain-enhance-the-privacy-of-your-langchain-application-with-just-one-code-change]
+---
+
+# OpaquePrompts x LangChain: Enhance the privacy of your LangChain application with just one code change
+
+*Editor's Note: This blog post was written in collaboration with the *[*Opaque*](https://opaque.co/?ref=blog.langchain.com)* team. As more apps get into production, we've been hearing more teams talk about solutions for data privacy. Opaque's seamless integration with LangChain ensures personal information in your users’ prompts will be hidden from the LLM provider with just a few lines of code.*
+
+We’ve been hearing growing feedback from our users that they want to keep their data private from LLM providers, whether it be OpenAI, Anthropic, Cohere, or others, for a number of reasons:
+
+- Concerns about data retention
+- Concerns about the LLM provider seeing the input data
+- Concerns about the provider using user inputs to continually train the LLM
+- Concerns about the LLM leaking data the model was trained on
+
+The same is true for LLM application builders at companies of all sizes—from enterprise to small startups—across a variety of verticals. One startup we talked to is building a knowledge management solution that summarizes stored documents, but a potential customer, a law firm, doesn’t trust third-party providers with their legal documents. Another is building an application to generate targeted advertisements based off user data, but must strictly control how personal user information is shared and used by third-party providers. A large bank wants to automate risk assessment, which, in its manual form, requires meticulous analysis of sensitive documents whose contents cannot be shared with third-party providers in its plaintext form.
+
+All these use cases and more have one common theme: an LLM application developer wants to leverage an LLM to operate on sensitive data, but cannot do so because of concerns about or restrictions on the LLM provider’s ability to see, process, and store the sensitive data. This is where OpaquePrompts comes in.
+
+# An introduction to OpaquePrompts
+
+OpaquePrompts serves as a privacy layer around your LLM of choice. With OpaquePrompts, you can:
+
+- **Automatically identify sensitive tokens** in your prompts with natural language processing (NLP)-based machine learning
+- **Pre-process LLM inputs to hide sensitive inputs** in your prompts from LLM providers via a sanitization mechanism
+- For example, in the prompt, every instance of the name `John Smith` will be deterministically replaced with `PERSON_1`.
+- **Post-process LLM responses** to replace all sanitized instances with the original sensitive information
+- For example, in the LLM response, all instances of `PERSON_1` will be replaced with `John Smith`.
+- **Leverage the power of **[**confidential computing**](https://en.wikipedia.org/wiki/Confidential_computing?ref=blog.langchain.com) to ensure that not even the OpaquePrompts service sees the underlying prompt
+- OpaquePrompts runs in an [attestable](https://www.redhat.com/en/blog/attestation-confidential-computing?ref=blog.langchain.com) [trusted execution environment](https://en.wikipedia.org/wiki/Trusted_execution_environment?ref=blog.langchain.com), meaning that you can cryptographically verify that not even Opaque can see any input to OpaquePrompts.
+- More on OpaquePrompts architecture and security guarantees can be found in the [documentation](https://promptguard.readthedocs.io/en/latest/?ref=blog.langchain.com).
+- **Make your application privacy-preserving** by modifying just one line of code in your LangChain application
+- See an example [here](https://github.com/opaque-systems/opaqueprompts-chat-server/blob/dev/python-package/src/opchatserver/server.py?ref=blog.langchain.com).
+
+An application built with OpaquePrompts works as follows:
+
+1. The OpaquePrompts service takes in a constructed prompt.
+2. Using a state-of-the-art model, OpaquePrompts identifies sensitive information in the prompt.
+3. OpaquePrompts sanitizes the prompt by encrypting all identified personal information before returning the sanitized prompt to the LLM application.
+4. The LLM application sends the sanitized prompt to its LLM provider of choice.
+5. The LLM application receives a response from the LLM provider, which contains the post-sanitization identifiers.
+6. The LLM application sends the response to OpaquePrompts, which de-sanitizes the response by decrypting previously encrypted personal information.
+7. The LLM application returns the de-sanitized response to the user. From the user’s perspective, the response appears as if the original prompt were sent directly to the LLM.
+
+Using GIFs, we compare LLM application workflows with and without OpaquePrompts. Without OpaquePrompts, the prompt goes directly from LLM application to the model provider, all in the clear.
+
+![](https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/69cbb16d90227306de7e3fbd_OpaquePrompts-dataflow----without-Opaque-v2.gif)
+
+With OpaquePrompts, the prompt first gets securely sanitized by the OpaquePrompts service (and the service doesn’t see the contents of the prompt) before making its way to the LLM provider for a response.
+
+![](https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/69cbb16d90227306de7e3fb1_OpaquePrompts-dataflow---with-Opaque-15fps-L-1.gif)
+
+# Modifying a chatbot built with LangChain to incorporate OpaquePrompts
+
+Below, we walk through how we modified an existing GPT-based chat application built with LangChain to hide sensitive information from prompts sent to OpenAI.
+
+The server-side with a `/chat` endpoint of a vanilla chat application looks something like the following.
+
+`
+# Full source code can be found here: &lt;https://github.com/opaque-systems/opaqueprompts-chat-server&gt;
+
+class ChatRequest(BaseModel):
+ history: Optional[list[str]]
+ prompt: str
+
+class ChatResponse(BaseModel):
+ response: str
+
+async def chat(
+ chat_request: ChatRequest,
+) -&gt; ChatResponse:
+ """
+ Defines an endpoint that takes in a prompt and sends it to
+ GPT
+
+ Parameters
+ ----------
+ chat_request : ChatRequest
+ The request body, which contains the history of the conversation
+ and the prompt to be completed.
+
+ Returns
+ -------
+ ChatResponse
+ The response body, which contains GPT's response to the prompt.
+ """
+ # Actual template and build_memory logic are omitted and can be found in the
+ # repo linked below
+ prompt = PromptTemplate.from_template(CHAT_TEMPLATE)
+ memory = build_memory(chat_request.history)
+
+ chain = LLMChain(
+ prompt=prompt,
+ llm=OpenAI(),
+ memory=memory,
+ )
+ return ChatResponse(response=chain.run(chat_request.prompt))
+`
+
+To use OpaquePrompts, once we retrieve an API token from the OpaquePrompts website, all we have to do is wrap the `llm` passed into `LLMChain` with `OpaquePrompts`:
+
+`chain = LLMChain(
+ prompt=prompt,
+ # llm=OpenAI(),
+ llm=OpaquePrompts(base_llm=OpenAI()),
+ memory=memory,
+)
+`
+
+You can play with a working implementation of a chatbot built with LangChain and OpaquePrompts on the [OpaquePrompts website](https://opaqueprompts.opaque.co/?ref=blog.langchain.com), and find the full source code from which we derived the example above on [GitHub](https://github.com/opaque-systems/opaqueprompts-chat-server?ref=blog.langchain.com). Note that the source code also includes logic for authentication and for displaying intermediate (i.e., the sanitized prompt and sanitized response) steps.
+
+# Conclusion
+
+With OpaquePrompts, you can bootstrap your existing LangChain-based application to add privacy for your users. With your OpaquePrompts + LangChain application, any personal information in your users’ prompts will be hidden from the LLM provider, ensuring that you, as the LLM application developer, do not have to worry about the provider’s data retention or processing policies. Take a look at the [documentation](https://python.langchain.com/docs/integrations/llms/opaqueprompts?ref=blog.langchain.com) or [try out OpaquePrompts Chat](https://opaqueprompts.opaque.co/?ref=blog.langchain.com) today!

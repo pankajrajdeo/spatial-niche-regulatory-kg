@@ -1,0 +1,51 @@
+---
+title: "MISSING_CHECKPOINTER"
+description: "You are attempting to use built-in LangGraph persistence without providing a checkpointer."
+source: "https://docs.langchain.com/oss/javascript/langgraph/errors/MISSING_CHECKPOINTER"
+category: "docs"
+tags: [docs, javascript, langgraph, errors, missing_checkpointer]
+---
+
+# MISSING_CHECKPOINTER
+
+You are attempting to use built-in LangGraph persistence without providing a checkpointer.
+
+This happens when a `checkpointer` is missing in the `compile()` method of [`StateGraph`](https://reference.langchain.com/javascript/langchain-langgraph/index/StateGraph) or [`entrypoint`](https://reference.langchain.com/javascript/langchain-langgraph/index/entrypoint).
+
+## Troubleshooting
+
+The following may help resolve this error:
+
+* Initialize and pass a checkpointer to the `compile()` method of [`StateGraph`](https://reference.langchain.com/javascript/langchain-langgraph/index/StateGraph) or [`entrypoint`](https://reference.langchain.com/javascript/langchain-langgraph/index/entrypoint).
+
+```typescript
+import { InMemorySaver, StateGraph } from "@langchain/langgraph";
+const checkpointer = new InMemorySaver();
+
+// Graph API
+import { StateGraph } from "@langchain/langgraph";
+const graph = new StateGraph(...).compile({ checkpointer });
+
+// Functional API
+import { entrypoint } from "@langchain/langgraph";
+const workflow = entrypoint(
+    { checkpointer, name: "workflow" },
+    async (messages: string[]) => {
+        // ...
+    }
+);
+```
+
+* Use the LangGraph API so you don't need to implement or configure checkpointers manually. The API handles all persistence infrastructure for you.
+
+## Related
+
+* Read more about [persistence](../persistence.md).
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/langgraph/errors/MISSING_CHECKPOINTER.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

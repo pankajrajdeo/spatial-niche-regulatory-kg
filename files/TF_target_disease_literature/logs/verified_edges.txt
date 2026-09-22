@@ -1,0 +1,299 @@
+### UniBind
+    PMID 34174819 | 2021 | BMC Genomics                 | Puig RR         | UniBind: maps of high-confidence direct TF-DNA interactions across nine species.
+    PMID 41542366 | 2026 | Bioinform Adv                | Bhasin A        | CoV-UniBind: a unified antibody binding database for SARS-CoV-2.
+    PMID 38114460 | 2023 | Signal Transduct Target Ther | Yan Q           | UniBind: a novel artificial intelligence-based prediction model for SARS-CoV-2 infectivity and variant evolution.
+
+### ReMap atlas
+    PMID 34751401 | 2022 | Nucleic Acids Res            | Hammal F        | ReMap 2022: a database of Human, Mouse, Drosophila and Arabidopsis regulatory regions from an integrative analysis of DNA-bin
+    PMID 29126285 | 2018 | Nucleic Acids Res            | Chèneby J       | ReMap 2018: an updated atlas of regulatory regions from an integrative analysis of DNA-binding ChIP-seq experiments.
+    PMID 31665499 | 2020 | Nucleic Acids Res            | Chèneby J       | ReMap 2020: a database of regulatory regions from an integrative analysis of Human and Arabidopsis DNA-binding sequencing exp
+
+### Vierstra footprints
+    PMID 39829783 | 2025 | bioRxiv                      | Pampari A       | ChromBPNet: bias factorized, base-resolution deep learning models of chromatin accessibility reveal cis-regulatory sequence s
+    PMID 40795153 | 2025 | Protein Cell                 | Wang H          | Genome-wide investigation of transcription factor footprints and dynamics using cFOOT-seq.
+    PMID 30791920 | 2019 | Genome Biol                  | Karabacak Calvi | Reproducible inference of transcription factor footprints in ATAC-seq and DNase-seq datasets using protocol-specific bias mod
+    PMID 32728250 | 2020 | Nature                       | Vierstra J      | Global reference mapping of human transcription factor footprints.
+    PMID 29074739 | 2017 | Genome Res                   | Ho MCW          | Genome-wide discovery of active regulatory elements and transcription factor footprints in Caenorhabditis elegans using DNase
+    PMID 33586346 | 2021 | Arthritis Rheumatol          | Tsou PS         | Genome-Wide Reduction in Chromatin Accessibility and Unique Transcription Factor Footprints in Endothelial Cells and Fibrobla
+
+### Meuleman DHS index
+    PMID 32728217 | 2020 | Nature                       | Meuleman W      | Index and biological spectrum of human DNase I hypersensitive sites.
+
+### EpiMap Boix
+    PMID 37774678 | 2023 | Cell                         | Sun N           | Human microglial state dynamics in Alzheimer's disease progression.
+    PMID 39048816 | 2024 | Nature                       | Mathys H        | Single-cell multiregion dissection of Alzheimer's disease.
+    PMID 37774677 | 2023 | Cell                         | Mathys H        | Single-cell atlas reveals correlates of high cognitive function, dementia, and resilience to Alzheimer's disease pathology.
+    PMID 40752494 | 2025 | Cell                         | Liu Z           | Single-cell multiregion epigenomic rewiring in Alzheimer's disease progression and cognitive resilience.
+    PMID 37774680 | 2023 | Cell                         | Xiong X         | Epigenomic dissection of Alzheimer's disease pinpoints causal variants and reveals epigenome erosion.
+    PMID 40931065 | 2025 | Nature                       | von Maydell D   | ABCA7 variants impact phosphatidylcholine and mitochondria in neurons.
+    PMID 37774679 | 2023 | Cell                         | Dileep V        | Neuronal DNA double-strand breaks lead to genome structural variations and 3D genome disruption in neurodegeneration.
+    PMID 41035073 | 2025 | Mol Neurodegener             | Castanho I      | Molecular hallmarks of excitatory and inhibitory neuronal resilience to Alzheimer's disease.
+    PMID 38776872 | 2024 | Cell Rep Med                 | Linna-Kuosmanen | Transcriptomic and spatial dissection of human ex vivo right atrial tissue reveals proinflammatory microvascular changes in i
+    PMID 41279127 | 2025 | bioRxiv                      | Akay LA         | Genome-wide CRISPR screen reveals Wnt signaling defects regulate lipid accumulation in APOE4 oligodendrocytes.
+
+### Roadmap epigenomes
+    NO MATCH
+
+### ENCODE TF binding perspectives
+    PMID 32728248 | 2020 | Nature                       | Snyder MP       | Perspectives on ENCODE.
+    PMID 35474002 | 2022 | Nature                       | Snyder MP       | Author Correction: Perspectives on ENCODE.
+    PMID 26527727 | 2016 | Nucleic Acids Res            | Sloan CA        | ENCODE data at the ENCODE portal.
+    PMID 32728235 | 2020 | Nature                       | Hon CC          | Expanded ENCODE delivers invaluable genomic encyclopedia.
+    PMID 31713622 | 2020 | Nucleic Acids Res            | Luo Y           | New developments on the Encyclopedia of DNA Elements (ENCODE) data portal.
+    PMID 41168159 | 2025 | Nat Commun                   | Kagda MS        | Data navigation on the ENCODE portal.
+    PMID 31751002 | 2019 | Curr Protoc Bioinformatics   | Jou J           | The ENCODE Portal as an Epigenomics Resource.
+    PMID 29126249 | 2018 | Nucleic Acids Res            | Davis CA        | The Encyclopedia of DNA elements (ENCODE): data portal update.
+    PMID 33902683 | 2021 | Clin Epigenetics             | Cho YD          | Current advances of epigenetics in periodontology from ENCODE project: a review and future perspectives.
+
+### Funk ENCODE DHS TFBS atlas
+    NO MATCH
+
+### ChIPSummitDB
+    PMID 31942977 | 2020 | Database (Oxford)            | Czipa E         | ChIPSummitDB: a ChIP-seq-based database of human transcription factor binding sites and the topological arrangements of the p
+
+### Little NKX2-1 lung
+    PMID 33972311 | 2021 | Cancer Discov                | Sinjab A        | Resolving the Spatial and Cellular Architecture of Lung Adenocarcinoma by Multiregion Single-Cell Sequencing.
+    PMID 29440304 | 2018 | Development                  | Ostrin EJ       | β-Catenin maintains lung epithelial progenitors after lung specification.
+    PMID 31548395 | 2019 | Proc Natl Acad Sci U S A     | Little DR       | Transcriptional control of lung alveolar type 1 cell development and maintenance by NK homeobox 2-1.
+    PMID 33947861 | 2021 | Nat Commun                   | Little DR       | Differential chromatin binding of the lung lineage transcription factor NKX2-1 resolves opposing murine alveolar cell fates i
+
+### Borromeo ASCL1 NEUROD1
+    PMID 27452466 | 2016 | Cell Rep                     | Borromeo MD     | ASCL1 and NEUROD1 Reveal Heterogeneity in Pulmonary Neuroendocrine Tumors and Regulate Distinct Genetic Programs.
+    PMID 39609428 | 2024 | Nat Commun                   | Myers BL        | Transcription factors ASCL1 and OLIG2 drive glioblastoma initiation and co-regulate tumor cell types and migration.
+    PMID 37873200 | 2023 | bioRxiv                      | Myers BL        | Glioblastoma initiation, migration, and cell types are regulated by core bHLH transcription factors ASCL1 and OLIG2.
+    PMID 32573857 | 2020 | Glia                         | Vue TY          | ASCL1 regulates neurodevelopmental transcription factors and cell cycle genes in brain tumors of glioma mouse models.
+    PMID 26443638 | 2015 | Development                  | Thélie A        | Prdm12 specifies V1 interneurons through cross-repressive interactions with Dbx1 and Nkx6 genes in Xenopus.
+    PMID 28850031 | 2017 | Elife                        | Mona B          | Repression by PRDM13 is critical for generating precision in neuronal identity.
+    PMID 25878276 | 2015 | J Neurosci                   | Russ JB         | Misexpression of ptf1a in cortical pyramidal cells in vivo promotes an inhibitory peptidergic identity.
+    PMID 29413762 | 2018 | Transl Oncol                 | He M            | The Epithelial Sodium Channel (αENaC) Is a Downstream Therapeutic Target of ASCL1 in Pulmonary Neuroendocrine Tumors.
+    PMID 28676570 | 2017 | Development                  | Borromeo MD     | Correction: A transcription factor network specifying inhibitory versus excitatory neurons in the dorsal spinal cord.
+
+### Denny NFIB SCLC
+    PMID 36848578 | 2023 | Proc Natl Acad Sci U S A     | Mello SS        | Multifaceted role for p53 in pancreatic cancer suppression.
+    PMID 30322887 | 2019 | Cold Spring Harb Perspect Bi | Denny SK        | Linking RNA Sequence, Structure, and Function on Massively Parallel High-Throughput Sequencers.
+    PMID 35927243 | 2022 | Nat Commun                   | Sadée C         | A comprehensive thermodynamic model for RNA binding by the Saccharomyces cerevisiae Pumilio protein PUF4.
+    PMID 31375637 | 2019 | Proc Natl Acad Sci U S A     | Yesselman JD    | Sequence-dependent RNA helix conformational preferences predictably impact tertiary structure formation.
+    PMID 36897989 | 2023 | Proc Natl Acad Sci U S A     | Shin JH         | Dissecting the energetic architecture within an RNA tertiary structural motif via high-throughput thermodynamic measurements.
+    PMID 30228179 | 2018 | Cancer Discov                | Yang D          | Intertumoral Heterogeneity in SCLC Is Influenced by the Cell Type of Origin.
+    PMID 31078383 | 2019 | Mol Cell                     | Jarmoskaite I   | A Quantitative and Predictive Model for RNA Binding by Human Pumilio Proteins.
+    PMID 26314830 | 2015 | Genome Res                   | Schep AN        | Structured nucleosome fingerprints enable high-resolution mapping of chromatin architecture within regulatory regions.
+    PMID 34373334 | 2021 | Proc Natl Acad Sci U S A     | Bonilla SL      | High-throughput dissection of the thermodynamic and conformational properties of a ubiquitous class of RNA tertiary contact m
+    PMID 29961580 | 2018 | Cell                         | Denny SK        | High-Throughput Investigation of Diverse Junction Elements in RNA Tertiary Folding.
+
+### Camolotto FOXA lung
+    PMID 30833748 | 2019 | Nat Med                      | Kinsey CG       | Protective autophagy elicited by RAF→MEK→ERK inhibition suggests a treatment strategy for RAS-driven cancers.
+    PMID 40506247 | 2025 | Genes Dev                    | Fort G          | Opposing lineage specifiers induce a protumor hybrid identity state in lung adenocarcinoma.
+    PMID 42118585 | 2026 | J Clin Invest                | Essel Dadzie H  | HNF4α controls growth, identity, and KRAS inhibitor response in invasive mucinous adenocarcinoma of the lung.
+    PMID 30603119 | 2018 | J Gastrointest Oncol         | Camolotto SA    | The role of lineage specifiers in pancreatic ductal adenocarcinoma.
+    PMID 40281204 | 2025 | Nat Med                      | Kinsey CG       | Author Correction: Protective autophagy elicited by RAF→MEK→ERK inhibition suggests a treatment strategy for RAS-driven cance
+    PMID 33821796 | 2021 | Elife                        | Zewdu R         | An NKX2-1/ERK/WNT feedback loop modulates gastric identity and response to targeted therapy in lung adenocarcinoma.
+    PMID 30475207 | 2018 | Elife                        | Camolotto SA    | FoxA1 and FoxA2 drive gastric differentiation and suppress squamous identity in NKX2-1-negative lung cancer.
+    PMID 32826305 | 2021 | Gut                          | Camolotto SA    | Reciprocal regulation of pancreatic ductal adenocarcinoma growth and molecular subtype by HNF4α and SIX1/4.
+    PMID 30918364 | 2019 | Nat Med                      | Kinsey CG       | Publisher Correction: Protective autophagy elicited by RAF→MEK→ERK inhibition suggests a treatment strategy for RAS-driven ca
+    PMID 30332632 | 2018 | Immunity                     | Mollaoglu G     | The Lineage-Defining Transcription Factors SOX2 and NKX2-1 Determine Lung Cancer Cell Fate and Shape the Tumor Immune Microen
+
+### Gerber GR airway cistrome
+    PMID 28283576 | 2017 | J Biol Chem                  | Newton R        | Glucocorticoid and cytokine crosstalk: Feedback, feedforward, and co-regulatory interactions determine repression or resistan
+    PMID 27076634 | 2016 | J Biol Chem                  | Kadiyala V      | Cistrome-based Cooperation between Airway Epithelial Glucocorticoid Receptor and NF-κB Orchestrates Anti-inflammatory Effects
+    PMID 36162872 | 2022 | J Immunol                    | Bai X           | α1-Antitrypsin Binds to the Glucocorticoid Receptor with Anti-Inflammatory and Antimycobacterial Significance in Macrophages.
+    PMID 33320836 | 2021 | JCI Insight                  | Gally F         | The MUC5B-associated variant rs35705950 resides within an enhancer subject to lineage- and disease-dependent epigenetic remod
+    PMID 28039105 | 2017 | Am J Physiol Lung Cell Mol P | Altonsy MO      | Long-acting β(2)-agonists promote glucocorticoid-mediated repression of NF-κB by enhancing expression of the feedback regulat
+    PMID 35189144 | 2022 | J Biol Chem                  | Bansal A        | Interplay between nuclear factor-κB, p38 MAPK, and glucocorticoid receptor signaling synergistically induces functional TLR2 
+    PMID 29959223 | 2018 | Mol Pharmacol                | Rider CF        | Long-Acting β(2)-Adrenoceptor Agonists Enhance Glucocorticoid Receptor (GR)-Mediated Transcription by Gene-Specific Mechanism
+    PMID 40164603 | 2025 | Nat Commun                   | Sasse SK        | Enhancer RNA transcription pinpoints functional genetic variants linked to asthma.
+    PMID 33891947 | 2021 | J Biol Chem                  | Gerber AN       | Repression of transcription by the glucocorticoid receptor: A parsimonious model for the genomics era.
+    PMID 26088140 | 2015 | J Biol Chem                  | Sasse SK        | Response Element Composition Governs Correlations between Binding Site Affinity and Transcription in Glucocorticoid Receptor 
+
+### Harris CFTR regulation
+    PMID 34545943 | 2022 | Anaesthesia                  | Iliff HA        | Management of haematoma after thyroid surgery: systematic review and multidisciplinary consensus guidelines from the Difficul
+    PMID 31734115 | 2020 | J Cyst Fibros                | Paranjapye A    | Genetic variation in CFTR and modifier loci may modulate cystic fibrosis disease severity.
+    PMID 37269165 | 2023 | Physiol Rep                  | Kerschner JL    | Cellular heterogeneity in the 16HBE14o(-) airway epithelial line impacts biological readouts.
+    PMID 36510002 | 2023 | Gene Ther                    | Kerschner JL    | An ectopic enhancer restores CFTR expression through de novo chromatin looping.
+    PMID 26184320 | 2015 | Genes (Basel)                | Gosalia N       | Chromatin Dynamics in the Regulation of CFTR Expression.
+    PMID 33386644 | 2021 | Dev Dyn                      | Kerschner JL    | OTX2 regulates CFTR expression during endoderm differentiation and occupies 3' cis-regulatory elements.
+    PMID 38372567 | 2024 | J Cell Mol Med               | Kerschner JL    | The impact of genomic distance on enhancer-promoter interactions at the CFTR locus.
+    PMID 40785146 | 2025 | J Cell Mol Med               | Umrigar A       | CFTR Gene Regulation in Human Pancreatic Duct, Bile Duct and Sweat Gland Epithelial Cells.
+    PMID 29572268 | 2018 | Biochem J                    | Mutolo MJ       | A transcription factor network represses CFTR gene expression in airway epithelial cells.
+    PMID 38679287 | 2024 | Biochim Biophys Acta Gene Re | Coatti GC       | A promoter-dependent upstream activator augments CFTR expression in diverse epithelial cell types.
+
+### Hokari TTF1 binding
+    PMID 31782890 | 2020 | Mol Oncol                    | Hokari S        | Comparative analysis of TTF-1 binding DNA regions in small-cell lung cancer and non-small-cell lung cancer.
+
+### Lung TF ChIP in vivo
+    PMID 37452037 | 2023 | Nat Commun                   | Zhou W          | The RNA-binding protein LRPPRC promotes resistance to CDK4/6 inhibition in lung cancer.
+    PMID 38520004 | 2024 | J Exp Clin Cancer Res        | Li Z            | CDKL1 potentiates the antitumor efficacy of radioimmunotherapy by binding to transcription factor YBX1 and blocking PD-L1 exp
+    PMID 40917894 | 2025 | Mol Ther Nucleic Acids       | Liu Y           | Transcriptomic analysis reveals lung cancer and subtype-specific alternative splicing biomarkers regulated by RNA-binding pro
+    PMID 38101567 | 2024 | Am J Pathol                  | Zhang Z         | IL-22 Binding Protein Controls IL-22-Driven Bleomycin-Induced Lung Injury.
+    PMID 40512793 | 2025 | Proc Natl Acad Sci U S A     | Jiang H         | RACK1 promotes the development and function of alveolar macrophages through directly binding to and stabilizing PPARγ.
+    PMID 40441397 | 2025 | J Heart Lung Transplant      | Kang J          | Association of Fc gamma-binding protein rs1464897604 polymorphism with bronchiolitis obliterans syndrome in lung transplant r
+    PMID 36002259 | 2022 | Chem Pharm Bull (Tokyo)      | Gao J           | Synthesis and Evaluation of a Paclitaxel-Binding Tripeptide Micelle for Lung Cancer Therapy.
+    PMID 37196136 | 2024 | Aging Dis                    | Chen R          | Thioredoxin1 Binding Metastasis-Associated Lung Adenocarcinoma Transcript 1 Attenuates Inflammation and Apoptosis after Intra
+    PMID 39166890 | 2024 | Clin Transl Med              | Qian C          | Cyclic-di-GMP induces inflammation and acute lung injury through direct binding to MD2.
+    PMID 33916417 | 2021 | Cancers (Basel)              | Ong Q           | Integrative RNA-Seq and H3 Trimethylation ChIP-Seq Analysis of Human Lung Cancer Cells Isolated by Laser-Microdissection.
+
+### Perturb-map lung
+    PMID 39481380 | 2024 | Cell                         | Mollaoglu G     | Ovarian cancer-derived IL-4 promotes immunotherapy resistance.
+    PMID 35290801 | 2022 | Cell                         | Dhainaut M      | Spatial CRISPR genomics identifies regulators of the tumor microenvironment.
+    PMID 41292874 | 2025 | bioRxiv                      | Lin X           | CONCERT predicts niche-aware perturbation responses in spatial transcriptomics.
+    PMID 40667068 | 2025 | bioRxiv                      | Falcomatà C     | Plasminogen activator inhibitors orchestrate the immunosuppressive tumor microenvironment in pancreatic cancer.
+    PMID 35545708 | 2022 | Nat Methods                  | Tang L          | Spatial CRISPR screens in tumors.
+    PMID 42277224 | 2026 | Nat Biotechnol               | Schwartz L      | Spatial CRISPR screens map total RNA in tissue.
+    PMID 35491642 | 2022 | Cancer Discov                |                 | Perturb-map Enables Identification of Genetic Regulators of the TME.
+
+### Ursu Perturb-seq variants
+    PMID 35058622 | 2022 | Nat Biotechnol               | Ursu O          | Massively parallel phenotyping of coding variants in cancer with Perturb-seq.
+    PMID 36258042 | 2022 | Nat Biotechnol               | Ursu O          | Author Correction: Massively parallel phenotyping of coding variants in cancer with Perturb-seq.
+
+### Replogle genome-scale Perturb-seq
+    PMID 35688146 | 2022 | Cell                         | Replogle JM     | Mapping information-rich genotype-phenotype landscapes with genome-scale Perturb-seq.
+    PMID 33838111 | 2021 | Cell                         | Nuñez JK        | Genome-wide programmable transcriptional memory by CRISPR-based epigenome editing.
+    PMID 35523183 | 2022 | Cell                         | Yang D          | Lineage tracing reveals the phylodynamics, plasticity, and paths of tumor evolution.
+    PMID 36576240 | 2022 | Elife                        | Replogle JM     | Maximizing CRISPRi efficacy and accessibility with dual-sgRNA libraries and optimal effectors.
+    PMID 31395745 | 2019 | Science                      | Norman TM       | Exploring genetic interaction manifolds constructed from rich single-cell phenotypes.
+    PMID 35108499 | 2022 | Cell                         | Qiu X           | Mapping transcriptomic vector fields of single cells.
+    PMID 32231336 | 2020 | Nat Biotechnol               | Replogle JM     | Combinatorial single-cell CRISPR screens by direct guide RNA capture and targeted sequencing.
+    PMID 36264797 | 2022 | Science                      | Guna A          | MTCH2 is a mitochondrial outer membrane protein insertase.
+    PMID 40259084 | 2025 | Nat Genet                    | Nadig A         | Transcriptome-wide analysis of differential expression in perturbation atlases.
+    PMID 38823395 | 2024 | Dev Cell                     | Do BT           | Nucleotide depletion promotes cell fate transitions by inducing DNA replication stress.
+
+### Joung TF atlas
+    PMID 36608654 | 2023 | Cell                         | Joung J         | A transcription factor atlas of directed differentiation.
+    PMID 38697106 | 2024 | Cell                         | Joung J         | A transcription factor atlas of directed differentiation.
+    PMID 42314680 | 2026 | Cell Syst                    | Briggs JA       | Pooled combinatorial screening identifies transcription factor sets that drive hematopoietic progenitor-like cell fate.
+    PMID 42119715 | 2026 | Fitoterapia                  | Kim YW          | Integrated chemical and molecular authentication of Pinellia tuber: A multinational collaboration within the FHH ATLAS projec
+
+### Perturb-seq lung any
+    PMID 35688146 | 2022 | Cell                         | Replogle JM     | Mapping information-rich genotype-phenotype landscapes with genome-scale Perturb-seq.
+    PMID 27984732 | 2016 | Cell                         | Dixit A         | Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens.
+    PMID 31422865 | 2019 | Neuron                       | Tian R          | CRISPR Interference-Based Platform for Multimodal Genetic Screens in Human iPSC-Derived Neurons.
+    PMID 35750052 | 2022 | Cancer Cell                  | Belk JA         | Genome-wide CRISPR screens of T cell exhaustion identify chromatin remodeling factors that limit T cell persistence.
+    PMID 27984733 | 2016 | Cell                         | Adamson B       | A Multiplexed Single-Cell CRISPR Screening Platform Enables Systematic Dissection of the Unfolded Protein Response.
+    PMID 37154091 | 2023 | Mol Syst Biol                | Lotfollahi M    | Predicting cellular responses to complex perturbations in high-throughput screens.
+    PMID 42119563 | 2026 | Cell                         | Wang W          | RegVelo: Gene-regulatory-informed dynamics of single cells.
+    PMID 31395745 | 2019 | Science                      | Norman TM       | Exploring genetic interaction manifolds constructed from rich single-cell phenotypes.
+    PMID 41544628 | 2026 | Cancer Cell                  | Li J            | Single-cell screens identify ADAM12 as a fibroblast checkpoint impeding anti-tumor immunity.
+    PMID 33243861 | 2020 | Science                      | Jin X           | In vivo Perturb-Seq reveals neuronal and glial abnormalities associated with autism risk genes.
+
+### CRISPRi enhancer lung
+    PMID 37488417 | 2023 | Nat Genet                    | Luo R           | Dynamic network-guided CRISPRi screen identifies CTCF-loop-constrained nonlinear enhancer gene regulatory activity during cel
+    PMID 36945628 | 2023 | bioRxiv                      | Luo R           | Dynamic network-guided CRISPRi screen reveals CTCF loop-constrained nonlinear enhancer-gene regulatory activity in cell state
+    PMID 31481541 | 2019 | J Bacteriol                  | Qu J            | Modulating Pathogenesis with Mobile-CRISPRi.
+    PMID 41044600 | 2025 | Genome Biol                  | Conery M        | GWAS-informed data integration and non-coding CRISPRi screen illuminate genetic etiology of bone mineral density.
+    PMID 36252816 | 2023 | Cancer Lett                  | Myacheva K      | CRISPRi screening identifies CASP8AP2 as an essential viability factor in lung cancer controlling tumor cell death via the AP
+    PMID 33980985 | 2021 | Commun Biol                  | Stuart WD       | CRISPRi-mediated functional analysis of NKX2-1-binding sites in the lung.
+    PMID 40595632 | 2025 | Nat Commun                   | Zhang Y         | CRISPRi screen identifies FprB as a synergistic target for gallium therapy in Pseudomonas aeruginosa.
+    PMID 38857306 | 2024 | PLoS Genet                   | Tsung K         | CRISPRi screen of long non-coding RNAs identifies LINC03045 regulating glioblastoma invasion.
+    PMID 37773752 | 2023 | STAR Protoc                  | Bril O          | Identifying essential long non-coding RNAs in cancer using CRISPRi-based dropout screens.
+    PMID 42190655 | 2026 | Am J Hum Genet               | Laub S          | Integrative genomics and single-cell CRISPRi screening dissect Alzheimer GWAS non-coding variants regulating TSPAN14.
+
+### HuRI
+    PMID 32296183 | 2020 | Nature                       | Luck K          | A reference map of the human binary protein interactome.
+    PMID 36046620 | 2022 | Cell Rep Methods             | Sharifi Tabar M | Illuminating the dark protein-protein interactome.
+    PMID 38180828 | 2023 | Brief Bioinform              | Kosoglu K       | Structural coverage of the human interactome.
+    PMID 35404956 | 2022 | PLoS Comput Biol             | Ghadie MA       | Are transient protein-protein interactions more dispensable?
+    PMID 31324802 | 2019 | Nat Commun                   | Ghadie M        | Estimating dispensable content in the human interactome.
+    PMID 36814208 | 2023 | BMC Bioinformatics           | Yuen HY         | Normalized L3-based link prediction in protein-protein interaction networks.
+    PMID 40393022 | 2025 | Neurol Neuroimmunol Neuroinf | Milano C        | Assessing Commercial Tissue-Based Assays for Autoimmune Neurologic Disorders (I): Antibodies to Intracellular Antigens.
+    PMID 42319252 | 2026 | Brief Bioinform              | Balbi L         | The role of protein embeddings for protein-protein interaction prediction with graph neural networks.
+    PMID 35662469 | 2022 | J Mol Biol                   | Helmy M         | OpenPIP: An Open-source Platform for Hosting, Visualizing and Analyzing Protein Interaction Data.
+    PMID 35771625 | 2022 | Bioinformatics               | Nowakowska AW   | Topological analysis as a tool for detection of abnormalities in protein-protein interaction data.
+
+### BioPlex
+    PMID 26186194 | 2015 | Cell                         | Huttlin EL      | The BioPlex Network: A Systematic Exploration of the Human Interactome.
+    PMID 29054129 | 2018 | J Proteome Res               | Schweppe DK     | BioPlex Display: An Interactive Suite for Large-Scale AP-MS Protein-Protein Interaction Data.
+    PMID 33883179 | 2021 | J Clin Microbiol             | Baarsma ME      | Diagnostic Performance of the Novel BioPlex Lyme Serological Assays in European Patients with Lyme Disease.
+    PMID 34542555 | 2022 | Am J Clin Pathol             | Pacheco MC      | Evaluation of BioPlex 2200 tTG-IgA Diagnostic Performance for Serology-Based Diagnosis of Celiac Disease.
+    PMID 27112381 | 2016 | Clin Biochem                 | Abou El Hassan  | Analytical evaluation of the BioPlex® 2200 25-OH vitamin D total assay.
+    PMID 30429251 | 2019 | J Clin Microbiol             | Tesfazghi MT    | Clinical Performance of the BioPlex 2200 Syphilis Total & RPR Assay at a Tertiary Medical Center with a High Rate of Syphilis
+    PMID 32073549 | 2020 | Sex Transm Dis               | Tang EW         | Evaluation of BioPlex 2200 Syphilis Total With Automated Rapid Plasma Reagin: Experience From a Tertiary Medical Center.
+    PMID 31167847 | 2019 | J Clin Microbiol             | McLachlan E     | Calibration and Evaluation of Quantitative Antibody Titers for Varicella-Zoster Virus by Use of the BioPlex 2200.
+    PMID 26020892 | 2015 | J Anim Sci                   | Gowanlock DW    | Evaluating the influence of National Research Council levels of copper, iron, manganese, and zinc using organic (Bioplex) min
+    PMID 27852634 | 2017 | Clin Vaccine Immunol         | Hatchette TF    | Calibration and Evaluation of Quantitative Antibody Titers for Measles Virus by Using the BioPlex 2200.
+
+### OpenCell
+    PMID 35271311 | 2022 | Science                      | Cho NH          | OpenCell: Endogenous tagging for the cartography of human cellular organization.
+    PMID 39742809 | 2025 | Cell                         | Hein MY         | Global organelle profiling reveals subcellular localization and remodeling at proteome scale.
+    PMID 34794211 | 2021 | Curr Protoc                  | MacKinnon SS    | Proteome-Scale Drug-Target Interaction Predictions: Approaches and Applications.
+    PMID 39848140 | 2025 | Curr Opin Struct Biol        | Yoon MS         | Deep learning methods for proteome-scale interaction prediction.
+    PMID 38743624 | 2024 | Proc Natl Acad Sci U S A     | Zhao H          | ZEPPI: Proteome-scale sequence-based evaluation of protein-protein interaction models.
+    PMID 38696375 | 2024 | PLoS One                     | Gupta A         | OpenCell: A low-cost, open-source, 3-in-1 device for DNA extraction.
+    PMID 37808818 | 2024 | bioRxiv                      | Gupta A         | OpenCell: A Low-cost, Open-Source, 3-in-1 device for DNA Extraction.
+    PMID 37790387 | 2023 | Res Sq                       | Zhao H          | ZEPPI: proteome-scale sequence-based evaluation of protein-protein interaction models.
+    PMID 38675064 | 2024 | Polymers (Basel)             | Kurańska M      | Open-Cell Spray Polyurethane Foams Based on Biopolyols from Fruit Seed Oils.
+    PMID 36349895 | 2023 | Mater Horiz                  | Wang L          | Superhydrophobic microstructures for better anti-icing performances: open-cell or closed-cell?
+
+### huMAP
+    NO MATCH
+
+### CORUM
+    PMID 36382402 | 2023 | Nucleic Acids Res            | Tsitsiridis G   | CORUM: the comprehensive resource of mammalian protein complexes-2022.
+    PMID 37779160 | 2023 | Parasitol Res                | Gureser AS      | Prevalence of Blastocystis and Dientamoeba fragilis in diarrheal patients in Corum, Türkiye.
+    PMID 29649265 | 2018 | PLoS Negl Trop Dis           | Karasartova D   | Bacterial and protozoal pathogens found in ticks collected from humans in Corum province of Turkey.
+    PMID 36466032 | 2022 | Iran J Parasitol             | Güreser AS      | Detection of Blastocystis Subtypes in Children with Functional Abdominal Pain and Celiac Disease in Çorum, Turkey.
+    PMID 30357367 | 2019 | Nucleic Acids Res            | Giurgiu M       | CORUM: the comprehensive resource of mammalian protein complexes-2019.
+    PMID 39526397 | 2025 | Nucleic Acids Res            | Steinkamp R     | CORUM in 2024: protein complexes as drug targets.
+    PMID 32637922 | 2020 | Arch Rheumatol               | Çagliyan TÜrk A | Prevalence of Juvenile Fibromyalgia Syndrome Among Children and Adolescents and its Relationship With Academic Success, Depre
+    PMID 26446532 | 2015 | East Mediterr Health J       | Yilmazel G      | Health literacy among schoolteachers in Çorum, Turkey.
+    PMID 30406743 | 2019 | Public Health Nutr           | Comba A         | Nutritional status and related factors of schoolchildren in Çorum, Turkey.
+    PMID 40234106 | 2025 | Brief Bioinform              | Yang P          | Integrating CORUM and co-fractionation mass spectrometry to create enhanced benchmarks for protein complex predictions.
+
+### IntAct BioGRID
+    PMID 36370105 | 2023 | Nucleic Acids Res            | Szklarczyk D    | The STRING database in 2023: protein-protein association networks and functional enrichment analyses for any sequenced genome
+    PMID 33237311 | 2021 | Nucleic Acids Res            | Szklarczyk D    | The STRING database in 2021: customizable protein-protein networks, and functional characterization of user-uploaded gene/mea
+    PMID 39558183 | 2025 | Nucleic Acids Res            | Szklarczyk D    | The STRING database in 2025: protein networks with directionality of regulation.
+    PMID 39547646 | 2025 | Pract Radiat Oncol           | Fields EC       | Consensus Guidelines for Delineation of Clinical Target Volumes for Intensity Modulated Radiation Therapy for Intact Cervical
+    PMID 30476227 | 2019 | Nucleic Acids Res            | Oughtred R      | The BioGRID interaction database: 2019 update.
+    PMID 27980099 | 2017 | Nucleic Acids Res            | Chatr-Aryamontr | The BioGRID interaction database: 2017 update.
+    PMID 25428363 | 2015 | Nucleic Acids Res            | Chatr-Aryamontr | The BioGRID interaction database: 2015 update.
+    PMID 33070389 | 2021 | Protein Sci                  | Oughtred R      | The BioGRID database: A comprehensive biomedical resource of curated protein, genetic, and chemical interactions.
+    PMID 26729913 | 2016 | Cold Spring Harb Protoc      | Oughtred R      | BioGRID: A Resource for Studying Biological Interactions in Yeast.
+    PMID 26729909 | 2016 | Cold Spring Harb Protoc      | Oughtred R      | Use of the BioGRID Database for Analysis of Yeast Protein and Genetic Interactions.
+
+### lung AP-MS BioID
+    PMID 41973996 | 2026 | Cancer Discov                | Liu X           | GPNMB Drives Brain Metastasis by Sculpting a Pathologic Endothelial-Immune Interactome.
+    PMID 35337019 | 2022 | Viruses                      | May DG          | A BioID-Derived Proximity Interactome for SARS-CoV-2 Proteins.
+    PMID 35649251 | 2022 | Am J Physiol Cell Physiol    | Tang F          | Defining the versican interactome in lung health and disease.
+    PMID 37914802 | 2023 | Br J Cancer                  | Tang M          | Targeting the COMMD4-H2B protein complex in lung cancer.
+    PMID 35229974 | 2022 | J Cell Mol Med               | Erdogan F       | JAK-STAT core cancer pathway: An integrative cancer interactome analysis.
+    PMID 34580671 | 2021 | bioRxiv                      | May DG          | A BioID-derived proximity interactome for SARS-CoV-2 proteins.
+    PMID 35677070 | 2022 | Res Sq                       | Zhou Y          | A comprehensive SARS-CoV-2-human protein-protein interactome network identifies pathobiology and host-targeting therapies for
+    PMID 28794006 | 2017 | Mol Cell Proteomics          | Kim BR          | Identification of the SOX2 Interactome by BioID Reveals EP300 as a Mediator of SOX2-dependent Squamous Differentiation and Lu
+    PMID 37703176 | 2023 | Cell Rep                     | Fernando CD     | A STAT3 protein complex required for mitochondrial mRNA stability and cancer.
+    PMID 25691595 | 2015 | mBio                         | Chen AL         | Novel components of the Toxoplasma inner membrane complex revealed by BioID.
+
+### lung proteome atlas
+    PMID 30814501 | 2019 | Nat Commun                   | Angelidis I     | An atlas of the aging lung mapped by single cell transcriptomics and deep tissue proteomics.
+    PMID 41713944 | 2026 | Eur Respir J                 | Lee M           | Circulating proteomic landscape of lung function.
+    PMID 38442249 | 2024 | Am J Respir Crit Care Med    | Maddali MV      | Mapping the Proteomic Landscape of Radiological Lung Abnormalities.
+    PMID 41113990 | 2025 | Am J Cancer Res              | Xu X            | Proteomic landscape of lung adenocarcinoma precancerous lesions reveals mitochondrial dsRNA-associated immune and stress resp
+    PMID 36341346 | 2022 | Front Immunol                | Wang H          | Proteomic and phosphorylated proteomic landscape of injured lung in juvenile septic rats with therapeutic application of umbi
+    PMID 38182978 | 2024 | Clin Proteomics              | Huang Y         | Prognostic biomarker discovery based on proteome landscape of Chinese lung adenocarcinoma.
+    PMID 37920665 | 2023 | iScience                     | Vitucci ECM     | Characterizing the extracellular vesicle proteomic landscape of the human airway using in vitro organotypic multi-cellular mo
+    PMID 26217778 | 2015 | Data Brief                   | Schuller S      | A 2-D guinea pig lung proteome map.
+    PMID 32784406 | 2020 | Int J Mol Sci                | James J         | Complex III Inhibition-Induced Pulmonary Hypertension Affects the Mitochondrial Proteomic Landscape.
+    PMID 35117401 | 2020 | Transl Cancer Res            | Hou WL          | Proteomic and ultrastructural analysis of Clara cell and type II alveolar epithelial cell-type lung cancer cells.
+
+### lung HiChIP 3D
+    PMID 38951485 | 2024 | Nat Commun                   | Zhang J         | CTCF mutation at R567 causes developmental disorders via 3D genome rearrangement and abnormal neurodevelopment.
+    PMID 41223092 | 2025 | Elife                        | Das P           | Rearrangement of 3D genome organization in breast cancer epithelial to mesenchymal transition and metastasis organotropism.
+    PMID 36050414 | 2023 | Nat Immunol                  | Michieletto MF  | Multiscale 3D genome organization underlies ILC2 ontogenesis and allergic airway inflammation.
+    PMID 38372567 | 2024 | J Cell Mol Med               | Kerschner JL    | The impact of genomic distance on enhancer-promoter interactions at the CFTR locus.
+    PMID 34116262 | 2021 | Genomics Proteomics Bioinfor | Li T            | Integrative Analysis of Genome, 3D Genome, and Transcriptome Alterations of Clinical Lung Cancer Samples.
+    PMID 42189071 | 2026 | Adv Sci (Weinh)              | Tang Q          | A Non-Canonical Role of SMAD4 in Regulating 3D Genome Architecture to Inhibit Lung Squamous Cell Carcinoma Development.
+    PMID 37070193 | 2023 | Nucleic Acids Res            | Mayayo-Peralta  | PAXIP1 and STAG2 converge to maintain 3D genome architecture and facilitate promoter/enhancer contacts to enable stress hormo
+    PMID 40099944 | 2025 | Genes Chromosomes Cancer     | Yaa RM          | Chromatin Interaction and Histone Mark Signatures Associated With TBXT Expression in Metastatic Lung Cancer.
+    PMID 39229150 | 2025 | bioRxiv                      | Das P           | Rearrangement of 3D genome organization in breast cancer epithelial - mesenchymal transition and metastasis organotropism.
+    PMID 35474385 | 2022 | Nucleic Acids Res            | Zakharova VV    | SETDB1 fuels the lung cancer phenotype by modulating epigenome, 3D genome organization and chromatin mechanical properties.
+
+### ABC model
+    PMID 31784727 | 2019 | Nat Genet                    | Fulco CP        | Activity-by-contact model of enhancer-promoter regulation from thousands of CRISPR perturbations.
+    PMID 35396274 | 2022 | Genome Res                   | Karbalayghareh  | Chromatin interaction-aware gene regulatory modeling with graph attention networks.
+    PMID 33828297 | 2021 | Nature                       | Nasser J        | Genome-wide enhancer maps link risk variants to disease genes.
+    PMID 37749132 | 2023 | Nat Commun                   | Ying P          | Genome-wide enhancer-gene regulatory maps link causal variants to target genes underlying human cancer risk.
+    PMID 35517868 | 2022 | Front Mol Biosci             | Wurmser A       | Enhancer-Promoter Communication: It's Not Just About Contact.
+    PMID 41097099 | 2025 | Int J Mol Sci                | Lee M           | CTCF Mediates the Cis-Regulatory Hubs in Mouse Hearts.
+    PMID 40010352 | 2025 | Cell Genom                   | Tjalsma SJD     | Long-range enhancer-controlled genes are hypersensitive to regulatory factor perturbations.
+    PMID 36477537 | 2022 | Nature                       | Xu Z            | Structural variants drive context-dependent oncogene activation in cancer.
+    PMID 40506539 | 2025 | Nat Genet                    | Dorans E        | Linking regulatory variants to target genes by integrating single-cell multiome methods and genomic distance.
+    PMID 36708003 | 2023 | Bioinformatics               | Hecker D        | The adapted Activity-By-Contact model for enhancer-gene assignment and its application to single-cell data.
+

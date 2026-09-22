@@ -1,0 +1,288 @@
+### ChIP-Atlas  (total hits=4, showing 4)
+    PMID 30413482 | 2018 | EMBO Rep                               | Oki S | ChIP-Atlas: a data-mining suite powered by full integration of public ChIP-seq data.
+    PMID 35325188 | 2022 | Nucleic Acids Res                      | Zou Z | ChIP-Atlas 2021 update: a data-mining suite for exploring epigenomic landscapes by fully integrating ChIP-seq, ATAC-seq and Bisulfite-s
+    PMID 38749504 | 2024 | Nucleic Acids Res                      | Zou Z | ChIP-Atlas 3.0: a data-mining suite to explore chromosome architecture together with large-scale regulome data.
+    PMID 42051034 | 2026 | Nucleic Acids Res                      | Zou Z | ChIP-Atlas 2025 update: 10-year anniversary of a data-mining platform for exploring epigenomic landscape.
+
+### GRAND db  (total hits=3, showing 3)
+    PMID 34508353 | 2022 | Nucleic Acids Res                      | Ben Guebila M | GRAND: a database of gene regulatory network models across human conditions.
+    PMID 35126443 | 2022 | Front Plant Sci                        | Zhang Z | GRAND: An Integrated Genome, Transcriptome Resources, and Gene Network Database for Gossypium.
+    PMID 38918435 | 2024 | Sci Data                               | Crombach L | The Subnational Corruption Database: Grand and petty corruption in 1,473 regions of 178 countries, 1995-2022.
+
+### KnockTF  (total hits=2, showing 2)
+    PMID 31598675 | 2020 | Nucleic Acids Res                      | Feng C | KnockTF: a comprehensive human gene expression profile database with knockdown/knockout of transcription factors.
+    PMID 37956336 | 2024 | Nucleic Acids Res                      | Feng C | KnockTF 2.0: a comprehensive gene expression profile database with knockdown/knockout of transcription (co-)factors in multiple species
+
+### IPF Cell Atlas  (total hits=5, showing 5)
+    PMID 35698166 | 2022 | Hum Genomics                           | Justet A | From COVID to fibrosis: lessons from single-cell analyses of the human lung.
+    PMID 38948058 | 2024 | Theranostics                           | Vásquez-Pacheco E | Highlighting fibroblast plasticity in lung fibrosis: the WI-38 cell line as a model for investigating the myofibroblast and lipofibrobl
+    PMID 36450109 | 2023 | Am J Respir Cell Mol Biol              | Kim SH | VISTA (PD-1H) Is a Crucial Immune Regulator to Limit Pulmonary Fibrosis.
+    PMID 42576310 | 2026 | Am J Respir Cell Mol Biol              | Zhou C | Targeting the S100A2-RAGE Pathway Restores AT2 Cell Identity and Mitigates Lung Fibrosis.
+    PMID 42010571 | 2026 | Respir Res                             | Berger K | PCSK6 and clinical outcomes in the Pulmonary Fibrosis Foundation Patient Registry.
+
+### LungMAP CellRef  (total hits=1, showing 1)
+    PMID 37516747 | 2023 | Nat Commun                             | Guo M | Guided construction of single cell reference for human and mouse lung.
+
+### human fetal lung atlas TF  (total hits=4, showing 4)
+    PMID 36493756 | 2022 | Cell                                   | He P | A human fetal lung cell atlas uncovers proximal-distal gradients of differentiation and key regulators of epithelial fates.
+    PMID 39003323 | 2024 | Nat Commun                             | Quach H | Early human fetal lung atlas reveals the temporal dynamics of epithelial cell plasticity.
+    PMID 36646791 | 2023 | Nat Cell Biol                          | Sountoulidis A | A topographic atlas defines developmental origins of cell heterogeneity in the human embryonic lung.
+    PMID 41727615 | 2026 | Res Sq                                 | Messaoudi I | Single-Cell Atlas of Fetal Immune Development Across Lung, Spleen, and Umbilical Cord Blood in Nonhuman Primates.
+
+### lung TF target resource  (total hits=60, showing 60)
+    PMID 40658169 | 2025 | Med Oncol                              | Wang K | Deciphering the transcriptional regulatory network driving lung adenocarcinoma progression.
+    PMID 35262195 | 2022 | Int J Cancer                           | Bischoff P | The single-cell transcriptional landscape of lung carcinoid tumors.
+    PMID 42115292 | 2026 | Commun Biol                            | Lins T | Transcriptional landscape of pulmonary artery endothelium reveals subpopulation- and disease-specific remodeling signatures.
+    PMID 36712057 | 2023 | bioRxiv                                | Hong J | Integrative Multiomics to Dissect the Lung Transcriptional Landscape of Pulmonary Arterial Hypertension.
+    PMID 29866045 | 2018 | BMC Genomics                           | Zhang S | Landscape of transcriptional deregulation in lung cancer.
+    PMID 38249888 | 2023 | J Thorac Dis                           | Huang F | Transcription factor-target gene regulatory network analysis in human lung adenocarcinoma.
+    PMID 41571679 | 2026 | Nat Commun                             | De Man R | Single-cell atlas of human lung aging identifies cell type dyssynchrony and increased transcriptional entropy.
+    PMID 39910394 | 2025 | J Hematol Oncol                        | Yoo S | Transcriptional regulatory network analysis identifies GRN as a key regulator bridging chemotherapy and immunotherapy response in small
+    PMID 36661515 | 2023 | Curr Issues Mol Biol                   | Otálora-Otálora BA | Lung Cancer Gene Regulatory Network of Transcription Factors Related to the Hallmarks of Cancer.
+    PMID 39960662 | 2025 | Int J Cancer                           | Wang K | Development and validation of a transcription factor regulatory network-based signature for individualized prognostic risk in lung aden
+    PMID 41751942 | 2026 | Int J Mol Sci                          | Wang D | KIF18B Is Essential for Lung Adenocarcinoma Progression Through the E2F Transcriptional Network.
+    PMID 37051524 | 2023 | Natl Sci Rev                           | Tang S | Counteracting lineage-specific transcription factor network finely tunes lung adeno-to-squamous transdifferentiation through remodeling
+    PMID 33476703 | 2021 | Mol Cell Endocrinol                    | Browne JA | The Bromodomain Containing 8 (BRD8) transcriptional network in human lung epithelial cells.
+    PMID 31083674 | 2019 | PLoS One                               | Norman TA Jr | Transcriptional landscape of pulmonary lymphatic endothelial cells during fetal gestation.
+    PMID 32432922 | 2020 | Am J Physiol Lung Cell Mol Physiol     | Paranjapye A | The FOXA1 transcriptional network coordinates key functions of primary human airway epithelial cells.
+    PMID 33070167 | 2020 | Oncogenesis                            | Zhang T | Aberrant super-enhancer landscape reveals core transcriptional regulatory circuitry in lung adenocarcinoma.
+    PMID 26093302 | 2015 | Biochem Biophys Res Commun             | Jang SM | Transcription factor FOXA2-centered transcriptional regulation network in non-small cell lung cancer.
+    PMID 29572268 | 2018 | Biochem J                              | Mutolo MJ | A transcription factor network represses CFTR gene expression in airway epithelial cells.
+    PMID 33569435 | 2021 | Ann Transl Med                         | Cai C | Identification of novel transcription factor-microRNA-mRNA co-regulatory networks in pulmonary large-cell neuroendocrine carcinoma.
+    PMID 36077264 | 2022 | Int J Mol Sci                          | Cuccu A | Analysis of Dormancy-Associated Transcriptional Networks Reveals a Shared Quiescence Signature in Lung and Colorectal Cancer.
+    PMID 34984329 | 2022 | iScience                               | McNeil MB | Multiplexed transcriptional repression identifies a network of bactericidal interactions between mycobacterial respiratory complexes.
+    PMID 36551878 | 2022 | Biomedicines                           | Otálora-Otálora BA | Identification of the Transcriptional Regulatory Role of RUNX2 by Network Analysis in Lung Cancer Cells.
+    PMID 38068961 | 2023 | Int J Mol Sci                          | Otálora-Otálora BA | Host Transcriptional Regulatory Genes and Microbiome Networks Crosstalk through Immune Receptors Establishing Normal and Tumor Multiomi
+    PMID 26781266 | 2016 | Oncol Rep                              | Wang Y | A transcriptional miRNA-gene network associated with lung adenocarcinoma metastasis based on the TCGA database.
+    PMID 27081085 | 2016 | Oncotarget                             | Cinegaglia NC | Integrative transcriptome analysis identifies deregulated microRNA-transcription factor networks in lung adenocarcinoma.
+    PMID 37907529 | 2023 | NPJ Syst Biol Appl                     | Ozen M | Data-driven structural analysis of small cell lung cancer transcription factor network suggests potential subtype regulators and transi
+    PMID 36899621 | 2023 | Math Biosci Eng                        | Li Q | Identifying key transcription factors and miRNAs coregulatory networks associated with immune infiltrations and drug interactions in id
+    PMID 29303984 | 2018 | Genes (Basel)                          | Li D | Transcription Factor and lncRNA Regulatory Networks Identify Key Elements in Lung Adenocarcinoma.
+    PMID 25955085 | 2015 | Mol Med Rep                            | Yaqubi M | Transcription factor regulatory network for early lung immune response to tuberculosis in mice.
+    PMID 36605530 | 2023 | Exp Ther Med                           | Yang X | Identification of a transcription factor‑cyclin family genes network in lung adenocarcinoma through bioinformatics analysis and validat
+    PMID 25998510 | 2015 | Mol Med                                | Scicluna BP | Modular Transcriptional Networks of the Host Pulmonary Response during Early and Late Pneumococcal Pneumonia.
+    PMID 37066351 | 2023 | bioRxiv                                | Ozen M | Data-driven structural analysis of Small Cell Lung Cancer transcription factor network suggests potential subtype regulators and transi
+    PMID 34257525 | 2021 | Pathol Oncol Res                       | Ma J | Expression, Prognosis and Gene Regulation Network of NFAT Transcription Factors in Non-Small Cell Lung Cancer.
+    PMID 34960801 | 2021 | Viruses                                | Zhang R | Nanopore-Based Direct RNA-Sequencing Reveals a High-Resolution Transcriptional Landscape of Porcine Reproductive and Respiratory Syndro
+    PMID 37936118 | 2023 | J Transl Med                           | Li B | Systematic analysis of various RNA transcripts and construction of biological regulatory networks at the post-transcriptional level for
+    PMID 37197420 | 2023 | Front Oncol                            | Zhang J | Identifying key transcription factors and immune infiltration in non-small-cell lung cancer using weighted correlation network and Cox 
+    PMID 40196036 | 2025 | Front Microbiol                        | Chen Y | The single-cell transcriptional landscape of lung cells from PCV2d-infected mice.
+    PMID 37193127 | 2023 | iScience                               | Fritch EJ | Metatranscriptomics analysis reveals a novel transcriptional and translational landscape during Middle East respiratory syndrome corona
+    PMID 41542612 | 2026 | bioRxiv                                | Sveiven SN | A Transcriptional Atlas of Endothelial Cell Zonation Along the Pulmonary Vascular Tree.
+    PMID 26980499 | 2016 | Tuberculosis (Edinb)                   | Mvubu NE | Canonical pathways, networks and transcriptional factor regulation by clinical strains of Mycobacterium tuberculosis in pulmonary alveo
+    PMID 35792448 | 2022 | Phytomedicine                          | Li H | Integrated RNA-sequencing and network pharmacology approach reveals the protection of Yiqi Huoxue formula against idiopathic pulmonary 
+    PMID 37087790 | 2023 | Phytomedicine                          | Zhao C | Deciphering the molecular mechanisms of Maxing Huoqiao Decoction in treating pulmonary fibrosis via transcriptional profiling and circR
+    PMID 41559111 | 2026 | NPJ Syst Biol Appl                     | Ray U | Gene regulatory network transitions reveal the central transcription factors in lung adenocarcinoma progression.
+    PMID 36615660 | 2022 | Nutrients                              | Lin YS | Probing Folate-Responsive and Stage-Sensitive Metabolomics and Transcriptional Co-Expression Network Markers to Predict Prognosis of No
+    PMID 27094710 | 2016 | Cancer Sci                             | Mori K | Linkage of E2F1 transcriptional network and cell proliferation with respiratory chain activity in breast cancer cells.
+    PMID 41667527 | 2026 | Sci Rep                                | Sun Y | The single-cell transcriptional landscape of the pediatric cystic fibrosis lung from minimally invasive respiratory specimens.
+    PMID 41975423 | 2026 | Cell Div                               | Nirmal S | The TMPO-AS1/hsa-let-7b-5p regulatory axis shapes transcriptional heterogeneity and immune landscape in lung adenocarcinoma.
+    PMID 27932399 | 2017 | Cancer Res                             | Udyavar AR | Novel Hybrid Phenotype Revealed in Small Cell Lung Cancer by a Transcription Factor Network Model That Can Explain Tumor Heterogeneity.
+    PMID 29236308 | 2018 | J Cell Biochem                         | Amalraj T | Database of transcription factors in lung cancer (DBTFLC): A novel resource for exploring transcription factors associated with lung ca
+    PMID 30569133 | 2019 | Mol Med Rep                            | Zhao S | Construction of a transcription factor‑long non‑coding RNA‑microRNA network for the identification of key regulators in lung adenocarci
+    PMID 34922464 | 2021 | BMC Genomics                           | Zhou B | Comprehensive epigenomic profiling of human alveolar epithelial differentiation identifies key epigenetic states and transcription fact
+    PMID 28231299 | 2017 | PLoS One                               | Jiao DM | Exploration of inhibitory mechanisms of curcumin in lung cancer metastasis using a miRNA- transcription factor-target gene network.
+    PMID 30744585 | 2019 | BMC Cancer                             | D'Almeida O | Encapsulated miR-200c and Nkx2.1 in a nuclear/mitochondria transcriptional regulatory network of non-metastatic and metastatic lung can
+    PMID 26696750 | 2015 | Mediators Inflamm                      | Dyskova T | Correlation Network Analysis Reveals Relationships between MicroRNAs, Transcription Factor T-bet, and Deregulated Cytokine/Chemokine-Re
+    PMID 31877723 | 2019 | Cancers (Basel)                        | Niemira M | Molecular Signature of Subtypes of Non-Small-Cell Lung Cancer by Large-Scale Transcriptional Profiling: Identification of Key Modules a
+    PMID 28742165 | 2017 | Mol Biosyst                            | Donakonda S | System analysis identifies distinct and common functional networks governed by transcription factor ASCL1, in glioma and small cell lun
+    PMID 32931455 | 2020 | Aging (Albany NY)                      | Bu J | Constructing a global transcriptional regulatory landscape for early non-small cell lung cancer to identify hub genes and key pathways.
+    PMID 30824677 | 2019 | Cancer Res                             | Udyavar AR | Correction: Novel Hybrid Phenotype Revealed in Small Cell Lung Cancer by a Transcription Factor Network Model That Can Explain Tumor He
+    PMID 29190828 | 2017 | PLoS One                               | Jiao DM | Retraction: Exploration of inhibitory mechanisms of curcumin in lung cancer metastasis using a miRNA- transcription factor-target gene 
+    PMID 29757968 | 2018 | Genes (Basel)                          | Li D | Erratum: Dan Li et al.; Transcription Factor and lncRNA Regulatory Networks Identify Key Elements in Lung Adenocarcinoma. Genes 2018, 9
+
+### lung disease gene database  (total hits=35, showing 35)
+    PMID 31949184 | 2020 | Sci Rep                                | Villaseñor-Altamir | PulmonDB: a curated lung disease gene expression database.
+    PMID 40298430 | 2025 | Cancer Res                             | Cai L | The Lung Cancer Autochthonous Model Gene Expression Database Enables Cross-Study Comparisons of the Transcriptomic Landscapes Across Mo
+    PMID 32850378 | 2020 | Front Oncol                            | Xue X | Catalog of Lung Cancer Gene Mutations Among Chinese Patients.
+    PMID 39692700 | 2024 | Cancer Med                             | Waliany S | Real-World Prevalence, Treatment Patterns, and Outcomes for Patients With HER2 (ERBB2)-Mutant Metastatic Non-Small Cell Lung Cancer, Fr
+    PMID 30532070 | 2019 | Oncogene                               | Cai L | LCE: an open web portal to explore gene expression and clinical associations in lung cancer.
+    PMID 36979050 | 2023 | Biology (Basel)                        | Liu Y | A Database of Lung Cancer-Related Genes for the Identification of Subtype-Specific Prognostic Biomarkers.
+    PMID 39842065 | 2025 | Lung Cancer                            | Fujii K | Clinical utility of comprehensive genomic profiling in non-small cell lung cancer: An analysis of a nation-wide database.
+    PMID 36600965 | 2022 | J Oncol                                | Shen Y | Screening of Key Prognosis Genes of Lung Adenocarcinoma Based on Expression Analysis on TCGA Database.
+    PMID 28862214 | 2017 | J Cancer Res Ther                      | Choubey J | Respiratory cancer database: An open access database of respiratory cancer gene and miRNA.
+    PMID 40098965 | 2025 | Front Immunol                          | Jefferis T | Gene regulation and signaling pathways in immune response to respiratory sensitizers: a database analysis.
+    PMID 31367746 | 2019 | Gigascience                            | Dai W | An integrated respiratory microbial gene catalogue to better understand the microbial aetiology of Mycoplasma pneumoniae pneumonia.
+    PMID 33385216 | 2021 | Am J Respir Cell Mol Biol              | Du Y | Lung Gene Expression Analysis Web Portal Version 3: Lung-at-a-Glance.
+    PMID 35342284 | 2022 | Cancer Inform                          | Sun B | Bioinformatics Analysis of Differential Gene and MicroRNA Expression in Lung Adenocarcinoma: Genetic Effects on Patient Prognosis, as I
+    PMID 26781266 | 2016 | Oncol Rep                              | Wang Y | A transcriptional miRNA-gene network associated with lung adenocarcinoma metastasis based on the TCGA database.
+    PMID 36091953 | 2022 | Heliyon                                | Ullah MA | Identification of the prognostic and therapeutic values of cyclin E1 (CCNE1) gene expression in Lung Adenocarcinoma and Lung Squamous C
+    PMID 33308175 | 2020 | BMC Pulm Med                           | Li Y | ILDGDB: a manually curated database of genomics, transcriptomics, proteomics and drug information for interstitial lung diseases.
+    PMID 36336945 | 2023 | Technol Health Care                    | Liu X | Integrated bioinformatics analysis of microarray data from the GEO database to identify the candidate genes linked to poor prognosis in
+    PMID 35938038 | 2022 | Front Genet                            | Ullah MA | Evaluating the Prognostic and Therapeutic Potentials of the Proteasome 26S Subunit, ATPase (PSMC) Family of Genes in Lung Adenocarcinom
+    PMID 28070014 | 2017 | Thorax                                 | Du Y | Lung Gene Expression Analysis (LGEA): an integrative web portal for comprehensive gene expression data analysis in lung development.
+    PMID 38190582 | 2024 | JCO Precis Oncol                       | Wang HY | Comprehensive Genomic Analysis of Patients With Non-Small-Cell Lung Cancer Using Blood-Based Circulating Tumor DNA Assay: Findings From
+    PMID 35307059 | 2022 | Zhonghua Wei Zhong Bing Ji Jiu Yi Xue  | Chen S | [Bioinformatics analysis of ventilator-induced lung injury genome microarray based on gene expression omnibus database and key gene ver
+    PMID 33428597 | 2021 | Aging (Albany NY)                      | Gao C | Gene signatures of 6-methyladenine regulators in women with lung adenocarcinoma and development of a risk scoring system: a retrospecti
+    PMID 26134222 | 2015 | J Thorac Oncol                         | Deng L | Association of PDCD1 and CTLA-4 Gene Expression with Clinicopathological Factors and Survival in Non-Small-Cell Lung Cancer: Results fr
+    PMID 33358483 | 2021 | Lung Cancer                            | Shibata Y | Evaluation of variant frequency in SARS-CoV-2 infection-related genes utilizing lung cancer genomic database.
+    PMID 29650443 | 2018 | Pathol Res Pract                       | Xie ZC | Investigation of miR-136-5p key target genes and pathways in lung squamous cell cancer based on TCGA database and bioinformatics analys
+    PMID 32903217 | 2020 | Aging (Albany NY)                      | Shi H | Retrospective study of gene signatures and prognostic value of m6A regulatory factor in non-small cell lung cancer using TCGA database 
+    PMID 37476556 | 2023 | J Oncol                                | Oncology JO | Retracted: Screening of Key Prognosis Genes of Lung Adenocarcinoma Based on Expression Analysis on TCGA Database.
+    PMID 34956316 | 2021 | Front Genet                            | Quintanilla E | A Data Report on the Curation and Development of a Database of Genes for Acute Respiratory Distress Syndrome.
+    PMID 34397793 | 2021 | Medicine (Baltimore)                   | Gao X | Expression and clinical significance of AURKB gene in lung adenocarcinoma: Analysis based on the data-mining of bioinformatic database.
+    PMID 31109437 | 2019 | Zhongguo Fei Ai Za Zhi                 | Li W | [Study on the Difference of Gene Expression between Central and Peripheral Lung Squamous Cell Carcinoma Based on TCGA Database].
+    PMID 33763115 | 2021 | Front Genet                            | Dai B | Significance of RNA N6-Methyladenosine Regulators in the Diagnosis and Subtype Classification of Childhood Asthma Using the Gene Expres
+    PMID 28203405 | 2017 | J Thorac Dis                           | Tian F | Weighted gene co-expression network analysis in identification of metastasis-related genes of lung squamous cell carcinoma based on the
+    PMID 41606221 | 2026 | Discov Oncol                           | Yang C | Prognostic model of immune -related immune models of ANLN single gene based on TCGA lung adenocarcinoma database.
+    PMID 31501522 | 2020 | Oncogene                               | Cai L | Correction: LCE: an open web portal to explore gene expression and clinical associations in lung cancer.
+    PMID 39894709 | 2025 | Clin Lung Cancer                       | Lara MS | POLE Mutation Associated With Microsatellite Instability and High Tumor Mutational Burden Confers Exquisite Sensitivity to Immune Check
+
+### master regulator lung disease  (total hits=327, showing 40)
+    PMID 30401705 | 2019 | Blood                                  | Weiss G | Anemia of inflammation.
+    PMID 35127370 | 2022 | Acta Pharm Sin B                       | Wang J | Targeting PI3K/AKT signaling for treatment of idiopathic pulmonary fibrosis.
+    PMID 37945321 | 2023 | J Immunother Cancer                    | Soler MF | New perspectives in cancer immunotherapy: targeting IL-6 cytokine family.
+    PMID 26284610 | 2015 | Am J Respir Crit Care Med              | Xie N | Glycolytic Reprogramming in Myofibroblast Differentiation and Lung Fibrosis.
+    PMID 32612235 | 2020 | Nature                                 | Napolitano G | A substrate-specific mTORC1 pathway underlies Birt-Hogg-Dubé syndrome.
+    PMID 39029462 | 2024 | Cancer Cell                            | He T | Targeting the mSWI/SNF complex in POU2F-POU2AF transcription factor-driven malignancies.
+    PMID 29945888 | 2018 | Genes Dev                              | Huang YH | POU2F3 is a master regulator of a tuft cell-like variant of small cell lung cancer.
+    PMID 38493144 | 2024 | Nat Commun                             | Zhao Y | Long noncoding RNA Malat1 protects against osteoporosis and bone metastasis.
+    PMID 29053969 | 2017 | Cell                                   | Wenzel SE | PEBP1 Wardens Ferroptosis by Enabling Lipoxygenase Generation of Lipid Death Signals.
+    PMID 40250444 | 2025 | Cancer Cell                            | Teng M | Circular RMST cooperates with lineage-driving transcription factors to govern neuroendocrine transdifferentiation.
+    PMID 37689240 | 2024 | J Adv Res                              | Zhao LP | β-Elemene induced ferroptosis via TFEB-mediated GPX4 degradation in EGFR wide-type non-small cell lung cancer.
+    PMID 39368612 | 2024 | Mol Metab                              | Pratama AM | Peroxisomes and PPARs: Emerging role as master regulators of cancer metabolism.
+    PMID 41259048 | 2026 | Protein Cell                           | Wang P | Tumor cell-specific loss of GPX4 reprograms triacylglycerol metabolism to escape ferroptosis and impair antitumor immunity in non-small
+    PMID 39472756 | 2024 | Nat Metab                              | Xiao W | Branched-chain α-ketoacids aerobically activate HIF1α signalling in vascular cells.
+    PMID 35576971 | 2022 | Nature                                 | Wu XS | OCA-T1 and OCA-T2 are coactivators of POU2F3 in the tuft cell lineage.
+    PMID 37393345 | 2023 | Nat Commun                             | Tan D | SUMOylation of Rho-associated protein kinase 2 induces goblet cell metaplasia in allergic airways.
+    PMID 39164231 | 2024 | Nat Commun                             | Ghosh S | RIOK2 transcriptionally regulates TRiC and dyskerin complexes to prevent telomere shortening.
+    PMID 30998423 | 2019 | J Interferon Cytokine Res              | Mahesh G | MicroRNA-155: A Master Regulator of Inflammation.
+    PMID 30711537 | 2019 | Life Sci                               | Di X | CircRNAs and lung cancer: Biomarkers and master regulators.
+    PMID 39990858 | 2024 | Front Immunol                          | Batal A | CD109, a master regulator of inflammatory responses.
+    PMID 25987987 | 2015 | Bonekey Rep                            | Croset M | Tumour-derived miRNAs and bone metastasis.
+    PMID 37196129 | 2023 | Aging Dis                              | Ren LL | TGF-β as A Master Regulator of Aging-Associated Tissue Fibrosis.
+    PMID 37202505 | 2023 | Cell Death Differ                      | Maier CR | USP28 controls SREBP2 and the mevalonate pathway to drive tumour growth in squamous cancer.
+    PMID 37748077 | 2023 | Proc Natl Acad Sci U S A               | Ginn L | A TIAM1-TRIM28 complex mediates epigenetic silencing of protocadherins to promote migration of lung cancer cells.
+    PMID 30193828 | 2018 | Adv Biol Regul                         | Davis D | Orm/ORMDL proteins: Gate guardians and master regulators.
+    PMID 37381723 | 2023 | Cancer Biol Med                        | Rosell R | Biological insights in non-small cell lung cancer.
+    PMID 27847554 | 2016 | Oxid Med Cell Longev                   | Sparaneo A | Nrf2 and Notch Signaling in Lung Cancer: Near the Crossroad.
+    PMID 32072237 | 2020 | Cell Mol Life Sci                      | Bellezza I | Reductive stress in striated muscle cells.
+    PMID 34361103 | 2021 | Int J Mol Sci                          | Romero Y | Hypoxia in Cancer and Fibrosis: Part of the Problem and Part of the Solution.
+    PMID 37704611 | 2023 | Cell Death Dis                         | Larrue R | miR-92a-3p regulates cisplatin-induced cancer cell death.
+    PMID 37365451 | 2023 | Cell Oncol (Dordr)                     | Li J | Roles of NRF2 in DNA damage repair.
+    PMID 32922364 | 2020 | Front Endocrinol (Lausanne)            | Ku HC | Master Regulator Activating Transcription Factor 3 (ATF3) in Metabolic Homeostasis and Cancer.
+    PMID 31574294 | 2019 | Cancer Lett                            | Hammad A | "NRF2 addiction" in lung cancer cells and its impact on cancer therapy.
+    PMID 36147518 | 2022 | Int J Pharm X                          | Eljack S | Nanoparticles design considerations to co-deliver nucleic acids and anti-cancer drugs for chemoresistance reversal.
+    PMID 37290846 | 2023 | Interv Cardiol Clin                    | Suresh MV | The Intersection of Pulmonary Vascular Disease and Hypoxia-Inducible Factors.
+    PMID 29923200 | 2018 | J Cell Physiol                         | Hong G | EGFL7: Master regulator of cancer pathogenesis, angiogenesis and an emerging mediator of bone homeostasis.
+    PMID 39726595 | 2024 | Front Immunol                          | Shi L | A novel monoclonal antibody against human thymic stromal lymphopoietin for the treatment of TSLP-mediated diseases.
+    PMID 41137193 | 2026 | Allergy                                | Albers GJ | Protective Role for Itaconate During Inhaled Allergen Challenge.
+    PMID 41651398 | 2026 | Cancer Lett                            | Liu D | Targeting Galectin-9 to overcome immunosuppression and potentiate ATR inhibitor therapy.
+    PMID 35742983 | 2022 | Int J Mol Sci                          | Martín-Medina A | TLR/WNT: A Novel Relationship in Immunomodulation of Lung Cancer.
+
+### SCENIC regulon lung disease  (total hits=30, showing 30)
+    PMID 41386231 | 2026 | Immunity                               | Verwaerde S | Innate type 2 lymphocytes trigger an inflammatory switch in alveolar macrophages.
+    PMID 38937794 | 2024 | J Transl Med                           | Lee SC | Macrophages as determinants and regulators of systemic sclerosis-related interstitial lung disease.
+    PMID 35849803 | 2022 | Arthritis Rheumatol                    | Papazoglou A | Epigenetic Regulation of Profibrotic Macrophages in Systemic Sclerosis-Associated Interstitial Lung Disease.
+    PMID 38841857 | 2024 | Arterioscler Thromb Vasc Biol          | Zhou Y | Molecular Changes Implicate Angiogenesis and Arterial Remodeling in Systemic Sclerosis-Associated and Idiopathic Pulmonary Hypertension
+    PMID 41256522 | 2025 | bioRxiv                                | Corley JM | Tobramycin enhances Mycobacterium abscessus fitness through whiB7 induction.
+    PMID 35086844 | 2022 | Eur Respir J                           | Gooptu B | Surfactant protein C mutations and familial pulmonary fibrosis: stuck in a loop on the scenic route.
+    PMID 39892726 | 2025 | Cell Signal                            | Zhong Z | Nintedanib improves bleomycin-induced pulmonary fibrosis by inhibiting the Clec7a/SPP1 pathway in interstitial macrophages.
+    PMID 40539031 | 2025 | Biofilm                                | Jordana-Lluch E | Corticosteroids modulate biofilm formation and virulence of Pseudomonas aeruginosa.
+    PMID 36968107 | 2023 | Front Cell Infect Microbiol            | Simcox BS | Mycobacterium abscessus DosRS two-component system controls a species-specific regulon required for adaptation to hypoxia.
+    PMID 40492732 | 2025 | mSphere                                | D'Mello A | Host-pathogen interaction profiling of nontypeable Haemophilus influenzae and Moraxella catarrhalis coinfection of bronchial epithelial
+    PMID 37706477 | 2023 | Elife                                  | Ouyang JF | Systems level identification of a matrisome-associated macrophage polarisation state in multi-organ fibrosis.
+    PMID 40698946 | 2025 | mBio                                   | Gil-Campillo C | Epigenetic control of the ferric uptake regulator (Fur) and fumarate nitrate reductase (FNR) master regulatory proteins contributes to 
+    PMID 40312783 | 2025 | FEMS Microbiol Rev                     | Carey CJ | Harnessing hypoxia: bacterial adaptation and chronic infection in cystic fibrosis.
+    PMID 35050837 | 2022 | Am J Respir Crit Care Med              | Martinez FJ | Phase 2B Study of Inhaled RVT-1601 for Chronic Cough in Idiopathic Pulmonary Fibrosis: A Multicenter, Randomized, Placebo-controlled St
+    PMID 37199578 | 2023 | Aging Dis                              | Chen H | IFNγ Transcribed by IRF1 in CD4+ Effector Memory T Cells Promotes Senescence-Associated Pulmonary Fibrosis.
+    PMID 36038770 | 2022 | Mucosal Immunol                        | Liu X | Single-cell RNA transcriptomic analysis identifies Creb5 and CD11b-DCs as regulator of asthma exacerbations.
+    PMID 41550422 | 2026 | Biofilm                                | Wang YH | Experimental evolution in the cystic fibrosis chemical environment reveals early TCA cycle flux as a central regulator of Mycobacterium
+    PMID 26078448 | 2015 | J Bacteriol                            | Hammond JH | Links between Anr and Quorum Sensing in Pseudomonas aeruginosa Biofilms.
+    PMID 36511712 | 2023 | Microbiol Spectr                       | Garai P | Adherence of Nontypeable Haemophilus influenzae to Cells and Substrates of the Airway Is Differentially Regulated by Individual ModA Ph
+    PMID 32634088 | 2020 | Microbiology (Reading)                 | Cross AR | The histone-like protein AlgP regulon is distinct in mucoid and nonmucoid Pseudomonas aeruginosa and does not include alginate biosynth
+    PMID 39461973 | 2024 | NPJ Syst Biol Appl                     | Marino R | An integrative network-based approach to identify driving gene communities in chronic obstructive pulmonary disease.
+    PMID 35854722 | 2022 | AMIA Jt Summits Transl Sci Proc        | Ghandikota S | gene2gauss: A multi-view gaussian gene embedding learner for analyzing transcriptomic networks.
+    PMID 32265330 | 2020 | mBio                                   | Cruz RL | RhlR-Regulated Acyl-Homoserine Lactone Quorum Sensing in a Cystic Fibrosis Isolate of Pseudomonas aeruginosa.
+    PMID 31685916 | 2019 | Sci Rep                                | Atack JM | Non-typeable Haemophilus influenzae isolates from patients with chronic obstructive pulmonary disease contain new phase-variable modA m
+    PMID 25714721 | 2015 | mBio                                   | Kreamer NN | The ferrous iron-responsive BqsRS two-component system activates genes that promote cationic stress tolerance.
+    PMID 28874378 | 2017 | Antimicrob Agents Chemother            | Hurst-Hess K | Mycobacterium abscessus WhiB7 Regulates a Species-Specific Repertoire of Genes To Confer Extreme Antibiotic Resistance.
+    PMID 34759894 | 2021 | Front Microbiol                        | Ferrara S | The Small RNA ErsA Impacts the Anaerobic Metabolism of Pseudomonas aeruginosa Through Post-Transcriptional Modulation of the Master Reg
+    PMID 40980926 | 2025 | Infect Immun                           | Evans N | Activation of the Pseudomonas aeruginosa glycerol regulon reduces antibiotic susceptibility and modulates virulence phenotypes.
+    PMID 39129168 | 2025 | Curr Med Chem                          | Guan P | A Low Expression of NRF2 Enhances Oxidative Stress and Autophagy in Myofibroblasts, Promoting Progression of Chronic Obstructive Pulmon
+    PMID 27495169 | 2016 | BMC Genomics                           | Miranda-CasoLuengo | Functional characterization of the Mycobacterium abscessus genome coupled with condition specific transcriptomics reveals conserved mol
+
+### network medicine COPD  (total hits=708, showing 40)
+    PMID 36538979 | 2023 | J Allergy Clin Immunol                 | Nopsopon T | Comparative efficacy of tezepelumab to mepolizumab, benralizumab, and dupilumab in eosinophilic asthma: A Bayesian network meta-analysi
+    PMID 37150427 | 2024 | Arch Phys Med Rehabil                  | Cai Y | Effects of Breathing Exercises in Patients With Chronic Obstructive Pulmonary Disease: A Network Meta-analysis.
+    PMID 37558162 | 2023 | J Allergy Clin Immunol Pract           | Canonica GW | Severe Asthma Network Italy Definition of Clinical Remission in Severe Asthma: A Delphi Consensus.
+    PMID 36284425 | 2022 | Int J Tuberc Lung Dis                  | Ellwood P | Asthma Network.
+    PMID 36103241 | 2022 | Pediatr Pulmonol                       | Jiang J | Exercise rehabilitation in pediatric asthma: A systematic review and network meta-analysis.
+    PMID 35772597 | 2022 | J Allergy Clin Immunol                 | Akenroye A | Comparative efficacy of mepolizumab, benralizumab, and dupilumab in eosinophilic asthma: A Bayesian network meta-analysis.
+    PMID 40023967 | 2025 | Phytomedicine                          | Shi P | Study on the mechanism of Trichosanthes kirilowii Maxim. against COPD based on serum chemical composition analysis, network pharmacolog
+    PMID 40637351 | 2025 | Pediatr Pulmonol                       | Abu-Sultaneh S | Intravenous Bronchodilators in Pediatric Critical Asthma: A Systematic Review and Network Meta-Analysis.
+    PMID 40626315 | 2025 | Int J Chron Obstruct Pulmon Dis        | Li S | Efficacy and Safety of Biologics Targeting Type 2 Inflammation in COPD: A Systematic Review and Network Meta-Analysis.
+    PMID 40484453 | 2025 | Arch Dis Child                         | Amagasa S | Oral systemic corticosteroids in children with acute asthma exacerbations: a systematic review and network meta-analysis.
+    PMID 40450983 | 2025 | Phytomedicine                          | Yuan J | Network pharmacology and experimental validation of inflammation inhibition by ChuanKeZhi Injection in treating asthma.
+    PMID 36669806 | 2023 | Lancet Glob Health                     | García-Marcos L | Asthma management and control in children, adolescents, and adults in 25 countries: a Global Asthma Network Phase I cross-sectional stu
+    PMID 40398558 | 2025 | Chest                                  | Yadav CP | Prediction Pathway for Severe Asthma Exacerbations: A Bayesian Network Analysis.
+    PMID 34755626 | 2021 | Lancet                                 | Asher MI | Worldwide trends in the burden of asthma symptoms in school-aged children: Global Asthma Network Phase I cross-sectional study.
+    PMID 26160874 | 2015 | Eur Respir J                           | Divo MJ | COPD comorbidities network.
+    PMID 39309599 | 2024 | Int J Chron Obstruct Pulmon Dis        | Tian X | A Network Meta-Analysis of Aerobic, Resistance, Endurance, and High-Intensity Interval Training to Prioritize Exercise for Stable COPD.
+    PMID 39947003 | 2025 | Phytomedicine                          | Tan J | Integrated transcriptomics and network pharmacology to reveal the mechanism of Physochlainae Radix in the treatment of asthma.
+    PMID 40896469 | 2025 | EClinicalMedicine                      | Ward TJC | Impact of pulmonary rehabilitation programme design on effectiveness in COPD: a systematic review and component network meta-analysis.
+    PMID 33448349 | 2021 | Cochrane Database Syst Rev             | Janjua S | Prophylactic antibiotics for adults with chronic obstructive pulmonary disease: a network meta-analysis.
+    PMID 38626356 | 2024 | Am J Respir Crit Care Med              | Olvera N | Lung Tissue Multilayer Network Analysis Uncovers the Molecular Heterogeneity of Chronic Obstructive Pulmonary Disease.
+    PMID 34848210 | 2022 | J Allergy Clin Immunol                 | Georas SN | The Precision Interventions for Severe and/or Exacerbation-Prone (PrecISE) Asthma Network: An overview of Network organization, procedu
+    PMID 35696472 | 2022 | IEEE J Biomed Health Inform            | Yong Z | Bayesian Comorbidity Network and Cost Analysis for Asthma.
+    PMID 31277726 | 2019 | Allergol Immunopathol (Madr)           | Garcia-Marcos L | Asthma prevalence trends in Chile: a prelude of the Global Asthma Network findings?
+    PMID 28400707 | 2017 | Clin Mol Allergy                       | Senna G | SANI-Severe Asthma Network in Italy: a way forward to monitor severe asthma.
+    PMID 28960106 | 2017 | Am J Respir Cell Mol Biol              | McDonald ML | Multiomics Approach to Asthma: Navigating the Network.
+    PMID 35883681 | 2022 | Cells                                  | Borkar NA | Sex Steroids Effects on Asthma: A Network Perspective of Immune and Airway Cells.
+    PMID 40589761 | 2025 | Front Immunol                          | Liu L | Developmental immune network of airway lymphocytes and innate immune cells in patients with stable COPD.
+    PMID 41376782 | 2025 | J Asthma Allergy                       | Ferri S | Severe Asthma and Sleep Disorders: A Severe Asthma Network Italy (SANI) Registry Analysis.
+    PMID 32430423 | 2020 | Eur Respir J                           | Rogliani P | SMART and as-needed therapies in mild-to-severe asthma: a network meta-analysis.
+    PMID 29720510 | 2018 | Eur Respir Rev                         | Cazzola M | Efficacy and safety profile of xanthines in COPD: a network meta-analysis.
+    PMID 40995116 | 2025 | iScience                               | Peng C | Analysis of the effects of perfluorooctane sulfonate on COPD using network toxicology and molecular docking.
+    PMID 36468026 | 2022 | Front Genet                            | Li CX | miRNA-mRNA-protein dysregulated network in COPD in women.
+    PMID 38503464 | 2024 | Respir Care                            | Jian C | A Network Meta-Analysis on the Effects of Different Exercise Types in Patients With COPD.
+    PMID 35396495 | 2022 | Sci Rep                                | Park HJ | Comparative efficacy of inhalers in mild-to-moderate asthma: systematic review and network meta-analysis.
+    PMID 39231596 | 2024 | Eur Respir Rev                         | Ammous O | Adherence-enhancing interventions for pharmacological and oxygen therapy in patients with COPD: a systematic review and component netwo
+    PMID 37260461 | 2023 | ERJ Open Res                           | Gaston B | Asthma innovations from the first International Collaborative Asthma Network forum.
+    PMID 39091592 | 2024 | World Allergy Organ J                  | Kim H | Comparative efficacy of biologics for patients with inadequately controlled asthma: A network meta-analysis.
+    PMID 41135618 | 2026 | J Ethnopharmacol                       | Xu Z | Network pharmacology and experimental validation identify the targets of Marsdenia tenacissima in neutrophilic asthma treatment.
+    PMID 35576775 | 2022 | Respir Med                             | Yohannes AM | Depressive and anxiety symptoms in patients with COPD: A network analysis.
+    PMID 41037331 | 2025 | COPD                                   | Bo L | Lung Volume Reduction Therapies in Patients with Emphysema: A Systematic Review and Network Meta-Analysis.
+
+### lung single cell multiome regulatory  (total hits=128, showing 40)
+    PMID 34163071 | 2021 | Nature                                 | Alexanian M | A transcriptional switch governs fibroblast activation in heart disease.
+    PMID 35714609 | 2022 | Cell                                   | Michelson DA | Thymic epithelial cells co-opt lineage-defining transcription factors to eliminate autoreactive T cells.
+    PMID 41379973 | 2025 | Science                                | Kiuchi M | Hepatic leukemia factor directs tissue residency of proinflammatory memory CD4(+) T cells.
+    PMID 37541244 | 2023 | Cancer Cell                            | de Miguel FJ | Mammalian SWI/SNF chromatin remodeling complexes promote tyrosine kinase inhibitor resistance in EGFR-mutant lung cancer.
+    PMID 35879310 | 2022 | Nat Commun                             | Caporarello N | Dysfunctional ERG signaling drives pulmonary vascular aging and persistent fibrosis.
+    PMID 31915377 | 2020 | Nature                                 | Su J | TGF-β orchestrates fibrogenic and developmental EMTs via the RAS effector RREB1.
+    PMID 37142338 | 2023 | Eur Respir J                           | Valenzi E | Single-nucleus chromatin accessibility identifies a critical role for TWIST1 in idiopathic pulmonary fibrosis myofibroblast activity.
+    PMID 34561242 | 2022 | Cancer Discov                          | Concepcion CP | Smarca4 Inactivation Promotes Lineage-Specific Transformation and Early Metastatic Features in the Lung.
+    PMID 35451091 | 2022 | EMBO J                                 | Huang Q | TFAM loss induces nuclear actin assembly upon mDia2 malonylation to promote liver cancer metastasis.
+    PMID 35849803 | 2022 | Arthritis Rheumatol                    | Papazoglou A | Epigenetic Regulation of Profibrotic Macrophages in Systemic Sclerosis-Associated Interstitial Lung Disease.
+    PMID 36206353 | 2022 | Sci Immunol                            | Itahashi K | BATF epigenetically and transcriptionally controls the activation program of regulatory T cells in human tumors.
+    PMID 38937806 | 2024 | J Transl Med                           | Zhang M | Multiomic analysis of monocyte-derived alveolar macrophages in idiopathic pulmonary fibrosis.
+    PMID 40463164 | 2025 | bioRxiv                                | Lu Z | Organism-wide cellular dynamics and epigenomic remodeling in mammalian aging.
+    PMID 40089475 | 2025 | Nat Commun                             | Khan M | Single-cell and chromatin accessibility profiling reveals regulatory programs of pathogenic Th2 cells in allergic asthma.
+    PMID 40897711 | 2025 | Nat Commun                             | Bi G | Targeting ALDH16A1 mediated thioredoxin lysosomal degradation to enhance ferroptosis susceptibility in SMARCA4-deficient NSCLC.
+    PMID 31231035 | 2019 | Immunity                               | Tibbitt CA | Single-Cell RNA Sequencing of the T Helper Cell Response to House Dust Mites Defines a Distinct Gene Expression Signature in Airway Th2
+    PMID 41974002 | 2026 | Cancer Res                             | Ding Z | TRAPPC4 Promotes GPX4 Stability to Drive Ferroptosis Resistance and Tumor Progression in Head and Neck Squamous Cell Carcinoma.
+    PMID 40080526 | 2025 | Cancer Res                             | Wang Y | Mutation of SMARCA4 Induces Cancer Cell-Intrinsic Defects in the Enhancer Landscape and Resistance to Immunotherapy.
+    PMID 39266564 | 2024 | Nat Commun                             | Long E | Context-aware single-cell multiomics approach identifies cell-type-specific lung cancer susceptibility genes.
+    PMID 40414926 | 2025 | Cell Death Dis                         | Dayanc B | Integrative multi-omics identifies AP-1 transcription factor as a targetable mediator of acquired osimertinib resistance in non-small c
+    PMID 40737448 | 2026 | Am J Respir Cell Mol Biol              | Minasenko B | Single-Cell Multiome Impact of Prenatal Heavy Metal Exposure on Early Airway Development.
+    PMID 39545935 | 2024 | J Exp Med                              | Li X | MCRS1 sensitizes T cell-dependent immunotherapy by augmenting MHC-I expression in solid tumors.
+    PMID 39287985 | 2024 | J Clin Invest                          | Jin Y | PAC1 constrains type 2 inflammation through promotion of CGRP signaling in ILC2s.
+    PMID 37698017 | 2023 | Circ Res                               | Ranasinghe ADCU | Altered Smooth Muscle Cell Histone Acetylome by the SPHK2/S1P Axis Promotes Pulmonary Hypertension.
+    PMID 40777015 | 2025 | Front Immunol                          | Hebbar Subramanyam | CREB regulates Foxp3(+)ST-2(+) T(REGS) with enhanced IL-10 production.
+    PMID 41120274 | 2025 | Cell Death Dis                         | Tang X | Single-cell multi-omics analysis reveals cancer regulatory elements of transcriptional programs and clinical implications.
+    PMID 38898031 | 2024 | Nat Commun                             | Wang G | Identification of endothelial and mesenchymal FOXF1 enhancers involved in alveolar capillary dysplasia.
+    PMID 41238550 | 2025 | Nat Commun                             | Yadav RP | scFFPE-ATAC enables high-throughput single cell chromatin accessibility profiling in formalin-fixed paraffin-embedded samples.
+    PMID 39416100 | 2025 | bioRxiv                                | Krishnamurthy M | Metastatic organotropism in small cell lung cancer.
+    PMID 34513309 | 2021 | Mol Ther Nucleic Acids                 | Wang L | Chromatin accessibility regulates chemotherapy-induced dormancy and reactivation.
+    PMID 41381493 | 2025 | Nat Commun                             | Ye X | Co-condensation between transcription factor and cBAF selectively modulates chromatin remodeling and gene expression.
+    PMID 41366391 | 2025 | Respir Res                             | Cha PC | Integrative single-cell RNA and ATAC sequencing reveals the impact of chronic cigarette smoking on lung epithelial responses to influen
+    PMID 41315351 | 2025 | Nat Commun                             | Sun S | Single-cell multiomics analysis reveals CTCF as a key regulator of lung morphogenesis and progenitor maintenance.
+    PMID 38583771 | 2024 | J Thorac Oncol                         | Shukla V | Genome-Wide Analysis Identifies Nuclear Factor 1C as a Novel Transcription Factor and Potential Therapeutic Target in SCLC.
+    PMID 37808664 | 2023 | bioRxiv                                | Long E | Context-aware single-cell multiome approach identified cell-type specific lung cancer susceptibility genes.
+    PMID 39042726 | 2024 | Sci Signal                             | Anannya O | The kinase ITK controls a Ca(2+)-mediated switch that balances T(H)17 and T(reg) cell differentiation.
+    PMID 40899632 | 2025 | Adv Sci (Weinh)                        | Ning YQ | Enhancer Reprogramming Reveals the Tumorigenic Role of PTPRZ1 in Lung Squamous Cell Carcinoma.
+    PMID 36583014 | 2022 | Front Genet                            | Wang Y | Benchmarking automated cell type annotation tools for single-cell ATAC-seq data.
+    PMID 40894060 | 2025 | Res Sq                                 | Zhang BA | Toxicogenomic Insights into Environmental Toxicant Exposures: The TaRGET II Resource.
+    PMID 35471998 | 2022 | JCI Insight                            | Steimle JD | Decoding the PITX2-controlled genetic network in atrial fibrillation.
+

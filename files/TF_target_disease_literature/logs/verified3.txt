@@ -1,0 +1,145 @@
+### ToppCell (hits=118)
+    PMID 36455319 | 2023 | J Hazard Mater                     | Baralić K        | Comprehensive investigation of hepatotoxicity of the mixture containing phthalates and bisphenol A.
+    PMID 34127975 | 2021 | bioRxiv                            | Jin K            | Implicating Gene and Cell Networks Responsible for Differential COVID-19 Host Responses via an Interactive Single Cell Web Portal.
+    PMID 32000760 | 2020 | BMC Med Genomics                   | Mulindwa J       | Blood signatures for second stage human African trypanosomiasis: a transcriptomic approach.
+    PMID 34522848 | 2021 | iScience                           | Jin K            | An interactive single cell web portal identifies gene and cell networks in COVID-19 host responses.
+    PMID 39340795 | 2024 | Bioinformatics                     | Granger B        | scToppR: a coding-friendly R interface to ToppGene.
+    PMID 34585851 | 2022 | Pediatr Pulmonol                   | Bradford L       | Interstitial lung disease in children with Rubinstein-Taybi syndrome.
+    PMID 28081581 | 2017 | Horm Metab Res                     | Yim J            | Differences in Gene Expression and Gene Associations in Epicardial Fat Compared to Subcutaneous Fat.
+    PMID 33372732 | 2021 | Vet Med Sci                        | Kim K            | Myogenic regulatory factors are key players in determining muscle mass and meat quality in Jeju native and Berkshire pigs.
+    PMID 40067649 | 2025 | J Nephrol                          | Cho JM           | Identification of conserved gene expression changes across common glomerular diseases by spatial transcriptomics.
+    PMID 39318016 | 2025 | Endocr Metab Immune Disord Drug Ta | Vazquez-Jimenez  | Interpreting the Function of the IL-23/IL-17 Axis through Bioinformatics.
+
+### LungMAP CellRef (hits=2)
+    PMID 37516747 | 2023 | Nat Commun                         | Guo M            | Guided construction of single cell reference for human and mouse lung.
+    PMID 40568082 | 2025 | bioRxiv                            | Hu J             | Benchmarking single cell transcriptome matching methods for incremental growth of reference atlases.
+
+### Zepp alveolus (hits=23)
+    PMID 29489752 | 2018 | Nature                             | Zacharias WJ     | Regeneration of the lung alveolus by an evolutionarily conserved epithelial progenitor.
+    PMID 33707239 | 2021 | Science                            | Zepp JA          | Genomic, epigenomic, and biophysical cues controlling the emergence of the lung alveolus.
+    PMID 28886382 | 2017 | Cell                               | Zepp JA          | Distinct Mesenchymal Lineages and Niches Promote Epithelial Self-Renewal and Myofibrogenesis in the Lung.
+    PMID 37195530 | 2023 | Adv Exp Med Biol                   | Snitow ME        | Engineering and Modeling the Lung Mesenchyme.
+    PMID 37463053 | 2023 | JCI Insight                        | Naik A           | Circadian regulation of lung repair and regeneration.
+    PMID 34936882 | 2022 | Dev Cell                           | Sun X            | A census of the lung: CellCards from LungMAP.
+    PMID 41579370 | 2026 | Cell Rep                           | Wong IG          | Airway injury induces alveolar epithelial responses mediated by macrophages.
+    PMID 36239312 | 2022 | Development                        | Chandrasekaran P | CXCL12 defines lung endothelial heterogeneity and promotes distal vascular growth.
+    PMID 32668168 | 2020 | Am J Respir Crit Care Med          | Chao CM          | p16 (INK4a) and the Alveolar Niche Take Center Stage in Bronchopulmonary Dysplasia.
+    PMID 38456509 | 2024 | JCI Insight                        | Naik A           | Circadian regulation of lung repair and regeneration.
+    PMID 32338996 | 2020 | Am J Respir Crit Care Med          | Zepp JA          | Nanoparticle Delivery of Angiogenic Gene Therapy. Save the Vessels, Save the Lung!
+    PMID 38496421 | 2024 | bioRxiv                            | Wang JY          | Dysregulated alveolar epithelial cell progenitor function and identity in Hermansky-Pudlak syndrome.
+    PMID 39699958 | 2024 | JCI Insight                        | Wang JY          | Dysregulated alveolar epithelial cell progenitor function and identity in Hermansky-Pudlak syndrome.
+    PMID 41428484 | 2026 | Cell Rep                           | Snitow ME        | Stc1-expressing myofibroblasts are a developmentally distinct lineage cleared through apoptosis in the neonatal lung.
+    PMID 32989251 | 2020 | Nat Cell Biol                      | Paris AJ         | STAT3-BDNF-TrkB signalling promotes alveolar epithelial regeneration after lung injury.
+
+### mouse lung development atlas (hits=3)
+    PMID 34927678 | 2021 | Development                        | Negretti NM      | A single-cell atlas of mouse lung development.
+    PMID 41727615 | 2026 | Res Sq                             | Messaoudi I      | Single-Cell Atlas of Fetal Immune Development Across Lung, Spleen, and Umbilical Cord Blood in Nonhuman Primates.
+    PMID 38589700 | 2024 | Commun Biol                        | Jia H            | A single-cell atlas of lung homeostasis reveals dynamic changes during development and aging.
+
+### TF-Marker db (hits=2)
+    PMID 34986601 | 2022 | Nucleic Acids Res                  | Xu M             | TF-Marker: a comprehensive manually curated database for transcription factors and related markers in specific cell and tissue typ
+    PMID 37298166 | 2023 | Int J Mol Sci                      | Singh R          | De Novo Transcriptome Profiling for the Generation and Validation of Microsatellite Markers, Transcription Factors, and Database D
+
+### Neumark IPF atlas (hits=14)
+    PMID 32832599 | 2020 | Sci Adv                            | Adams TS         | Single-cell RNA-seq reveals ectopic and aberrant lung-resident cell populations in idiopathic pulmonary fibrosis.
+    PMID 34030460 | 2021 | Circulation                        | Schupp JC        | Integrated Single-Cell Atlas of Endothelial Cells of the Human Lung.
+    PMID 38717443 | 2024 | Am J Respir Crit Care Med          | Unterman A       | Single-Cell Profiling Reveals Immune Aberrations in Progressive Idiopathic Pulmonary Fibrosis.
+    PMID 32996785 | 2020 | Am J Physiol Lung Cell Mol Physiol | Neumark N        | The Idiopathic Pulmonary Fibrosis Cell Atlas.
+    PMID 37019698 | 2023 | Acad Radiol                        | Dasegowda G      | Radiologist-Trained AI Model for Identifying Suboptimal Chest-Radiographs.
+    PMID 33393489 | 2021 | J Clin Invest                      | Gao R            | Macrophage-derived netrin-1 drives adrenergic nerve-associated lung fibrosis.
+    PMID 36832266 | 2023 | Diagnostics (Basel)                | Dasegowda G      | Auto-Detection of Motion Artifacts on CT Pulmonary Angiograms with a Physician-Trained AI Algorithm.
+    PMID 31840053 | 2019 | Sci Adv                            | Raredon MSB      | Single-cell connectomic analysis of adult mammalian lungs.
+    PMID 37163015 | 2023 | medRxiv                            | Unterman A       | Single-cell profiling reveals immune aberrations in progressive idiopathic pulmonary fibrosis.
+    PMID 36010194 | 2022 | Diagnostics (Basel)                | Kaviani P        | Radiologist-Trained and -Tested (R2.2.4) Deep Learning Models for Identifying Anatomical Landmarks in Chest CT.
+    PMID 33044938 | 2020 | IEEE J Biomed Health Inform        | Wu D             | Severity and Consolidation Quantification of COVID-19 From CT Images Using Deep Learning Based on Hybrid Weak Labels.
+    PMID 33711739 | 2021 | Med Image Anal                     | Zhong A          | Deep metric learning-based image retrieval system for chest radiograph and its clinical applications in COVID-19.
+    PMID 33846041 | 2021 | Eur J Radiol                       | Gong K           | A multi-center study of COVID-19 patient prognosis using deep learning-based CT image analysis and electronic health records.
+    PMID 41661348 | 2026 | Ann Hematol                        | Neumark N        | Long-term real-world thrombotic and clinical outcomes in polycythemia vera - a hospital-based i2b2 cohort study.
+
+### PAH multiomics lung (hits=225)
+    PMID 39167456 | 2024 | Circulation                        | Hong J           | Integrative Multiomics in the Lung Reveals a Protective Role of Asporin in Pulmonary Arterial Hypertension.
+    PMID 32166015 | 2020 | Pulm Circ                          | Saygin D         | Transcriptional profiling of lung cell populations in idiopathic pulmonary arterial hypertension.
+    PMID 31495407 | 2019 | J Heart Lung Transplant            | Hansmann G       | 2019 updated consensus statement on the diagnosis and treatment of pediatric pulmonary hypertension: The European Pediatric Pulmon
+    PMID 39305743 | 2024 | Phytomedicine                      | Wang X           | Network pharmacology provides new insights into the mechanism of traditional Chinese medicine and natural products used to treat p
+    PMID 38363176 | 2024 | Crit Care Med                      | Fei Q            | Comparison of Different Treatments of Persistent Pulmonary Hypertension of the Newborn: A Systematic Review and Network Meta-Analy
+    PMID 41065575 | 2026 | Int J Surg                         | Li Z             | Multi-omics dissection of high TWAS-active endothelial pathogenesis in pulmonary arterial hypertension: bridging single-cell heter
+    PMID 38820258 | 2024 | Ann Am Thorac Soc                  | Pitre T          | Comparative Effectiveness of Sotatercept and Approved Add-On Pulmonary Arterial Hypertension Therapies: A Systematic Review and Ne
+    PMID 38199208 | 2024 | Comput Biol Med                    | Yu X             | Analyzing the molecular mechanism of xuefuzhuyu decoction in the treatment of pulmonary hypertension with network pharmacology and
+    PMID 40680331 | 2025 | Phytomedicine                      | Fang L           | Multi-omics analyses reveal that hesperidin ameliorates high-altitude pulmonary hypertension by restoring gut-lung axis homeostasi
+    PMID 41006686 | 2025 | Apoptosis                          | Mo Y             | Endothelial SPRY1 deficiency associates with angiogenic-metabolic reprogramming in pulmonary arterial hypertension: a multi-omics 
+    PMID 39196250 | 2023 | Nat Cardiovasc Res                 | Khassafi F       | Transcriptional profiling unveils molecular subgroups of adaptive and maladaptive right ventricular remodeling in pulmonary hypert
+    PMID 38989583 | 2024 | Hypertension                       | Liu B            | Identification of Noncoding Functional Regulatory Variants of STIM1 Gene in Idiopathic Pulmonary Arterial Hypertension.
+    PMID 34917122 | 2021 | Front Genet                        | Zang H           | Non-Coding RNA Networks in Pulmonary Hypertension.
+    PMID 38438725 | 2024 | Hypertens Res                      | Wang Z           | RNA m6A methylation and regulatory proteins in pulmonary arterial hypertension.
+    PMID 38579562 | 2024 | Int Immunopharmacol                | Li X             | Integrative analyses of whole-transcriptome sequencing reveals CeRNA regulatory network in pulmonary hypertension treated with FGF
+    PMID 34489935 | 2021 | Front Immunol                      | Tian W           | The Role of Regulatory T Cells in Pulmonary Arterial Hypertension.
+    PMID 35712711 | 2022 | Front Pharmacol                    | Liu Y            | Regulatory T Cell-Related Gene Indicators in Pulmonary Hypertension.
+    PMID 35452380 | 2022 | Am J Respir Crit Care Med          | Simpson CE       | Promises and Pitfalls of Multiomics Approaches to Pulmonary Arterial Hypertension.
+    PMID 39342938 | 2025 | Pharmacology                       | Chen B           | Non-Coding RNA Networks in Pulmonary Arterial Hypertension.
+    PMID 34132494 | 2021 | CPT Pharmacometrics Syst Pharmacol | Wang RS          | Network module-based drug repositioning for pulmonary arterial hypertension.
+    PMID 31771439 | 2019 | J Am Heart Assoc                   | Qiu H            | The Role of Regulatory T Cells in Pulmonary Arterial Hypertension.
+    PMID 26569423 | 2016 | Curr Opin Oncol                    | Courboulin A     | MicroRNA networks in pulmonary arterial hypertension: share mechanisms with cancer?
+    PMID 29128622 | 2018 | Pulm Pharmacol Ther                | Lin H            | Efficacy and tolerability of pharmacological interventions for pulmonary arterial hypertension: A network meta-analysis.
+    PMID 38110438 | 2023 | Sci Rep                            | Singh N          | Transcriptional profiles of pulmonary artery endothelial cells in pulmonary hypertension.
+    PMID 36476165 | 2023 | Am J Respir Crit Care Med          | Oliveira SD      | Cardiopulmonary Pathogenic Networks: Unveiling the Gut-Lung Microbiome Axis in Pulmonary Arterial Hypertension.
+
+### GTEx tissue eQTL (hits=47)
+    PMID 29022597 | 2017 | Nature                             | Battle A         | Genetic effects on gene expression across human tissues.
+    PMID 32913072 | 2020 | Science                            | Oliva M          | The impact of sex on gene expression across human tissues.
+    PMID 32913075 | 2020 | Science                            | Kim-Hellmuth S   | Cell type-specific genetic regulation of gene expression across human tissues.
+    PMID 32912333 | 2020 | Genome Biol                        | Gay NR           | Impact of admixture and ancestry on eQTL analysis and GWAS colocalization in GTEx.
+    PMID 40157914 | 2025 | Nat Commun                         | Hölzlwimmer FR   | Aberrant gene expression prediction across human tissues.
+    PMID 27040689 | 2016 | Am J Hum Genet                     | Wang J           | Imputing Gene Expression in Uncollected Tissues Within and Beyond GTEx.
+    PMID 33983985 | 2021 | PLoS One                           | Freilikhman S    | Melanocytes determine angiogenesis gene expression across human tissues.
+    PMID 37365269 | 2023 | Sci Rep                            | Guzzi PH         | Analysis of age-dependent gene-expression in human tissues for studying diabetes comorbidities.
+    PMID 36712323 | 2022 | PNAS Nexus                         | Khodursky S      | Sex differences in interindividual gene expression variability across human tissues.
+    PMID 38546325 | 2024 | Brief Bioinform                    | Liu H            | Epigenome-augmented eQTL-hotspots reveal genome-wide transcriptional programs in 36 human tissues.
+    PMID 37318147 | 2023 | Genet Epidemiol                    | Jullian Fabres P | Phenotypic variance partitioning by transcriptomic gene expression levels and environmental variables for anthropometric traits us
+    PMID 35047855 | 2022 | HGG Adv                            | Parrish RL       | TIGAR-V2: Efficient TWAS tool with nonparametric Bayesian eQTL weights of 49 tissue types from GTEx V8.
+    PMID 35199033 | 2022 | STAR Protoc                        | Chen HM          | Network analysis of TCGA and GTEx gene expression datasets for identification of trait-associated biomarkers in human cancer.
+    PMID 40987889 | 2025 | Sci Rep                            | Jothi D          | GTEx pro enables accurate multi-tissue gene expression analysis using robust normalization and batch correction.
+    PMID 25953996 | 2015 | Science                            | Gibson G         | Human genetics. GTEx detects genetic effects.
+
+### asthma GWAS gene (hits=27)
+    PMID 27027959 | 2016 | Ann Am Thorac Soc                  | Ober C           | Asthma Genetics in the Post-GWAS Era.
+    PMID 35461280 | 2022 | BMC Pulm Med                       | Madore AM        | Analysis of GWAS-nominated loci for lung cancer and COPD revealed a new asthma locus.
+    PMID 36467360 | 2022 | Ann Transl Med                     | Friedrich F      | Contributions of candidate-gene associations studies and genome-wide association studies (GWAS) to identification of genetic varia
+    PMID 37278039 | 2024 | Comb Chem High Throughput Screen   | Qin ZM           | Importance of GWAS Risk Loci and Clinical Data in Predicting Asthma Using Machine-learning Approaches.
+    PMID 40339110 | 2025 | J Clin Endocrinol Metab            | Ji E             | Genomic Correlations, Shared Loci, and Drug Targets Between Polycystic Ovary Syndrome and Asthma: Insights From Genome-wide Associ
+    PMID 25918132 | 2015 | Toxicol Sci                        | Yucesoy B        | Genome-Wide Association Study Identifies Novel Loci Associated With Diisocyanate-Induced Occupational Asthma.
+    PMID 27990118 | 2016 | Front Pharmacol                    | Thompson MD      | Cysteinyl Leukotrienes Pathway Genes, Atopic Asthma and Drug Response: From Population Isolates to Large Genome-Wide Association S
+    PMID 25601762 | 2015 | Pharmacogenomics J                 | Wang Y           | Pharmacodynamic genome-wide association study identifies new responsive loci for glucocorticoid intervention in asthma.
+    PMID 31831581 | 2020 | Eur Respir J                       | Kim S            | SNPs identified by GWAS affect asthma risk through DNA methylation and expression of cis-genes in airway epithelium.
+    PMID 38853886 | 2024 | medRxiv                            | Kelchtermans J   | GWAS reveals Genetic Susceptibility to Air Pollution-Related Asthma Exacerbations in Children of African Ancestry.
+    PMID 31605414 | 2020 | J Clin Lab Anal                    | Liang SQ         | Association of GWAS-supported noncoding area loci rs404860, rs3117098, and rs7775228 with asthma in Chinese Zhuang population.
+    PMID 28428554 | 2017 | Sci Rep                            | Liu Y            | Network-assisted analysis of GWAS data identifies a functionally-relevant gene module for childhood-onset asthma.
+    PMID 41001556 | 2025 | Res Sq                             | Ghani MU         | Replication and Functional Prediction of Two GWAS-Reported SNPs Located on RAD50 Gene Associated with Asthma in Pakistani Children
+    PMID 40629254 | 2025 | J Clin Endocrinol Metab            | Su CY            | Letter to the Editor from Su and Hasebe: "Genomic Correlations, Shared Loci, and Drug Targets Between Polycystic Ovary Syndrome an
+    PMID 40629258 | 2025 | J Clin Endocrinol Metab            | Ji E             | Response to Letter to the Editor From Su and Hasebe: Genomic Correlations, Shared Loci, and Drug Targets Between Polycystic Ovary 
+    PMID 26083242 | 2015 | PLoS One                           | Dahlin A         | Genome-Wide Association Study Identifies Novel Pharmacogenomic Loci For Therapeutic Response to Montelukast in Asthma.
+    PMID 26073756 | 2015 | J Allergy Clin Immunol             | McGeachie MJ     | CTNNA3 and SEMA3D: Promising loci for asthma exacerbation identified through multiple genome-wide association studies.
+    PMID 26119467 | 2015 | Allergy                            | Li X             | eQTL of bronchial epithelial cells and bronchial alveolar lavage deciphers GWAS-identified asthma genes.
+    PMID 40676019 | 2025 | NPJ Genom Med                      | Hecker J         | Serum microRNA expression quantitative trait loci in children with asthma colocalize with asthma-related GWAS results.
+    PMID 30578877 | 2019 | J Allergy Clin Immunol             | Dahlin A         | Large-scale, multiethnic genome-wide association study identifies novel loci contributing to asthma susceptibility in adults.
+
+### IPF GRN systems (hits=5)
+    PMID 35518349 | 2022 | Evid Based Complement Alternat Med | Zhang H          | Danggui Buxue Decoction Ameliorates Idiopathic Pulmonary Fibrosis through MicroRNA and Messenger RNA Regulatory Network.
+    PMID 35402615 | 2022 | Biomed Res Int                     | Chen L           | Construction of MicroRNA-mRNA Regulatory Network in the Molecular Mechanisms of Bleomycin-Induced Pulmonary Fibrosis.
+    PMID 42534149 | 2026 | Exp Ther Med                       | Mao L            | m(6)A methylation regulatory network in pulmonary fibrosis: Molecular mechanisms from RNA stability to cellular phenotype transiti
+    PMID 31448882 | 2019 | J Cell Mol Med                     | Lu G             | Regulatory network of two circRNAs and an miRNA with their targeted genes under astilbin treatment in pulmonary fibrosis.
+    PMID 33410630 | 2021 | Chin Med J (Engl)                  | Zhang YF         | Construction of potential idiopathic pulmonary fibrosis related microRNA and messenger RNA regulatory network.
+
+### lung enhancer atlas disease (hits=9)
+    PMID 31588020 | 2019 | Cancer Cell                        | Robichaux JP     | Pan-Cancer Landscape and Analysis of ERBB2 Mutations Identifies Poziotinib as a Clinically Active Inhibitor and Enhancer of T-DM1 
+    PMID 40080526 | 2025 | Cancer Res                         | Wang Y           | Mutation of SMARCA4 Induces Cancer Cell-Intrinsic Defects in the Enhancer Landscape and Resistance to Immunotherapy.
+    PMID 33070167 | 2020 | Oncogenesis                        | Zhang T          | Aberrant super-enhancer landscape reveals core transcriptional regulatory circuitry in lung adenocarcinoma.
+    PMID 39361648 | 2024 | Proc Natl Acad Sci U S A           | Davis E          | Enhancer landscape of lung neuroendocrine tumors reveals regulatory and developmental signatures with potential theranostic implic
+    PMID 35105868 | 2022 | Nat Commun                         | Napoli M         | ΔNp63 regulates a common landscape of enhancer associated genes in non-small cell lung cancer.
+    PMID 38948751 | 2024 | bioRxiv                            | Wang Y           | SMARCA4 mutation induces tumor cell-intrinsic defects in enhancer landscape and resistance to immunotherapy.
+    PMID 40797025 | 2025 | Sci Rep                            | Li A             | Deciphering functional landscape and clinical implications of enhancer RNAs in lung adenocarcinoma.
+    PMID 28615069 | 2017 | Genome Biol                        | Vicente-García C | Regulatory landscape fusion in rhabdomyosarcoma through interactions between the PAX3 promoter and FOXO1 regulatory elements.
+    PMID 35338160 | 2022 | Nat Commun                         | Napoli M         | Author Correction: ΔNp63 regulates a common landscape of enhancer associated genes in non-small cell lung cancer.
+
+### scREAD-like disease TF portal (hits=1)
+    PMID 38617561 | 2024 | iScience                           | Chen K           | scMoresDB: A comprehensive database of single-cell multi-omics data for human respiratory system.
+

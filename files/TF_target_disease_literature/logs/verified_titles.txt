@@ -1,0 +1,163 @@
+### QUERY: LungMAP The Molecular Atlas of Lung Development Program
+    PMID 28798251 | 2017 | Am J Physiol Lung Cell Mol Physiol | Ardini-Poleske ME | LungMAP: The Molecular Atlas of Lung Development Program. | DOI 10.1152/ajplung.00139.2017
+
+### QUERY: Lung Gene Expression Analysis web portal
+    PMID 33385216 | 2021 | Am J Respir Cell Mol Biol | Du Y | Lung Gene Expression Analysis Web Portal Version 3: Lung-at-a-Glance. | DOI 10.1165/rcmb.2020-0308LE
+
+### QUERY: LungMAP Portal Ecosystem
+    PMID 36413377 | 2024 | Am J Respir Cell Mol Biol | Gaddis N | LungMAP Portal Ecosystem: Systems-level Exploration of the Lung. | DOI 10.1165/rcmb.2022-0165OC
+
+### QUERY: A census of the lung CellCards from LungMAP
+    PMID 34936882 | 2022 | Dev Cell | Sun X | A census of the lung: CellCards from LungMAP. | DOI 10.1016/j.devcel.2021.11.007
+
+### QUERY: A molecular cell atlas of the human lung from single-cell RNA sequencing
+    PMID 40114924 | 2025 | Front Immunol | Rizzoli E | A single-cell RNA sequencing atlas of the healthy canine lung: a foundation for comparative studies. | DOI 10.3389/fimmu.2025.1501603
+    PMID 37534569 | 2023 | Exp Dermatol | Kim YS | Single-cell RNA sequencing of a poorly metastatic melanoma cell line and its subclones with high lung and brain metastasis potential reveals gene expr | DOI 10.1111/exd.14900
+    PMID 36008393 | 2022 | Signal Transduct Target Ther | Wang C | The heterogeneous immune landscape between lung adenocarcinoma and squamous carcinoma revealed by single-cell RNA sequencing. | DOI 10.1038/s41392-022-01130-8
+    PMID 34517518 | 2021 | Math Biosci Eng | He J | Development of metastasis-associated seven gene signature for predicting lung adenocarcinoma prognosis using single-cell RNA sequencing data. | DOI 10.3934/mbe.2021298
+    PMID 33506299 | 2021 | Cancer Immunol Immunother | Zhong R | Single-cell RNA sequencing reveals cellular and molecular immune profile in a Pembrolizumab-responsive PD-L1-negative lung cancer patient. | DOI 10.1007/s00262-021-02848-0
+    PMID 33208946 | 2020 | Nature | Travaglini KJ | A molecular cell atlas of the human lung from single-cell RNA sequencing. | DOI 10.1038/s41586-020-2922-4
+
+### QUERY: An integrated cell atlas of the human lung in health and disease
+    PMID 37291214 | 2023 | Nat Med | Sikkema L | An integrated cell atlas of the lung in health and disease. | DOI 10.1038/s41591-023-02327-2
+    PMID 30995076 | 2019 | Am J Respir Cell Mol Biol | Schiller HB | The Human Lung Cell Atlas: A High-Resolution Reference Map of the Human Lung in Health and Disease. | DOI 10.1165/rcmb.2018-0416TR
+
+### QUERY: Single-cell RNA-seq reveals ectopic and aberrant lung-resident cell populations in idiopathic pulmonary fibrosis
+    PMID 32832599 | 2020 | Sci Adv | Adams TS | Single-cell RNA-seq reveals ectopic and aberrant lung-resident cell populations in idiopathic pulmonary fibrosis. | DOI 10.1126/sciadv.aba1983
+
+### QUERY: Single-cell RNA sequencing reveals profibrotic roles of distinct epithelial and mesenchymal lineages in pulmonary fibrosis
+    PMID 32832598 | 2020 | Sci Adv | Habermann AC | Single-cell RNA sequencing reveals profibrotic roles of distinct epithelial and mesenchymal lineages in pulmonary fibrosis. | DOI 10.1126/sciadv.aba1972
+
+### QUERY: A cellular census of human lungs identifies novel cell states in health and in asthma
+    PMID 31209336 | 2019 | Nat Med | Vieira Braga FA | A cellular census of human lungs identifies novel cell states in health and in asthma. | DOI 10.1038/s41591-019-0468-5
+
+### QUERY: Characterization of the COPD alveolar niche using single-cell RNA sequencing
+    PMID 35078977 | 2022 | Nat Commun | Sauler M | Characterization of the COPD alveolar niche using single-cell RNA sequencing. | DOI 10.1038/s41467-022-28062-9
+
+### QUERY: TRRUST v2 an expanded reference database of human and mouse transcriptional regulatory interactions
+    PMID 29087512 | 2018 | Nucleic Acids Res | Han H | TRRUST v2: an expanded reference database of human and mouse transcriptional regulatory interactions. | DOI 10.1093/nar/gkx1013
+
+### QUERY: hTFtarget a comprehensive database for regulations of human transcription factors and their targets
+    PMID 42006143 | 2026 | Front Cell Infect Microbiol | Zheng B | Integrated transcriptomic analysis reveals miRNA-hub mRNA-TF interactions and key regulatory targets in STEC infected intestinal epithelial cells. | DOI 10.3389/fcimb.2026.1772607
+    PMID 32858223 | 2020 | Genomics Proteomics Bioinformatics | Zhang Q | hTFtarget: A Comprehensive Database for Regulations of Human Transcription Factors and Their Targets. | DOI 10.1016/j.gpb.2019.09.006
+
+### QUERY: ChEA3 transcription factor enrichment analysis by orthogonal omics integration
+    PMID 31114921 | 2019 | Nucleic Acids Res | Keenan AB | ChEA3: transcription factor enrichment analysis by orthogonal omics integration. | DOI 10.1093/nar/gkz446
+
+### QUERY: Benchmark and integration of resources for the estimation of human transcription factor activities
+    PMID 33795376 | 2021 | Genome Res | Garcia-Alonso L | Corrigendum: Benchmark and integration of resources for the estimation of human transcription factor activities. | DOI 10.1101/gr.275408.121
+    PMID 31340985 | 2019 | Genome Res | Garcia-Alonso L | Benchmark and integration of resources for the estimation of human transcription factor activities. | DOI 10.1101/gr.240663.118
+
+### QUERY: Expanding the coverage of regulons from high-confidence prior knowledge for accurate estimation of transcription factor activities
+    PMID 37843125 | 2023 | Nucleic Acids Res | Müller-Dott S | Expanding the coverage of regulons from high-confidence prior knowledge for accurate estimation of transcription factor activities. | DOI 10.1093/nar/gkad841
+
+### QUERY: RegNetwork an integrated database of transcriptional and post-transcriptional regulatory networks in human and mouse
+    PMID 26424082 | 2015 | Database (Oxford) | Liu ZP | RegNetwork: an integrated database of transcriptional and post-transcriptional regulatory networks in human and mouse. | DOI 10.1093/database/bav095
+
+### QUERY: GTRD a database on gene transcription regulation
+    PMID 30445619 | 2019 | Nucleic Acids Res | Yevshin I | GTRD: a database on gene transcription regulation-2019 update. | DOI 10.1093/nar/gky1128
+
+### QUERY: TFLink an integrated gateway to access transcription factor-target gene interactions for multiple species
+    PMID 36124642 | 2022 | Database (Oxford) | Liska O | TFLink: an integrated gateway to access transcription factor-target gene interactions for multiple species. | DOI 10.1093/database/baac083
+
+### QUERY: KnockTF a comprehensive human gene expression profile database with knockdown or knockout of transcription factors
+    PMID 42546695 | 2026 | Immunity | Tejwani L | Progranulin deficiency-induced lysosomal dysfunction drives maladaptive myeloid cell states through the MITF/TFE transcription factors. | DOI 10.1016/j.immuni.2026.07.009
+    PMID 42469239 | 2026 | Nat Commun | Dai X | Misregulation of T-box transcription factors drives BNP-NPR1 signalling underlying chronic itch. | DOI 10.1038/s41467-026-75726-x
+    PMID 42406130 | 2026 | Planta | Li Z | Identification of CAMTA transcription factors and functional analysis of OsCAMTA4 in rice blast and salt stress. | DOI 10.1007/s00425-026-05068-x
+    PMID 42341169 | 2026 | Plant Physiol | Wang N | SNAP transcription factors modulate context-dependent senescence-related genes to impact soybean yield and seed quality. | DOI 10.1093/plphys/kiag433
+    PMID 42332560 | 2026 | BMC Plant Biol | Ma L | Network analysis reveals that bHLH transcription factors positively regulate rice resistance to Magnaporthe oryzae. | DOI 10.1186/s12870-026-09237-8
+    PMID 42230957 | 2026 | Nat Immunol | Szabo PA | Distinct transcription factors control tissue adaptation and effector function in infant and adult memory T cells. | DOI 10.1038/s41590-026-02535-1
+    PMID 42192126 | 2026 | EMBO J | Zhao J | RNA helicase DHX29 controls the translation of transcription factors involved in germinal center response and plasma cell differentiation in mice. | DOI 10.1038/s44318-026-00805-0
+    PMID 42146649 | 2026 | bioRxiv | Debic S | Lamins and lineage-relevant transcription factors coordinate gene expression in lineage development. | DOI 10.64898/2026.04.30.722071
+
+### QUERY: ChIP-Atlas an integrative web resource for exploring public ChIP-seq data
+    NO MATCH
+
+### QUERY: Cistrome Data Browser expanded datasets and new tools for gene regulatory analysis
+    PMID 30462313 | 2019 | Nucleic Acids Res | Zheng R | Cistrome Data Browser: expanded datasets and new tools for gene regulatory analysis. | DOI 10.1093/nar/gky1094
+
+### QUERY: The Human Transcription Factors
+    PMID 42557397 | 2026 | Nat Methods | Jolma A | GHT-SELEX demonstrates unexpectedly high intrinsic sequence specificity and complex DNA binding of many human transcription factors. | DOI 10.1038/s41592-026-03177-9
+    PMID 42557260 | 2026 | Nat Commun | Razavi R | Extensive binding of poorly characterized human transcription factors to genomic dark matter. | DOI 10.1038/s41467-026-75376-z
+    PMID 42557242 | 2026 | Nat Commun | Gralak AJ | Identification of methylation-sensitive human transcription factors using meSMiLE-seq. | DOI 10.1038/s41467-026-71387-y
+    PMID 42392072 | 2026 | Mol Cell | Chen H | Genome-wide rotational and translational phasing of nucleosomes with human transcription factors. | DOI 10.1016/j.molcel.2026.06.019
+    PMID 41332515 | 2025 | bioRxiv | Gryzunov N | Inferring binding specificities of human transcription factors with the wisdom of crowds. | DOI 10.1101/2025.11.16.688692
+    PMID 41203846 | 2025 | Commun Biol | Vorontsov IE | Cross-platform motif discovery and benchmarking to explore binding specificities of poorly studied human transcription factors. | DOI 10.1038/s42003-025-08909-9
+    PMID 40638054 | 2025 | Methods Mol Biol | Malaymar Pinar D | An Integrated High-Throughput Proteocistromic Framework for Mapping the Interactome and Targetome of Human Transcription Factors. | DOI 10.1007/978-1-0716-4694-6_17
+    PMID 39605729 | 2024 | bioRxiv | Jolma A | Perspectives on Codebook: sequence specificity of uncharacterized human transcription factors. | DOI 10.1101/2024.11.11.622097
+
+### QUERY: Understanding Tissue-Specific Gene Regulation
+    PMID 41839849 | 2026 | Nat Commun | Xie S | Identification of cis-regulatory elements provides insights into tissue-specific gene regulation in the sheep genome. | DOI 10.1038/s41467-026-70382-7
+    PMID 29069589 | 2017 | Cell Rep | Sonawane AR | Understanding Tissue-Specific Gene Regulation. | DOI 10.1016/j.celrep.2017.10.001
+
+### QUERY: GRAND a database of gene regulatory network models across human conditions
+    NO MATCH
+
+### QUERY: Expanded encyclopaedias of DNA elements in the human and mouse genomes
+    PMID 35474001 | 2022 | Nature | Moore JE | Author Correction: Expanded encyclopaedias of DNA elements in the human and mouse genomes. | DOI 10.1038/s41586-021-04226-3
+    PMID 32728249 | 2020 | Nature | Moore JE | Expanded encyclopaedias of DNA elements in the human and mouse genomes. | DOI 10.1038/s41586-020-2493-4
+
+### QUERY: The DisGeNET knowledge platform for disease genomics
+    PMID 34136095 | 2021 | Comput Struct Biotechnol J | Piñero J | The DisGeNET cytoscape app: Exploring and visualizing disease genomics data. | DOI 10.1016/j.csbj.2021.05.015
+    PMID 31680165 | 2020 | Nucleic Acids Res | Piñero J | The DisGeNET knowledge platform for disease genomics: 2019 update. | DOI 10.1093/nar/gkz1021
+
+### QUERY: Open Targets Platform facilitating therapeutic hypotheses building in drug discovery
+    PMID 39657122 | 2025 | Nucleic Acids Res | Buniello A | Open Targets Platform: facilitating therapeutic hypotheses building in drug discovery. | DOI 10.1093/nar/gkae1128
+
+### QUERY: Comparative Toxicogenomics Database update
+    PMID 30247620 | 2019 | Nucleic Acids Res | Davis AP | The Comparative Toxicogenomics Database: update 2019. | DOI 10.1093/nar/gky868
+    PMID 27651457 | 2017 | Nucleic Acids Res | Davis AP | The Comparative Toxicogenomics Database: update 2017. | DOI 10.1093/nar/gkw838
+    PMID 23093600 | 2013 | Nucleic Acids Res | Davis AP | The Comparative Toxicogenomics Database: update 2013. | DOI 10.1093/nar/gks994
+    PMID 20864448 | 2011 | Nucleic Acids Res | Davis AP | The Comparative Toxicogenomics Database: update 2011. | DOI 10.1093/nar/gkq813
+
+### QUERY: Understanding multicellular function and disease with human tissue-specific networks
+    PMID 25915600 | 2015 | Nat Genet | Greene CS | Understanding multicellular function and disease with human tissue-specific networks. | DOI 10.1038/ng.3259
+
+### QUERY: PulmonDB a curated lung disease gene expression database
+    PMID 31949184 | 2020 | Sci Rep | Villaseñor-Altamirano AB | PulmonDB: a curated lung disease gene expression database. | DOI 10.1038/s41598-019-56339-5
+
+### QUERY: Multi-ancestry genome-wide association analyses improve resolution of genes and pathways influencing lung function and chronic obstructive pulmonary disease
+    PMID 37749248 | 2023 | Nat Genet | Shrine N | Author Correction: Multi-ancestry genome-wide association analyses improve resolution of genes and pathways influencing lung function and chronic obst | DOI 10.1038/s41588-023-01531-7
+    PMID 36914875 | 2023 | Nat Genet | Shrine N | Multi-ancestry genome-wide association analyses improve resolution of genes and pathways influencing lung function and chronic obstructive pulmonary d | DOI 10.1038/s41588-023-01314-0
+
+### QUERY: Genome-Wide Association Study of Susceptibility to Idiopathic Pulmonary Fibrosis
+    PMID 42528429 | 2026 | Br J Hosp Med (Lond) | Yang L | Causal Association Between Idiopathic Pulmonary Fibrosis and Coronary Artery Disease: A Bidirectional Two-Sample Mendelian Randomization. | DOI 10.31083/BJHM56025
+    PMID 42399611 | 2026 | NPJ Aging | Campisi M | Telomere integrity, epigenetic aging, and genetic burden shape biological aging trajectories in idiopathic pulmonary fibrosis. | DOI 10.1038/s41514-026-00434-1
+    PMID 42175437 | 2026 | Medicine (Baltimore) | Tan W | Two-sample Mendelian randomization analysis unveils a potential genetic association between rheumatic diseases and the risk of idiopathic pulmonary fi | DOI 10.1097/MD.0000000000048543
+    PMID 42167781 | 2026 | Eur Respir J | Chin D | Genome-wide association study of idiopathic pulmonary fibrosis susceptibility using clinically curated European ancestry datasets. | DOI 10.1183/13993003.00506-2026
+    PMID 42085270 | 2026 | Am J Respir Crit Care Med | Peljto AL | Idiopathic pulmonary fibrosis risk loci in East Asian populations mirror those of European populations. | DOI 10.1093/ajrccm/aamag152
+    PMID 42078339 | 2026 | medRxiv | Nabunje R | Cross-ancestry evaluation of idiopathic pulmonary fibrosis genetic risk variants. | DOI 10.64898/2026.04.17.26349970
+    PMID 41815121 | 2026 | Transl Cancer Res | Sun S | Greater susceptibility of patients with idiopathic pulmonary fibrosis to basal cell carcinoma: a combined genomics and Mendelian randomization analysi | DOI 10.21037/tcr-2025-1-2853
+    PMID 41457226 | 2025 | Respir Res | Yin C | Hypertension in idiopathic pulmonary fibrosis: evidence of immune and genetic links from clinical and genomic analyses. | DOI 10.1186/s12931-025-03467-4
+
+### QUERY: Transcription factor activities enhance markers of drug sensitivity in cancer
+    PMID 41962607 | 2026 | J Ethnopharmacol | Zhu X | Guben Qingyuan Herbal Medicine delays enzalutamide resistance in prostate cancer by alleviating tumor hypoxia and reprogramming energy metabolism in c | DOI 10.1016/j.jep.2026.121667
+    PMID 29229604 | 2018 | Cancer Res | Garcia-Alonso L | Transcription Factor Activities Enhance Markers of Drug Sensitivity in Cancer. | DOI 10.1158/0008-5472.CAN-17-1679
+    PMID 12516962 | 2002 | Mol Cancer Ther | Johnson PH | Multiplex gene expression analysis for high-throughput drug discovery: screening and analysis of compounds affecting genes overexpressed in cancer cel | DOI 
+
+### QUERY: A modular master regulator landscape controls cancer transcriptional identity
+    PMID 33434495 | 2021 | Cell | Paull EO | A modular master regulator landscape controls cancer transcriptional identity. | DOI 10.1016/j.cell.2020.11.045
+
+### QUERY: Single-cell multiomic profiling of human lungs reveals cell-type-specific and age-dynamic control of SARS-CoV2 host genes
+    PMID 33164753 | 2020 | Elife | Wang A | Single-cell multiomic profiling of human lungs reveals cell-type-specific and age-dynamic control of SARS-CoV2 host genes. | DOI 10.7554/eLife.62522
+
+### QUERY: Regulatory analysis of the human lung
+    PMID 42457688 | 2026 | Nat Commun | Xu K | Cellular hallmarks and aging clock of the human lung parenchyma. | DOI 10.1038/s41467-026-75427-5
+    PMID 41162389 | 2025 | Nat Commun | Zhu M | Common genetic variation influencing the human lung imaging phenotypes. | DOI 10.1038/s41467-025-64571-z
+    PMID 33455109 | 2020 | J BUON | Liang R | MicroRNA-466 regulates the proliferation, migration and invasion of the human lung cancer cells by targeting transcription factor RUNX2. | DOI 
+    PMID 33067317 | 2020 | J Immunother Cancer | Russick J | Natural killer cells in the human lung tumor microenvironment display immune inhibitory functions. | DOI 10.1136/jitc-2020-001054
+    PMID 31600171 | 2019 | JCI Insight | McDonough JE | Transcriptional regulatory model of fibrosis progression in the human lung. | DOI 10.1172/jci.insight.131597
+
+### QUERY: Integrated single-cell atlas of human lung fibrosis
+    NO MATCH
+
+### QUERY: A single-cell atlas of the human healthy airways
+    PMID 32726565 | 2020 | Am J Respir Crit Care Med | Deprez M | A Single-Cell Atlas of the Human Healthy Airways. | DOI 10.1164/rccm.201911-2199OC
+
+### QUERY: Construction of a human cell landscape
+    PMID 34094635 | 2021 | Aging Dis | He J | Construction of a Human Cell Landscape of COVID-19 Infection at Single-cell Level. | DOI 10.14336/AD.2021.0301
+    PMID 32214235 | 2020 | Nature | Han X | Construction of a human cell landscape at single-cell level. | DOI 10.1038/s41586-020-2157-4
+
+### QUERY: Comprehensive epigenomic profiling of human alveolar epithelial differentiation identifies key epigenetic states and transcription factor co-regulatory networks
+    PMID 34922464 | 2021 | BMC Genomics | Zhou B | Comprehensive epigenomic profiling of human alveolar epithelial differentiation identifies key epigenetic states and transcription factor co-regulator | DOI 10.1186/s12864-021-08152-6
+

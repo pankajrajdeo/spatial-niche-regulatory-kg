@@ -1,0 +1,167 @@
+---
+title: "Router"
+description: "In the router architecture, a routing step classifies input and directs it to specialized agents. This is useful when you have distinct verticals (separate knowledge domains that each require their..."
+source: "https://docs.langchain.com/oss/javascript/langchain/multi-agent/router"
+category: "docs"
+tags: [docs, javascript, langchain, multi-agent, router]
+---
+
+# Router
+
+In the **router** architecture, a routing step classifies input and directs it to specialized [agents](../agents.md). This is useful when you have distinct **verticals** (separate knowledge domains that each require their own agent).
+
+```mermaid
+graph LR
+    A([Query]) --> B[Router]
+    B --> C[Agent A]
+    B --> D[Agent B]
+    B --> E[Agent C]
+    C --> F[Synthesize]
+    D --> F
+    E --> F
+    F --> G([Combined answer])
+
+    classDef trigger fill:#F6FFDB,stroke:#6E8900,stroke-width:2px,color:#2E3900
+    classDef process fill:#E5F4FF,stroke:#006DDD,stroke-width:2px,color:#030710
+
+    class A,G trigger
+    class B,C,D,E,F process
+```
+
+## Key characteristics
+
+* Router decomposes the query
+* Zero or more specialized agents are invoked in parallel
+* Results are synthesized into a coherent response
+
+## When to use
+
+Use the router pattern when you have distinct verticals (separate knowledge domains that each require their own agent), need to query multiple sources in parallel, and want to synthesize results into a combined response.
+
+## Basic implementation
+
+The router classifies the query and directs it to the appropriate agent(s). Use [`Command`](../../langgraph/graph-api.md#command) for single-agent routing or [`Send`](../../langgraph/graph-api.md#send) for parallel fan-out to multiple agents.
+
+#### Single agent
+Use `Command` to route to a single specialized agent:
+
+```typescript
+import { z } from "zod";
+import { Command } from "@langchain/langgraph";
+
+const ClassificationResult = z.object({
+  query: z.string(),
+  agent: z.string(),
+});
+
+function classifyQuery(query: string): z.infer<typeof ClassificationResult> {
+  // Use LLM to classify query and determine the appropriate agent
+  // Classification logic here
+  ...
+}
+
+function routeQuery(state: z.infer<typeof ClassificationResult>) {
+  const classification = classifyQuery(state.query);
+
+  // Route to the selected agent
+  return new Command({ goto: classification.agent });
+}
+```
+
+#### Multiple agents (parallel)
+Use `Send` to fan out to multiple specialized agents in parallel:
+
+```typescript
+import { z } from "zod";
+import { Command } from "@langchain/langgraph";
+
+const ClassificationResult = z.object({
+  query: z.string(),
+  agent: z.string(),
+});
+
+function classifyQuery(query: string): z.infer<typeof ClassificationResult>[] {
+  // Use LLM to classify query and determine the appropriate agent
+  // Classification logic here
+  ...
+}
+
+function routeQuery(state: typeof State.State) {
+  const classifications = classifyQuery(state.query);
+
+  // Fan out to selected agents in parallel
+  return classifications.map(
+    (c) => new Send(c.agent, { query: c.query })
+  );
+}
+```
+
+For a complete implementation, see the tutorial below.
+
+#### [Tutorial: Build a multi-source knowledge base with routing](router-knowledge-base.md)
+Build a router that queries GitHub, Notion, and Slack in parallel, then synthesizes results into a coherent answer. Covers state definition, specialized agents, parallel execution with `Send`, and result synthesis.
+
+## Stateless vs. stateful
+
+Two approaches:
+
+* [**Stateless routers**](#stateless) address each request independently
+* [**Stateful routers**](#stateful) maintain conversation history across requests
+
+## Stateless
+
+Each request is routed independently—no memory between calls. For multi-turn conversations, see [Stateful routers](#stateful).
+
+> [!TIP]
+> **Router vs. Subagents**: Both patterns can dispatch work to multiple agents, but they differ in how routing decisions are made:
+>
+> * **Router**: A dedicated routing step (often a single LLM call or rule-based logic) that classifies the input and dispatches to agents. The router itself typically doesn't maintain conversation history or perform multi-turn orchestration—it's a preprocessing step.
+> * **Subagents**: A main supervisor agent dynamically decides which [subagents](subagents.md) to call as part of an ongoing conversation. The main agent maintains context, can call multiple subagents across turns, and orchestrates complex multi-step workflows.
+>
+> Use a **router** when you have clear input categories and want deterministic or lightweight classification. Use a **supervisor** when you need flexible, conversation-aware orchestration where the LLM decides what to do next based on evolving context.
+
+## Stateful
+
+For multi-turn conversations, you need to maintain context across invocations.
+
+### Tool wrapper
+
+The simplest approach: wrap the stateless router as a tool that a conversational agent can call. The conversational agent handles memory and context; the router stays stateless. This avoids the complexity of managing conversation history across multiple parallel agents.
+
+```typescript
+const searchDocs = tool(
+  async ({ query }) => {
+    const result = await workflow.invoke({ query }); // [!code highlight]
+    return result.finalAnswer;
+  },
+  {
+    name: "search_docs",
+    description: "Search across multiple documentation sources",
+    schema: z.object({
+      query: z.string().describe("The search query"),
+    }),
+  }
+);
+
+// Conversational agent uses the router as a tool
+const conversationalAgent = createAgent({
+  model,
+  tools: [searchDocs],
+  systemPrompt: "You are a helpful assistant. Use search_docs to answer questions.",
+});
+```
+
+### Full persistence
+
+If you need the router itself to maintain state, use [persistence](../short-term-memory.md) to store message history. When routing to an agent, fetch previous messages from state and selectively include them in the agent's context—this is a lever for [context engineering](../context-engineering.md).
+
+> [!WARNING]
+> **Stateful routers require custom history management.** If the router switches between agents across turns, conversations may not feel fluid to end users when agents have different tones or prompts. With parallel invocation, you'll need to maintain history at the router level (inputs and synthesized outputs) and leverage this history in routing logic. Consider the [handoffs pattern](handoffs.md) or [subagents pattern](subagents.md) instead—both provide clearer semantics for multi-turn conversations.
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/langchain/multi-agent/router.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

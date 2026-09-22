@@ -1,0 +1,218 @@
+---
+title: "QdrantVectorStore integration"
+description: "Integrate with the QdrantVectorStore using LangChain JavaScript."
+source: "https://docs.langchain.com/oss/javascript/integrations/vectorstores/qdrant"
+category: "docs"
+tags: [docs, javascript, integrations, vectorstores, qdrant]
+---
+
+# QdrantVectorStore integration
+
+> Integrate with the QdrantVectorStore using LangChain JavaScript.
+
+> [!TIP]
+> **Compatibility**: Only available on Node.js.
+
+[Qdrant](https://qdrant.tech/) is a vector similarity search engine. It provides a production-ready service with a convenient API to store, search, and manage points (vectors with an additional payload).
+
+This guide provides a quick overview for getting started with Qdrant [vector stores](../vectorstores.md). For detailed documentation of all `QdrantVectorStore` features and configurations head to the [API reference](https://reference.langchain.com/javascript/langchain-qdrant/QdrantVectorStore).
+
+## Overview
+
+### Integration details
+
+| Class                                                                                                | Package                                                                | [PY support](https://python.langchain.com/docs/integrations/vectorstores/qdrant/) |                                             Downloads                                             |                                             Version                                            |
+| :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- | :-------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
+| [`QdrantVectorStore`](https://reference.langchain.com/javascript/langchain-qdrant/QdrantVectorStore) | [`@langchain/qdrant`](https://www.npmjs.com/package/@langchain/qdrant) |                                         ✅                                         | ![NPM - Downloads](https://img.shields.io/npm/dm/@langchain/qdrant?style=flat-square\&label=%20&) | ![NPM - Version](https://img.shields.io/npm/v/@langchain/qdrant?style=flat-square\&label=%20&) |
+
+## Setup
+
+To use Qdrant vector stores, set up a Qdrant instance and install `@langchain/qdrant` and `@langchain/core`. The `@langchain/qdrant` package bundles the Qdrant REST client (`@qdrant/js-client-rest`).
+
+This guide uses [OpenAI embeddings](../embeddings/openai.md) as an example. You can use [other supported embeddings models](../embeddings.md) instead.
+
+**npm**
+
+```bash
+npm install @langchain/qdrant @langchain/core @langchain/openai
+```
+
+**yarn**
+
+```bash
+yarn add @langchain/qdrant @langchain/core @langchain/openai
+```
+
+**pnpm**
+
+```bash
+pnpm add @langchain/qdrant @langchain/core @langchain/openai
+```
+
+After installing the required dependencies, run a Qdrant instance with Docker on your computer by following the [Qdrant setup instructions](https://qdrant.tech/documentation/quickstart/). Note the URL your container runs on.
+
+### Credentials
+
+Set a `QDRANT_URL` environment variable:
+
+```typescript
+// e.g. http://localhost:6333
+process.env.QDRANT_URL = "your-qdrant-url"
+```
+
+If you are using OpenAI embeddings for this guide, set your OpenAI key as well:
+
+```typescript
+process.env.OPENAI_API_KEY = "YOUR_API_KEY";
+```
+
+If you want to get automated tracing of your model calls you can also set your [LangSmith](../../../langsmith/observability.md) API key by uncommenting below:
+
+```typescript
+// process.env.LANGSMITH_TRACING="true"
+// process.env.LANGSMITH_API_KEY="your-api-key"
+```
+
+## Instantiation
+
+```typescript
+import { QdrantVectorStore } from "@langchain/qdrant";
+import { OpenAIEmbeddings } from "@langchain/openai";
+
+const embeddings = new OpenAIEmbeddings({
+  model: "text-embedding-3-small",
+});
+
+const vectorStore = await QdrantVectorStore.fromExistingCollection(embeddings, {
+  url: process.env.QDRANT_URL,
+  collectionName: "langchainjs-testing",
+});
+```
+
+## Manage vector store
+
+### Add items to vector store
+
+```typescript
+import type { Document } from "@langchain/core/documents";
+
+const document1: Document = {
+  pageContent: "The powerhouse of the cell is the mitochondria",
+  metadata: { source: "https://example.com" }
+};
+
+const document2: Document = {
+  pageContent: "Buildings are made out of brick",
+  metadata: { source: "https://example.com" }
+};
+
+const document3: Document = {
+  pageContent: "Mitochondria are made out of lipids",
+  metadata: { source: "https://example.com" }
+};
+
+const document4: Document = {
+  pageContent: "The 2024 Olympics are in Paris",
+  metadata: { source: "https://example.com" }
+}
+
+const documents = [document1, document2, document3, document4];
+
+await vectorStore.addDocuments(documents);
+```
+
+Top-level document ids and deletion are currently not supported.
+
+## Query vector store
+
+Once your vector store has been created and the relevant documents have been added you will most likely wish to query it during the running of your chain or agent.
+
+### Query directly
+
+Performing a simple similarity search can be done as follows:
+
+```typescript
+const filter = {
+  "must": [
+      { "key": "metadata.source", "match": { "value": "https://example.com" } },
+  ]
+};
+
+const similaritySearchResults = await vectorStore.similaritySearch("biology", 2, filter);
+
+for (const doc of similaritySearchResults) {
+  console.log(`* ${doc.pageContent} [${JSON.stringify(doc.metadata, null)}]`);
+}
+```
+
+```text
+* The powerhouse of the cell is the mitochondria [{"source":"https://example.com"}]
+* Mitochondria are made out of lipids [{"source":"https://example.com"}]
+```
+
+See [this page](https://qdrant.tech/documentation/concepts/filtering/) for more on Qdrant filter syntax. Note that all values must be prefixed with `metadata.`
+
+If you want to execute a similarity search and receive the corresponding scores you can run:
+
+```typescript
+const similaritySearchWithScoreResults = await vectorStore.similaritySearchWithScore("biology", 2, filter)
+
+for (const [doc, score] of similaritySearchWithScoreResults) {
+  console.log(`* [SIM=${score.toFixed(3)}] ${doc.pageContent} [${JSON.stringify(doc.metadata)}]`);
+}
+```
+
+```text
+* [SIM=0.165] The powerhouse of the cell is the mitochondria [{"source":"https://example.com"}]
+* [SIM=0.148] Mitochondria are made out of lipids [{"source":"https://example.com"}]
+```
+
+### Query by turning into retriever
+
+You can also transform the vector store into a [retriever](../../deepagents/retrieval.md) for easier usage in your chains.
+
+```typescript
+const retriever = vectorStore.asRetriever({
+  // Optional filter
+  filter: filter,
+  k: 2,
+});
+await retriever.invoke("biology");
+```
+
+```javascript
+[
+  Document {
+    pageContent: 'The powerhouse of the cell is the mitochondria',
+    metadata: { source: 'https://example.com' },
+    id: undefined
+  },
+  Document {
+    pageContent: 'Mitochondria are made out of lipids',
+    metadata: { source: 'https://example.com' },
+    id: undefined
+  }
+]
+```
+
+### Usage for retrieval-augmented generation
+
+For guides on how to use this vector store for retrieval-augmented generation (RAG), see the following sections:
+
+* [Build a RAG app with LangChain](../../deepagents/rag.md).
+* [Agentic RAG](../../langgraph/agentic-rag.md)
+* [Retrieval docs](../../deepagents/retrieval.md)
+
+***
+
+## API reference
+
+For detailed documentation of all `QdrantVectorStore` features and configurations head to the [API reference](https://reference.langchain.com/javascript/langchain-qdrant/QdrantVectorStore).
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/javascript/integrations/vectorstores/qdrant.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

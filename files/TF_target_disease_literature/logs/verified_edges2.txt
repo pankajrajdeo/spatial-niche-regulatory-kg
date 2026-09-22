@@ -1,0 +1,166 @@
+### BioPlex 3.0
+    PMID 33961781 | 2021 | Cell                       | Huttlin EL     | Dual proteome-scale networks reveal cell-specific remodeling of the human interactome.
+    PMID 28514442 | 2017 | Nature                     | Huttlin EL     | Architecture of the human interactome defines protein communities and disease networks.
+    PMID 26186194 | 2015 | Cell                       | Huttlin EL     | The BioPlex Network: A Systematic Exploration of the Human Interactome.
+    PMID 37311461 | 2023 | Mol Cell                   | Yiu SPT        | An Epstein-Barr virus protein interaction map reveals NLRP3 inflammasome evasion via MAVS UFMylation.
+    PMID 29054129 | 2018 | J Proteome Res             | Schweppe DK    | BioPlex Display: An Interactive Suite for Large-Scale AP-MS Protein-Protein Interaction Data.
+    PMID 31873071 | 2019 | Elife                      | Nobre LV       | Human cytomegalovirus interactome analysis identifies degradation hubs, domain associations and viral protein functions.
+
+### hu.MAP
+    PMID 40593758 | 2025 | Nat Commun                 | Vazquez N      | The human ciliopathy protein RSG1 links the CPLANE complex to transition zone architecture.
+    PMID 33748783 | 2021 | STAR Protoc                | McWhite CD     | Co-fractionation/mass spectrometry to identify protein complexes.
+    PMID 41703037 | 2026 | Mol Syst Biol              | Drew K         | Proteome-wide AlphaFold pool party.
+    PMID 32191846 | 2020 | Cell                       | McWhite CD     | A Pan-plant Protein Complex Map Reveals Deep Conservation and Novel Assemblies.
+    PMID 26344197 | 2015 | Nature                     | Wan C          | Panorama of ancient metazoan macromolecular complexes.
+    PMID 31665645 | 2019 | Cell Rep                   | Mallam AL      | Systematic Discovery of Endogenous Human Ribonucleoprotein Complexes.
+    PMID 28596423 | 2017 | Mol Syst Biol              | Drew K         | Integration of over 9,000 mass spectrometry experiments builds a global map of human protein complexes.
+    PMID 29023445 | 2017 | PLoS Comput Biol           | Drew K         | Identifying direct contacts between protein complex subunits from their conditional dependence in proteomics datasets.
+
+### EpiMap
+    NO MATCH
+
+### Roadmap 111
+    NO MATCH
+
+### Denny NFIB
+    PMID 38536119 | 2024 | Cancer Res                 | Shu F          | m6A Modification Promotes EMT and Metastasis of Castration-Resistant Prostate Cancer by Upregulating NFIB.
+    PMID 37963187 | 2024 | Cancer Res                 | Ko JH          | Small Cell Lung Cancer Plasticity Enables NFIB-Independent Metastasis.
+    PMID 31754405 | 2019 | Theranostics               | Sun L          | miR-302a Inhibits Metastasis and Cetuximab Resistance in Colorectal Cancer by Targeting NFIB and CD44.
+    PMID 27374332 | 2016 | Cell                       | Denny SK       | Nfib Promotes Metastasis through a Widespread Increase in Chromatin Accessibility.
+    PMID 31522615 | 2019 | Technol Cancer Res Treat   | Xu L           | Genetic Variant of NFIB is Associated With the Metastasis of Osteosarcoma in Chinese Population.
+    PMID 37405427 | 2023 | Arch Dermatol Res          | Yu H           | CircIFFO1 suppresses tumor growth and metastasis of cutaneous squamous cell carcinoma by targeting the miR-424-5p/NFIB a
+    PMID 30015981 | 2018 | Oncol Rep                  | Wu C           | NFIB promotes cell growth, aggressiveness, metastasis and EMT of gastric cancer through the Akt/Stat3 signaling pathway.
+    PMID 26084801 | 2015 | Cancer Discov              | Mirabello L    | A Genome-Wide Scan Identifies Variants in NFIB Associated with Metastasis in Patients with Osteosarcoma.
+
+### alveolar macrophage enhancer
+    PMID 34115982 | 2021 | Cell                       | Baasch S       | Cytomegalovirus subverts macrophage identity.
+    PMID 39541970 | 2025 | Immunity                   | Chakraborty S  | Sialylated IgG induces the transcription factor REST in alveolar macrophages to protect against lung inflammation and se
+    PMID 35210623 | 2022 | Nat Immunol                | Subramanian S  | Long-term culture-expanded alveolar macrophages restore their full epigenetic identity after transfer in vivo.
+    PMID 39042472 | 2024 | JCI Insight                | Kolostyak Z    | EGR2 is an epigenomic regulator of phagocytosis and antifungal immunity in alveolar macrophages.
+    PMID 34797692 | 2021 | Sci Immunol                | McCowan J      | The transcription factor EGR2 is indispensable for tissue-specific imprinting of alveolar macrophages in health and tiss
+    PMID 39891210 | 2025 | Respir Res                 | Li D           | Targeting BRD4 ameliorates experimental emphysema by disrupting super-enhancer in polarized alveolar macrophage.
+    PMID 42228021 | 2026 | J Exp Med                  | Mínguez-Martín | A signal-responsive cooperative transcription factor network determines alveolar macrophage identity.
+    PMID 41534513 | 2026 | Immunity                   | Hutton A       | IRF4 sends alveolar macrophages spiraling into an identity crisis during type 2 immunity.
+
+### airway basal TP63
+    PMID 37150829 | 2023 | J Exp Clin Cancer Res      | Ning B         | Convergence of YAP/TAZ, TEAD and TP63 activity is associated with bronchial premalignant severity and progression.
+    PMID 39160511 | 2024 | Respir Res                 | Zefi O         | Distinctive field effects of smoking and lung cancer case-control status on bronchial basal cell growth and signaling.
+    PMID 26947080 | 2016 | Cell Rep                   | Marshall CB    | p73 Is Required for Multiciliogenesis and Regulates the Foxj1-Associated Gene Network.
+    PMID 29656941 | 2018 | Cell Stem Cell             | Lynch TJ       | Submucosal Gland Myoepithelial Cells Are Reserve Stem Cells That Can Regenerate Mouse Tracheal Epithelium.
+    PMID 25790853 | 2015 | Development                | Galvis LA      | Repression of Igf1 expression by Ezh2 prevents basal cell differentiation in the developing lung.
+    PMID 33362848 | 2020 | Front Genet                | McErlean P     | Profiling of H3K27Ac Reveals the Influence of Asthma on the Epigenome of the Airway Epithelium.
+
+### lung fibroblast TGFb ChIP
+    PMID 37742376 | 2024 | J Hazard Mater             | Wang P         | H3K18 lactylation promotes the progression of arsenite-related idiopathic pulmonary fibrosis via YTHDF1/m6A/NREP.
+    PMID 38536934 | 2024 | Sci Transl Med             | Liang M        | Attenuation of fibroblast activation and fibrosis by adropin in systemic sclerosis.
+    PMID 40464702 | 2025 | J Cell Mol Med             | Wang Y         | STAT3 Facilitates Super Enhancer Formation to Promote Fibroblast-To-Myofibroblast Differentiation by the Analysis of ATA
+    PMID 40544764 | 2025 | Biochem Biophys Res Commun | Dayalan Naidu  | CD5L is a target of transcription factor Nrf2.
+    PMID 40639051 | 2025 | Int Immunopharmacol        | Wan L          | Hypoxia-induced tumor cell-intrinsic PLAU activation drives immunotherapy resistance in collagenic lung adenocarcinoma.
+    PMID 37967011 | 2023 | Cell Rep                   | Jokl E         | PAK1-dependent mechanotransduction enables myofibroblast nuclear adaptation and chromatin organization during fibrosis.
+    PMID 41109655 | 2025 | Cell Signal                | Zhang J        | Bmi-1 overexpression mitigates vitamin D deficiency-induced pulmonary fibrosis via TIME pathway.
+    PMID 41740941 | 2026 | J Heart Lung Transplant    | Potter AS      | Human lung allografts experience persistent fibrogenic shift following acute cellular rejection.
+
+### IPF epigenome ATAC
+    PMID 37142338 | 2023 | Eur Respir J               | Valenzi E      | Single-nucleus chromatin accessibility identifies a critical role for TWIST1 in idiopathic pulmonary fibrosis myofibrobl
+    PMID 40464702 | 2025 | J Cell Mol Med             | Wang Y         | STAT3 Facilitates Super Enhancer Formation to Promote Fibroblast-To-Myofibroblast Differentiation by the Analysis of ATA
+    PMID 38422471 | 2024 | Am J Respir Crit Care Med  | Casas-Recasens | Epigenome-Wide Association Studies of Chronic Obstructive Pulmonary Disease and Lung Function: A Systematic Review.
+    PMID 39891210 | 2025 | Respir Res                 | Li D           | Targeting BRD4 ameliorates experimental emphysema by disrupting super-enhancer in polarized alveolar macrophage.
+    PMID 41965819 | 2026 | Commun Biol                | Li Z           | Epigenome-wide Mendelian randomization with multi-omics validation identifies epigenetic drivers of idiopathic pulmonary
+    PMID 41419234 | 2025 | BMJ Open Respir Res        | Cao S          | Epigenomic study of the lower airway reveals COPD-associated methylation patterns and potential microbiota links.
+    PMID 29924937 | 2018 | Am J Respir Crit Care Med  | Qu J           | Reversing Mechanoinductive DSP Expression by CRISPR/dCas9-mediated Epigenome Editing.
+    PMID 34280322 | 2021 | Am J Respir Crit Care Med  | McErlean P     | DNA Methylome Alterations Are Associated with Airway Macrophage Differentiation and Phenotype during Lung Fibrosis.
+
+### SCLC core regulatory
+    PMID 40842416 | 2025 | J Pathol                   | Horie M        | Characteristic miRNA profiles represent clinicopathological diversity of small cell lung cancer.
+    PMID 35789143 | 2022 | Cancer Sci                 | Miyakawa K     | ASCL1 regulates super-enhancer-associated miRNAs to define molecular subtypes of small cell lung cancer.
+    PMID 41964031 | 2026 | J Transl Med               | He S           | IGFBP2 promotes immunosuppression by regulating macrophage PD-L1 expression in NEUROD1-high small cell lung cancer.
+    PMID 33916417 | 2021 | Cancers (Basel)            | Ong Q          | Integrative RNA-Seq and H3 Trimethylation ChIP-Seq Analysis of Human Lung Cancer Cells Isolated by Laser-Microdissection
+    PMID 36378541 | 2023 | Mol Cancer Res             | Chen H         | BET Inhibitors Target the SCLC-N Subtype of Small-Cell Lung Cancer by Blocking NEUROD1 Transactivation.
+    PMID 35848993 | 2022 | Am J Respir Crit Care Med  | Kong R         | Transcriptional Circuitry of NKX2-1 and SOX1 Defines an Unrecognized Lineage Subtype of Small-Cell Lung Cancer.
+    PMID 42160949 | 2026 | Lung Cancer                | Sato T         | Epigenomic profiling of neuroendocrine lung cancers identifies a classical-neuroendocrine ASCL1/NKX2-1 subtype and a SOX
+    PMID 37398419 | 2023 | bioRxiv                    | Martin-Vega A  | ASCL1-ERK1/2 Axis: ASCL1 restrains ERK1/2 via the dual specificity phosphatase DUSP6 to promote survival of a subset of 
+
+### MPRA asthma lung variants
+    PMID 40205616 | 2025 | Genome Med                 | Zhong X        | Integration of functional genomics and statistical fine-mapping systematically characterizes adult-onset and childhood-o
+    PMID 39631147 | 2024 | EBioMedicine               | An M           | Systematic identification of pathogenic variants of non-small cell lung cancer in the promoters of DNA-damage repair gen
+    PMID 40034789 | 2025 | medRxiv                    | Zhong X        | Integration of functional genomics and statistical fine-mapping systematically characterizes adult-onset and childhood-o
+    PMID 36777184 | 2023 | Cell Genom                 | Koh KD         | Genomic characterization and therapeutic utilization of IL-13-responsive sequences in asthma.
+    PMID 41867231 | 2026 | medRxiv                    | O'Brien A      | Integrative screening identifies functional variants and VNTRs underlying GWAS signals at the 5p15.33 multi-cancer susce
+    PMID 37930192 | 2024 | Hum Mol Genet              | Brown EA       | Three linked variants have opposing regulatory effects on isovaleryl-CoA dehydrogenase gene expression.
+    PMID 38906146 | 2024 | Am J Hum Genet             | Long E         | High-throughput characterization of functional variants highlights heterogeneity and polygenicity underlying lung cancer
+    PMID 36511625 | 2023 | J Asthma                   | Zhou X         | The role of serum inflammatory in mycoplasma pneumonia infection with respiratory asthma.
+
+### lung organoid CRISPR molecular
+    PMID 39661665 | 2024 | Sci Adv                    | Song X         | SRC kinase drives multidrug resistance induced by KRAS-G12C inhibition.
+    PMID 41690450 | 2026 | Cancer Lett                | Ma Y           | SLC5A11 mediates metformin-induced PD-L1 suppression to enhance cancer immunotherapy through AMPK-IRF1 signaling.
+    PMID 42185286 | 2026 | Nat Commun                 | Cheng C        | An HDAC4-specific PROTAC degrader achieves radiation sensitization by enhancing ferroptosis in lung cancer.
+    PMID 34612202 | 2021 | Elife                      | Sun D          | A functional genetic toolbox for human tissue-derived organoids.
+    PMID 37734371 | 2023 | Am J Hum Genet             | Werder RB      | The COPD GWAS gene ADGRG6 instructs function and injury response in human iPSC-derived type II alveolar epithelial cells
+    PMID 36121125 | 2022 | EMBO J                     | Sun D          | SOX9 maintains human foetal lung tip progenitor state by enhancing WNT and RTK signalling.
+    PMID 41000987 | 2025 | bioRxiv                    | Singh PR       | Genes required for Mycobacterium tuberculosis to survive the transition from aerosol to pulmonary alveolar lining fluid 
+    PMID 37975674 | 2023 | J Virol                    | Bragazzi Cunha | Type I interferon signaling induces a delayed antiproliferative response in respiratory epithelial cells during SARS-CoV
+
+### human lung tissue ChIP
+    PMID 32571982 | 2020 | Mol Cancer Res             | Tian Y         | NRF2-Driven KEAP1 Transcription in Human Lung Cancer.
+    PMID 33916417 | 2021 | Cancers (Basel)            | Ong Q          | Integrative RNA-Seq and H3 Trimethylation ChIP-Seq Analysis of Human Lung Cancer Cells Isolated by Laser-Microdissection
+    PMID 37151890 | 2023 | Int J Biol Sci             | Fu Y           | Disruption of the tumor suppressor-like activity of aryl hydrocarbon receptor by arsenic in epithelial cells and human l
+    PMID 40544764 | 2025 | Biochem Biophys Res Commun | Dayalan Naidu  | CD5L is a target of transcription factor Nrf2.
+    PMID 26915270 | 2016 | Adv Genet                  | Kheirallah AK  | Translating Lung Function Genome-Wide Association Study (GWAS) Findings: New Insights for Lung Biology.
+    PMID 37067057 | 2023 | Cancer Res                 | Tomoshige K    | FOXA2 Cooperates with Mutant KRAS to Drive Invasive Mucinous Adenocarcinoma of the Lung.
+    PMID 41629716 | 2026 | Methods Mol Biol           | Hanawa E       | Chromatin Immunoprecipitation Sequencing and RNA Sequencing from Laser-Microdissected Human Lung Cancer Cells.
+
+### Ireland SCLC plasticity
+    PMID 32473656 | 2020 | Cancer Cell                | Ireland AS     | MYC Drives Temporal Evolution of Small Cell Lung Cancer Subtypes by Reprogramming Neuroendocrine Fate.
+    PMID 40963028 | 2025 | Nature                     | Ireland AS     | Basal cell of origin resolves neuroendocrine-tuft lineage plasticity in cancer.
+    PMID 38788720 | 2024 | Cancer Cell                | Finlay JB      | Olfactory neuroblastoma mimics molecular heterogeneity and lineage trajectories of small-cell lung cancer.
+    PMID 28089889 | 2017 | Cancer Cell                | Mollaoglu G    | MYC Drives Progression of Small Cell Lung Cancer to a Variant Neuroendocrine Subtype with Vulnerability to Aurora Kinase
+    PMID 39605338 | 2024 | bioRxiv                    | Ireland AS     | Basal cell of origin resolves neuroendocrine-tuft lineage plasticity in cancer.
+    PMID 35318269 | 2022 | Genes Dev                  | Sutherland KD  | Killing SCLC: insights into how to target a shapeshifting tumor.
+    PMID 42314152 | 2026 | Cancer Res                 | Izzo LT        | KLF4 Promotes a KRT13+ Hillock-Like State in Lung Squamous Cell Carcinoma.
+    PMID 41917327 | 2026 | EMBO Mol Med               | Mayet A        | Bcl-xL blockade targets neutrophils and synergizes with chemotherapy in lung squamous cell carcinoma.
+
+### GRHL2 airway
+    PMID 41266629 | 2026 | Nat Aging                  | Sun G          | Reprogramming the GRHL2-CDK19 axis by gene therapy alleviates prostate aging.
+    PMID 36691073 | 2023 | Cell Commun Signal         | Wang Z         | GRHL2-controlled gene expression networks in luminal breast cancer.
+    PMID 40885190 | 2025 | Cell Rep Med               | Hirade K       | Inhibiting KRAS with CD47 and immune checkpoint overcomes intrinsic resistance to combined KRAS and immune checkpoint in
+    PMID 28697314 | 2017 | J Dent Res                 | Carpinelli MR  | Grainyhead-like Transcription Factors in Craniofacial Development.
+    PMID 36768838 | 2023 | Int J Mol Sci              | Wang Z         | GRHL2 Regulation of Growth/Motility Balance in Luminal versus Basal Breast Cancer.
+    PMID 30311575 | 2018 | Crit Rev Oncog             | Kang MK        | Regulation of Epithelial Cell Proliferation, Differentiation, and Plasticity by Grainyhead-Like 2 During Oral Carcinogen
+    PMID 40899632 | 2025 | Adv Sci (Weinh)            | Ning YQ        | Enhancer Reprogramming Reveals the Tumorigenic Role of PTPRZ1 in Lung Squamous Cell Carcinoma.
+    PMID 31110002 | 2019 | Proc Natl Acad Sci U S A   | Chi D          | Estrogen receptor signaling is reprogrammed during breast tumorigenesis.
+
+### YAP TEAD lung
+    PMID 37739954 | 2023 | Nat Commun                 | Wu Z           | YAP silencing by RB1 mutation is essential for small-cell lung cancer metastasis.
+    PMID 35837811 | 2022 | Essays Biochem             | Katoh M        | WNT signaling and cancer stemness.
+    PMID 37150829 | 2023 | J Exp Clin Cancer Res      | Ning B         | Convergence of YAP/TAZ, TEAD and TP63 activity is associated with bronchial premalignant severity and progression.
+    PMID 39103676 | 2024 | EMBO Rep                   | Kulkarni A     | Identification of resistance mechanisms to small-molecule inhibition of TEAD-regulated transcription.
+    PMID 38280479 | 2024 | Cancer Lett                | Zhang H        | SRCAP complex promotes lung cancer progression by reprograming the oncogenic transcription of Hippo-YAP/TAZ signaling pa
+    PMID 26832411 | 2016 | Cell Rep                   | Liu X          | Tead and AP1 Coordinate Transcription and Motility.
+    PMID 40639051 | 2025 | Int Immunopharmacol        | Wan L          | Hypoxia-induced tumor cell-intrinsic PLAU activation drives immunotherapy resistance in collagenic lung adenocarcinoma.
+    PMID 40626835 | 2025 | Cancer Biol Med            | Lee S          | The polarity protein Par3 enhances renal cell carcinoma metastasis via YAP/TAZ activation.
+
+### Human Protein Atlas
+    PMID 25744299 | 2015 | Cancer Discov              |                | Interactive human protein atlas launches.
+    PMID 27276068 | 2016 | Expert Rev Proteomics      | Lindskog C     | The Human Protein Atlas - an important resource for basic and clinical research.
+    PMID 34905175 | 2022 | Methods Mol Biol           | Katona B       | The Human Protein Atlas and Antibody-Based Tissue Profiling in Clinical Proteomics.
+    PMID 36175767 | 2022 | Nat Methods                | Le T           | Analysis of the Human Protein Atlas Weakly Supervised Single-Cell Classification competition.
+    PMID 36604173 | 2023 | Protein Sci                | Digre A        | The human protein atlas-Integrated omics for single cell mapping of the human proteome.
+    PMID 31780840 | 2019 | Nat Methods                | Ouyang W       | Analysis of the Human Protein Atlas Image Classification competition.
+    PMID 35573665 | 2022 | Front Cell Dev Biol        | van Dieken A   | Bioinformatic Analysis of the Perilymph Proteome to Generate a Human Protein Atlas.
+    PMID 28940711 | 2018 | Protein Sci                | Thul PJ        | The human protein atlas: A spatial map of the human proteome.
+
+### lung eQTL caQTL
+    PMID 38637634 | 2024 | Nat Med                    | Singhal A      | Targeting KRAS in cancer.
+    PMID 32528145 | 2020 | Nat Rev Drug Discov        | Moore AR       | RAS-targeted therapies: is the undruggable drugged?
+    PMID 35046095 | 2022 | Cancer Discov              | Hofmann MH     | Expanding the Reach of Precision Oncology by Drugging All KRAS Mutants.
+    PMID 37046093 | 2023 | Nature                     | Martínez-Ruiz  | Genomic-transcriptomic evolution in lung cancer and metastasis.
+    PMID 29107330 | 2017 | Cell                       | McGranahan N   | Allele-Specific HLA Loss and Immune Escape in Lung Cancer Evolution.
+    PMID 37931288 | 2024 | Cancer Discov              | Li Z           | Alveolar Differentiation Drives Resistance to KRAS Inhibition in Lung Adenocarcinoma.
+    PMID 37871654 | 2024 | Mod Pathol                 | Odate T        | Inflammatory Rhabdomyoblastic Tumor: Clinicopathologic and Molecular Analysis of 13 Cases.
+    PMID 35872166 | 2022 | Ann Oncol                  | Ricciuti B     | Dissecting the clinicopathologic, genomic, and immunophenotypic correlates of KRAS(G12D)-mutated non-small-cell lung can
+
+### KLF5 SOX2 lung squamous
+    PMID 40899632 | 2025 | Adv Sci (Weinh)            | Ning YQ        | Enhancer Reprogramming Reveals the Tumorigenic Role of PTPRZ1 in Lung Squamous Cell Carcinoma.
+    PMID 37150829 | 2023 | J Exp Clin Cancer Res      | Ning B         | Convergence of YAP/TAZ, TEAD and TP63 activity is associated with bronchial premalignant severity and progression.
+    PMID 31551362 | 2019 | Cancer Res                 | Sato T         | Epigenomic Profiling Discovers Trans-lineage SOX2 Partnerships Driving Tumor Heterogeneity in Lung Squamous Cell Carcino
+

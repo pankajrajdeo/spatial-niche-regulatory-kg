@@ -1,0 +1,202 @@
+---
+title: "Decision models"
+description: "Use SemIf through the LangSmith LLM Gateway for structured classification and scoring with the System One API."
+source: "https://docs.langchain.com/langsmith/llm-gateway-decision-models"
+category: "docs"
+tags: [docs, langsmith, llm-gateway-decision-models]
+---
+
+# Decision models
+
+> Use SemIf through the LangSmith LLM Gateway for structured classification and scoring with the System One API.
+
+> [!NOTE]
+> The LLM Gateway is in [beta](release-stages.md).
+
+Decision models return structured answers instead of generated chat messages. Use them through the [LLM Gateway](llm-gateway.md) to classify text and score it against a rubric. The System One API accepts state and named questions, then returns an answer for each question.
+
+## SemIf
+
+SemIf is a LangChain-hosted decision model with the model ID `semif-qwen3.5-4b`. It is free through September 28, 2026. No provider key or [Gateway Credits](llm-gateway-credits.md) purchase is required.
+
+### Prerequisites
+
+* Your organization must be on a paid, non-Enterprise [plan](pricing-plans.md) with SemIf enabled. Availability depends on your organization and region.
+* You need a workspace-scoped [LangSmith API key](create-account-api-key.md) with `gateway:invoke` and `workspaces:read` [permissions](organization-workspace-operations.md). See [Admin setup](llm-gateway-admin-setup.md) to grant access.
+
+### Call SemIf
+
+Call `semif-qwen3.5-4b` through `POST /v1/systemone`, not Chat Completions, Messages, or Responses. Set `LANGSMITH_API_KEY` to your workspace-scoped LangSmith API key.
+
+The TypeSafe SDKs append `/v1/systemone` to the base URL. Set `base_url` in Python or `baseURL` in JavaScript to `https://gateway.smith.langchain.com`, without `/v1`.
+
+#### Python
+Install the TypeSafe SDK:
+
+```bash
+pip install typesafe-sdk
+```
+
+```python
+import os
+
+from typesafe_sdk import Noul, TypeSafeClient
+
+client = TypeSafeClient(
+    api_key=os.environ["LANGSMITH_API_KEY"],
+    base_url="https://gateway.smith.langchain.com",
+)
+
+response = client.system_one(
+    state="Hello!",
+    model="semif-qwen3.5-4b",
+    questions={
+        "is_helpful": Noul(
+            instructions="Does this explain what an LLM gateway does?"
+        ),
+    },
+)
+```
+
+#### JavaScript
+Install the TypeSafe SDK:
+
+```bash
+npm install @typesafe-ai/sdk
+```
+
+```javascript
+import { noul, TypeSafeClient } from "@typesafe-ai/sdk";
+
+const client = new TypeSafeClient({
+  apiKey: process.env.LANGSMITH_API_KEY,
+  baseURL: "https://gateway.smith.langchain.com",
+});
+
+const response = await client.systemOne({
+  state: "Hello!",
+  model: "semif-qwen3.5-4b",
+  questions: {
+    is_helpful: noul("Does this explain what an LLM gateway does?"),
+  },
+});
+```
+
+#### cURL
+```bash
+curl https://gateway.smith.langchain.com/v1/systemone \
+    -H "Authorization: Bearer $LANGSMITH_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "state": "Hello!",
+      "model": "semif-qwen3.5-4b",
+      "questions": {
+        "is_helpful": {
+          "type": "noul",
+          "instructions": "Does this explain what an LLM gateway does?"
+        }
+      }
+    }'
+```
+
+Pass the text to evaluate in `state` and between 1 and 32 named questions in `questions`. SemIf supports three question types:
+
+* **`noul`**: Returns the probability that the answer is true.
+* **`choice`**: Classifies the state into one of the supplied options.
+* **`score`**: Scores the state against a rubric.
+
+The response contains `answers` keyed by question name rather than a chat message. Streaming is not supported.
+
+You can also select SemIf from the hosted models on the gateway home page to get a request example. For regional base URLs, see [Regional gateways](llm-gateway-direct-model-access.md#use-a-regional-gateway).
+
+### Apply gateway policies
+
+SemIf calls do not consume Gateway Credits. Gateway [access](llm-gateway-model-access-policies.md), [rate-limit](llm-gateway-rate-limit-policies.md), and [budget policies](llm-gateway-spend-policies.md) still apply.
+
+## TypeSafe
+
+The gateway also supports TypeSafe decision models with bring-your-own-key (BYOK). Configure `TYPESAFE_API_KEY` as a workspace [provider secret](llm-gateway-admin-setup.md#1-add-provider-secrets). See [TypeSafe setup](../integrations/providers/typesafe.md#setup) to create a key and install the LangChain integration.
+
+Set `LANGSMITH_API_KEY` to your workspace-scoped LangSmith API key. The `typesafe/` prefix routes the request through your workspace's TypeSafe provider secret, not the hosted SemIf model. Do not pass your TypeSafe API key as the SDK's `api_key` or `apiKey` when calling the gateway. Use the gateway base URL without `/v1` for the SDKs:
+
+#### Python
+Install the TypeSafe SDK:
+
+```bash
+pip install typesafe-sdk
+```
+
+```python
+import os
+
+from typesafe_sdk import Noul, TypeSafeClient
+
+client = TypeSafeClient(
+    api_key=os.environ["LANGSMITH_API_KEY"],
+    base_url="https://gateway.smith.langchain.com",
+)
+
+response = client.system_one(
+    state="Hello!",
+    model="typesafe/jev-1.13.0",
+    questions={
+        "is_helpful": Noul(
+            instructions="Does this explain what an LLM gateway does?"
+        ),
+    },
+)
+```
+
+#### JavaScript
+Install the TypeSafe SDK:
+
+```bash
+npm install @typesafe-ai/sdk
+```
+
+```javascript
+import { noul, TypeSafeClient } from "@typesafe-ai/sdk";
+
+const client = new TypeSafeClient({
+  apiKey: process.env.LANGSMITH_API_KEY,
+  baseURL: "https://gateway.smith.langchain.com",
+});
+
+const response = await client.systemOne({
+  state: "Hello!",
+  model: "typesafe/jev-1.13.0",
+  questions: {
+    is_helpful: noul("Does this explain what an LLM gateway does?"),
+  },
+});
+```
+
+#### cURL
+```bash
+curl https://gateway.smith.langchain.com/v1/systemone \
+    -H "Authorization: Bearer $LANGSMITH_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "state": "Hello!",
+      "model": "typesafe/jev-1.13.0",
+      "questions": {
+        "is_helpful": {
+          "type": "noul",
+          "instructions": "Does this explain what an LLM gateway does?"
+        }
+      }
+    }'
+```
+
+## See also
+
+* [Admin setup](llm-gateway-admin-setup.md): Grant gateway access without configuring a provider secret for SemIf.
+* [TypeSafe integration](../integrations/providers/typesafe.md): Use TypeSafe decision models through LangChain.
+
+***
+
+> [!NOTE]
+> [Connect these docs](../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/langsmith/llm-gateway-decision-models.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

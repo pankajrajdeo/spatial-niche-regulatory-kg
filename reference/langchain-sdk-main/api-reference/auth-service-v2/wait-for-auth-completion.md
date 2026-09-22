@@ -1,0 +1,165 @@
+---
+title: "Wait For Auth Completion"
+description: "Wait for OAuth authentication completion."
+source: "https://docs.langchain.com/api-reference/auth-service-v2/wait-for-auth-completion"
+category: "docs"
+tags: [docs, api-reference, auth-service-v2, wait-for-auth-completion]
+---
+
+# Wait For Auth Completion
+
+> Wait for OAuth authentication completion.
+
+## OpenAPI
+
+**https://api.host.langchain.com/openapi.json get /v2/auth/wait/{auth_id}**
+
+````yaml
+openapi: 3.1.0
+info:
+  title: LangSmith Deployment Control Plane API
+  description: >
+    The LangSmith Deployment Control Plane API is used to programmatically
+    create and manage
+
+    Agent Server deployments. For example, the APIs can be orchestrated to
+
+    create custom CI/CD workflows.
+
+    ## Host
+
+    https://api.host.langchain.com
+
+    ## Authentication
+
+    To authenticate with the LangSmith Deployment Control Plane API, set the
+    `X-Api-Key` header
+
+    to a valid [LangSmith API
+    key](https://docs.langchain.com/langsmith/create-account-api-key#create-an-api-key).
+
+    ## Versioning
+
+    Each endpoint path is prefixed with a version (e.g. `v1`, `v2`).
+
+    ## Quick Start
+
+    1. Call `POST /v2/deployments` to create a new Deployment. The response body
+    contains the Deployment ID (`id`) and the ID of the latest (and first)
+    revision (`latest_revision_id`).
+
+    1. Call `GET /v2/deployments/{deployment_id}` to retrieve the Deployment.
+    Set `deployment_id` in the URL to the value of Deployment ID (`id`).
+
+    1. Poll for revision `status` until `status` is `DEPLOYED` by calling `GET
+    /v2/deployments/{deployment_id}/revisions/{latest_revision_id}`.
+
+    1. Call `PATCH /v2/deployments/{deployment_id}` to update the deployment.
+  version: 0.1.0
+servers: []
+security: []
+paths:
+  /v2/auth/wait/{auth_id}:
+    get:
+      tags:
+        - Auth Service (v2)
+      summary: Wait For Auth Completion
+      description: Wait for OAuth authentication completion.
+      operationId: wait_for_auth_completion_v2_auth_wait__auth_id__get
+      parameters:
+        - name: auth_id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Authentication ID to wait for
+            title: Auth Id
+          description: Authentication ID to wait for
+        - name: timeout
+          in: query
+          required: false
+          schema:
+            type: integer
+            description: 'Timeout in seconds (default: 30)'
+            default: 30
+            title: Timeout
+          description: 'Timeout in seconds (default: 30)'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthWaitResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+        - API Key: []
+        - Tenant ID: []
+        - Bearer Auth: []
+components:
+  schemas:
+    AuthWaitResponse:
+      properties:
+        status:
+          $ref: '#/components/schemas/AuthWaitStatus'
+        token:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Token
+      type: object
+      required:
+        - status
+      title: AuthWaitResponse
+      description: Auth wait response.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AuthWaitStatus:
+      type: string
+      enum:
+        - completed
+        - pending
+        - timeout
+        - not_found
+      title: AuthWaitStatus
+      description: Valid auth wait status values.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      title: ValidationError
+
+````

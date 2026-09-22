@@ -1,0 +1,104 @@
+---
+title: "Admin setup"
+description: "One-time organization setup to enable the LLM Gateway and grant user access."
+source: "https://docs.langchain.com/langsmith/llm-gateway-admin-setup"
+category: "docs"
+tags: [docs, langsmith, llm-gateway-admin-setup]
+---
+
+# Admin setup
+
+> One-time organization setup to enable the LLM Gateway and grant user access.
+
+> [!NOTE]
+> The LLM Gateway is in [beta](release-stages.md).
+
+One-time setup to enable the LLM Gateway for your LangSmith [organization](administration-overview.md#organizations). [Organization admins](rbac.md#organization-admin) should complete this before individual users can route calls through the gateway.
+
+## Prerequisites
+
+You need [`organization:manage` permission](organization-workspace-operations.md) in LangSmith. [Step 2 Option A](#option-a-create-a-custom-workspace-role-recommended) also requires a plan that includes [RBAC](rbac.md) (custom roles).
+
+## 1. Add Provider Secrets
+
+Skip this step for LangChain-hosted models: they use your LangSmith API key, not provider secrets. See [Gateway Credits](llm-gateway-credits.md) for paid chat models or [Decision models](llm-gateway-decision-models.md#semif) for SemIf. Continue with step 2 to grant gateway access.
+
+The gateway resolves provider API keys from your workspace's Provider Secrets—this is how it proxies calls to upstream providers without individual users needing local copies of provider keys.
+
+Go to **Settings > Integrations > Provider Secrets** and add the keys for the providers you want to proxy through the gateway:
+
+| Secret name                   | Provider                         |
+| ----------------------------- | -------------------------------- |
+| `ANTHROPIC_API_KEY`           | Anthropic                        |
+| `AWS_BEARER_TOKEN_BEDROCK`    | AWS Bedrock                      |
+| `AZURE_FOUNDRY_API_KEY`       | Azure Foundry                    |
+| `AZURE_FOUNDRY_RESOURCE_NAME` | Azure Foundry                    |
+| `BASETEN_API_KEY`             | Baseten                          |
+| `FIREWORKS_API_KEY`           | Fireworks                        |
+| `GOOGLE_API_KEY`              | Google Gemini                    |
+| `OPENAI_API_KEY`              | OpenAI                           |
+| `VERTEX_SERVICE_ACCOUNT_JSON` | Gemini Enterprise Agent Platform |
+
+Add only the providers your organization uses. The gateway will return an error if a user tries to call a provider whose key hasn't been added.
+
+## 2. Configure gateway access for users
+
+The built-in roles `WORKSPACE_USER` and `WORKSPACE_VIEWER` do not include the `gateway:invoke` permission and cannot be edited. You have two options for granting gateway access:
+
+### Option A: Create a custom workspace role (recommended)
+
+Requires an RBAC-enabled plan.
+
+1. Go to **Settings > Members/Roles**.
+2. Create a new workspace role.
+3. Grant it at minimum `gateway:invoke` and `workspaces:read`.
+4. Assign users who need gateway access to this role.
+
+Use this when you want to grant gateway access to specific users without giving them full workspace-admin privileges. This gives you the most control over who can use the gateway.
+
+### Option B: Use the workspace admin role
+
+No plan requirement.
+
+The `WORKSPACE_ADMIN` role already includes both `gateway:invoke` and `workspaces:read` by default. Assign users who need gateway access to this role.
+
+Use this if you don't need fine-grained access control, or if you don't have RBAC enabled.
+
+## 3. Configure policies (optional)
+
+Gateway policy management requires `organization:manage` permission.
+
+Go to **LLM Gateway** to create governance policies. You can configure:
+
+* **Spend limits:** hard caps at the organization, workspace, API key, or user level. Refer to [Spend policies](llm-gateway-spend-policies.md).
+* **Data policy:** detect and redact PII and secrets before they reach the model, and control whether request and response bodies are traced. Refer to [Data policy](llm-gateway-data-policy.md).
+
+Policies are optional during initial setup. The gateway will freely allow invocations until you have configured policies.
+
+## 4. Distribute API keys to users
+
+Create workspace-scoped [Service Keys](administration-overview.md#service-keys) for users who need gateway access. Each key should be attached to a role that includes `gateway:invoke` and `workspaces:read`.
+
+Use workspace-scoped keys, not organization-scoped keys. See [API key scoping](llm-gateway-access.md#api-key-scoping) for details.
+
+Share the key and the gateway endpoint with each user, or distribute them via MDM (mobile device management) for company-wide coding agent rollouts. For per-agent configuration instructions, refer to [Set up coding agents](llm-gateway-coding-agents.md).
+
+## Verification
+
+For SemIf, ask a user to run the [SemIf request example](llm-gateway-decision-models.md#call-semif). A `200` response confirms model access, the API key, and role permissions.
+
+For bring-your-own-key providers, ask a user to run the [verification cURL from the quickstart](llm-gateway-quickstart.md#send-a-request). A `200` response confirms the gateway, the API key, provider secrets, and role permissions are all configured correctly. The call will appear as a trace in the **gateway** tracing project in the workspace.
+
+## Next steps
+
+* [Quickstart](llm-gateway-quickstart.md): share with your users as the getting-started guide.
+* [Set up coding agents](llm-gateway-coding-agents.md): configure Claude Code, Codex, and other agents org-wide.
+* [Traces, Engine, and access control](llm-gateway-access.md): deep dive on roles, scoped keys, trace routing, and who can see what.
+
+***
+
+> [!NOTE]
+> [Connect these docs](../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/langsmith/llm-gateway-admin-setup.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

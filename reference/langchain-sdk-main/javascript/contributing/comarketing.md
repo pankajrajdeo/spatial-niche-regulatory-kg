@@ -1,0 +1,51 @@
+---
+title: "Co-marketing"
+description: "With over 60 million monthly downloads, LangChain has a large audience of developers building LLM applications. Beyond just listing integrations, we aim to highlight high-quality, educational..."
+source: "https://docs.langchain.com/oss/javascript/contributing/comarketing"
+category: "docs"
+tags: [docs, javascript, contributing, comarketing]
+---
+
+# Co-marketing
+
+With over 60 million monthly downloads, LangChain has a large audience of developers building LLM applications. Beyond just listing integrations, we aim to highlight high-quality, educational examples that inspire developers and advance the ecosystem.
+
+> [!NOTE]
+> While we occasionally share integrations, we prioritize content that provides
+> meaningful insights and best practices. Our main social channels are [Twitter](https://x.com/LangChain) and
+> [LinkedIn](https://www.linkedin.com/company/langchain/), where we highlight the best examples.
+
+### Content we're excited to promote
+
+<details>
+<summary>Educational content</summary>
+
+Blogs, YouTube videos and other media showcasing educational content. Note that we prefer content that is NOT framed as "here's how to use integration XYZ", but rather "here's how to do ABC", as we find that is more educational and helpful for developers.
+
+</details>
+
+<details>
+<summary>End-to-end applications</summary>
+
+End-to-end applications are great resources for developers looking to build. We prefer to highlight applications that are more complex/agentic in nature, and that use [LangGraph](https://github.com/langchain-ai/langgraphjs) as the orchestration framework. We get particularly excited about anything involving:
+
+* Long-term memory systems
+* Human-in-the-loop interaction patterns
+* Multi-agent architectures
+
+</details>
+
+<details>
+<summary>Research</summary>
+
+We love highlighting novel research! Whether it is research built on top of LangChain or that integrates with it.
+
+</details>
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/contributing/comarketing.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

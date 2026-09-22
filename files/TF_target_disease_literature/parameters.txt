@@ -1,0 +1,19 @@
+run_date: 2026-08-12
+operator: Claude Code session 86ec3749-a2e6-4d98-b638-3d92bedbda91
+interpreter: /opt/homebrew/opt/python@3.11/bin/python3.11
+api: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/  (esearch, esummary, efetch)
+date_filter: datetype=pdat  mindate=2015/01/01  maxdate=2026/12/31
+broad_queries: 12          (code/pubmed_scan.py, retmax=200 each, default date sort)
+title_lookups: 41          (code/verify_titles.py, [Title] field, retmax=8)
+relevance_probes: 25       (code/verify2.py 13 + code/verify3.py 12, sort=relevance)
+unique_pmids_screened: 1962
+abstracts_fetched: 47
+papers_selected: 46
+tier_counts: A=15  B=11  C=16  D=4
+year_range_of_selected: 2015 to 2026
+excluded_after_check: PMID 38109690 (LungMAP.net, PublicationType=Editorial, no abstract)
+outputs:
+  /Users/saljh8/Dropbox/LungMAP/TF_target_disease_literature/lung_TF_target_disease_papers.csv
+  /Users/saljh8/Dropbox/LungMAP/TF_target_disease_literature/README.md
+  /Users/saljh8/Dropbox/LungMAP/TF_target_disease_literature/code/
+  /Users/saljh8/Dropbox/LungMAP/TF_target_disease_literature/logs/

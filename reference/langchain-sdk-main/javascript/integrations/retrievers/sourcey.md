@@ -1,0 +1,156 @@
+---
+title: "SourceyRetriever integration"
+description: "Integrate with the SourceyRetriever retriever using LangChain JavaScript."
+source: "https://docs.langchain.com/oss/javascript/integrations/retrievers/sourcey"
+category: "docs"
+tags: [docs, javascript, integrations, retrievers, sourcey]
+---
+
+# SourceyRetriever integration
+
+> Integrate with the SourceyRetriever retriever using LangChain JavaScript.
+
+## Overview
+
+[Sourcey](https://sourcey.com) already emits the files this retriever needs.
+
+Use `SourceyRetriever` to retrieve from a published Sourcey docs site. It
+reads `search-index.json`, uses `llms-full.txt` when present, and returns
+`Document` objects with canonical page URLs in `metadata.source`.
+
+### Integration details
+
+| Retriever          | Source                        |                                 Package                                |
+| :----------------- | :---------------------------- | :--------------------------------------------------------------------: |
+| `SourceyRetriever` | Published Sourcey docs sites. | [`langchain-sourcey`](https://www.npmjs.com/package/langchain-sourcey) |
+
+## Setup
+
+### Installation
+
+**npm**
+
+```bash
+npm install langchain-sourcey @langchain/core
+```
+
+**yarn**
+
+```bash
+yarn add langchain-sourcey @langchain/core
+```
+
+**pnpm**
+
+```bash
+pnpm add langchain-sourcey @langchain/core
+```
+
+No API key is required.
+
+## Instantiation
+
+`siteUrl` should point at the root of a published Sourcey docs build.
+
+```typescript
+import { SourceyRetriever } from "langchain-sourcey";
+
+const retriever = new SourceyRetriever({
+  siteUrl: "https://sourcey.com/docs",
+  topK: 3,
+});
+```
+
+## Usage
+
+```typescript
+const docs = await retriever.invoke("mcp integration");
+
+for (const doc of docs) {
+  console.log(doc.metadata.title);
+  console.log(doc.metadata.source);
+}
+```
+
+## Use within a chain
+
+Install a chat model package. This example uses OpenAI:
+
+**npm**
+
+```bash
+npm install @langchain/openai
+```
+
+**yarn**
+
+```bash
+yarn add @langchain/openai
+```
+
+**pnpm**
+
+```bash
+pnpm add @langchain/openai
+```
+
+```typescript
+import type { Document } from "@langchain/core/documents";
+import { StringOutputParser } from "@langchain/core/output_parsers";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { RunnablePassthrough, RunnableSequence } from "@langchain/core/runnables";
+import { ChatOpenAI } from "@langchain/openai";
+import { SourceyRetriever } from "langchain-sourcey";
+
+const retriever = new SourceyRetriever({
+  siteUrl: "https://sourcey.com/docs",
+  topK: 3,
+});
+
+const prompt = ChatPromptTemplate.fromTemplate(
+  `Answer the question using the documentation context below.
+
+{context}
+
+Question: {question}`
+);
+
+const formatDocs = (docs: Document[]) =>
+  docs.map((doc) => doc.pageContent).join("\n\n");
+
+const chain = RunnableSequence.from([
+  {
+    context: retriever.pipe(formatDocs),
+    question: new RunnablePassthrough(),
+  },
+  prompt,
+  new ChatOpenAI({ model: "gpt-4.1-mini" }),
+  new StringOutputParser(),
+]);
+
+await chain.invoke("How does Sourcey document MCP servers?");
+```
+
+## Sourcey site requirements
+
+For clean retrieval, the published Sourcey site should:
+
+* publish `search-index.json`
+* publish `llms-full.txt`
+* set `siteUrl` in `sourcey.config.ts` so returned citations are canonical
+
+If `llms-full.txt` is not available, `SourceyRetriever` falls back to
+extracting text from the matched HTML page.
+
+## More
+
+* Sourcey guide: [Using Sourcey with LangChain](https://sourcey.com/docs/guides/guide-langchain-retriever)
+* Package: [langchain-sourcey on npm](https://www.npmjs.com/package/langchain-sourcey)
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/javascript/integrations/retrievers/sourcey.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

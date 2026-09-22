@@ -1,0 +1,591 @@
+---
+title: "Middleware"
+description: "langchain → Middleware"
+source: "https://reference.langchain.com/python/langchain/middleware"
+category: "reference"
+tags: [reference, langchain, middleware]
+---
+
+# Middleware
+
+> langchain → Middleware
+
+!!! note "Reference docs"
+
+    This page contains **reference documentation** for Middleware. See [the docs](../../../langchain/middleware.md) for conceptual guides, tutorials, and examples on using Middleware.
+
+<a id="langchain.agents.middleware.AgentMiddleware"></a>
+<a id="langchain.agents.middleware.AgentState"></a>
+<a id="langchain.agents.middleware.ClearToolUsesEdit"></a>
+<a id="langchain.agents.middleware.ContextEditingMiddleware"></a>
+<a id="langchain.agents.middleware.FilesystemFileSearchMiddleware"></a>
+<a id="langchain.agents.middleware.HumanInTheLoopMiddleware"></a>
+<a id="langchain.agents.middleware.InterruptOnConfig"></a>
+<a id="langchain.agents.middleware.LLMToolEmulator"></a>
+<a id="langchain.agents.middleware.LLMToolSelectorMiddleware"></a>
+<a id="langchain.agents.middleware.ModelCallLimitMiddleware"></a>
+<a id="langchain.agents.middleware.ModelFallbackMiddleware"></a>
+<a id="langchain.agents.middleware.ModelRequest"></a>
+<a id="langchain.agents.middleware.ModelResponse"></a>
+<a id="langchain.agents.middleware.PIIMiddleware"></a>
+<a id="langchain.agents.middleware.ShellToolMiddleware"></a>
+<a id="langchain.agents.middleware.SummarizationMiddleware"></a>
+<a id="langchain.agents.middleware.TodoListMiddleware"></a>
+<a id="langchain.agents.middleware.ToolCallLimitMiddleware"></a>
+<a id="langchain.agents.middleware.ToolRetryMiddleware"></a>
+<a id="langchain.agents.middleware.after_agent"></a>
+<a id="langchain.agents.middleware.after_model"></a>
+<a id="langchain.agents.middleware.before_agent"></a>
+<a id="langchain.agents.middleware.before_model"></a>
+<a id="langchain.agents.middleware.dynamic_prompt"></a>
+<a id="langchain.agents.middleware.hook_config"></a>
+<a id="langchain.agents.middleware.summarization.ContextFraction"></a>
+<a id="langchain.agents.middleware.summarization.ContextMessages"></a>
+<a id="langchain.agents.middleware.summarization.ContextSize"></a>
+<a id="langchain.agents.middleware.summarization.ContextTokens"></a>
+<a id="langchain.agents.middleware.wrap_model_call"></a>
+<a id="langchain.agents.middleware.wrap_tool_call"></a>
+
+## Middleware classes
+
+LangChain provides prebuilt middleware for common agent use cases:
+
+| CLASS                                                                                           | DESCRIPTION                                                                |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`SummarizationMiddleware`](#langchain.agents.middleware.SummarizationMiddleware)               | Automatically summarize conversation history when approaching token limits |
+| [`HumanInTheLoopMiddleware`](#langchain.agents.middleware.HumanInTheLoopMiddleware)             | Pause execution for human approval of tool calls                           |
+| [`ModelCallLimitMiddleware`](#langchain.agents.middleware.ModelCallLimitMiddleware)             | Limit the number of model calls to prevent excessive costs                 |
+| [`ToolCallLimitMiddleware`](#langchain.agents.middleware.ToolCallLimitMiddleware)               | Control tool execution by limiting call counts                             |
+| [`ModelFallbackMiddleware`](#langchain.agents.middleware.ModelFallbackMiddleware)               | Automatically fallback to alternative models when primary fails            |
+| [`PIIMiddleware`](#langchain.agents.middleware.PIIMiddleware)                                   | Detect and handle Personally Identifiable Information                      |
+| [`TodoListMiddleware`](#langchain.agents.middleware.TodoListMiddleware)                         | Equip agents with task planning and tracking capabilities                  |
+| [`LLMToolSelectorMiddleware`](#langchain.agents.middleware.LLMToolSelectorMiddleware)           | Use an LLM to select relevant tools before calling main model              |
+| [`ToolRetryMiddleware`](#langchain.agents.middleware.ToolRetryMiddleware)                       | Automatically retry failed tool calls with exponential backoff             |
+| [`LLMToolEmulator`](#langchain.agents.middleware.LLMToolEmulator)                               | Emulate tool execution using LLM for testing purposes                      |
+| [`ContextEditingMiddleware`](#langchain.agents.middleware.ContextEditingMiddleware)             | Manage conversation context by trimming or clearing tool uses              |
+| [`ShellToolMiddleware`](#langchain.agents.middleware.ShellToolMiddleware)                       | Expose a persistent shell session to agents for command execution          |
+| [`FilesystemFileSearchMiddleware`](#langchain.agents.middleware.FilesystemFileSearchMiddleware) | Provide Glob and Grep search tools over filesystem files                   |
+| [`AgentMiddleware`](#langchain.agents.middleware.AgentMiddleware)                               | Base middleware class for creating custom middleware                       |
+
+## Decorators
+
+Create custom middleware using these decorators:
+
+| DECORATOR                                                          | DESCRIPTION                                              |
+| ------------------------------------------------------------------ | -------------------------------------------------------- |
+| [`@before_agent`](#langchain.agents.middleware.before_agent)       | Execute logic before agent execution starts              |
+| [`@before_model`](#langchain.agents.middleware.before_model)       | Execute logic before each model call                     |
+| [`@after_model`](#langchain.agents.middleware.after_model)         | Execute logic after each model receives a response       |
+| [`@after_agent`](#langchain.agents.middleware.after_agent)         | Execute logic after agent execution completes            |
+| [`@wrap_model_call`](#langchain.agents.middleware.wrap_model_call) | Wrap and intercept model calls                           |
+| [`@wrap_tool_call`](#langchain.agents.middleware.wrap_tool_call)   | Wrap and intercept tool calls                            |
+| [`@dynamic_prompt`](#langchain.agents.middleware.dynamic_prompt)   | Generate dynamic system prompts based on request context |
+| [`@hook_config`](#langchain.agents.middleware.hook_config)         | Configure hook behavior (e.g., conditional routing)      |
+
+## Types and utilities
+
+Core types for building middleware:
+
+| TYPE                                                                  | DESCRIPTION                                          |
+| --------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`AgentState`](#langchain.agents.middleware.AgentState)               | State container for agent execution                  |
+| [`ModelRequest`](#langchain.agents.middleware.ModelRequest)           | Request details passed to model calls                |
+| [`ModelResponse`](#langchain.agents.middleware.ModelResponse)         | Response details from model calls                    |
+| [`ClearToolUsesEdit`](#langchain.agents.middleware.ClearToolUsesEdit) | Utility for clearing tool usage history from context |
+| [`InterruptOnConfig`](#langchain.agents.middleware.InterruptOnConfig) | Configuration for human-in-the-loop interruptions    |
+
+[`SummarizationMiddleware`](#langchain.agents.middleware.SummarizationMiddleware) types:
+
+| TYPE                                                                            | DESCRIPTION                            |
+| ------------------------------------------------------------------------------- | -------------------------------------- |
+| [`ContextSize`](#langchain.agents.middleware.summarization.ContextSize)         | Union type                             |
+| [`ContextFraction`](#langchain.agents.middleware.summarization.ContextFraction) | Summarize at fraction of total context |
+| [`ContextTokens`](#langchain.agents.middleware.summarization.ContextTokens)     | Summarize at token threshold           |
+| [`ContextMessages`](#langchain.agents.middleware.summarization.ContextMessages) | Summarize at message threshold         |
+
+<!-- TODO: `ignore_init_summary` doesn't seem to work.  -->
+
+## Classes
+
+- [`SubagentRunStream`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/SubagentRunStream)
+- [`AsyncSubagentRunStream`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/AsyncSubagentRunStream)
+- [`SubagentTransformer`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/SubagentTransformer)
+- [`StructuredOutputError`](https://reference.langchain.com/python/langchain/agents/structured_output/StructuredOutputError)
+- [`MultipleStructuredOutputsError`](https://reference.langchain.com/python/langchain/agents/structured_output/MultipleStructuredOutputsError)
+- [`StructuredOutputValidationError`](https://reference.langchain.com/python/langchain/agents/structured_output/StructuredOutputValidationError)
+- [`ToolStrategy`](https://reference.langchain.com/python/langchain/agents/structured_output/ToolStrategy)
+- [`ProviderStrategy`](https://reference.langchain.com/python/langchain/agents/structured_output/ProviderStrategy)
+- [`OutputToolBinding`](https://reference.langchain.com/python/langchain/agents/structured_output/OutputToolBinding)
+- [`ProviderStrategyBinding`](https://reference.langchain.com/python/langchain/agents/structured_output/ProviderStrategyBinding)
+- [`AutoStrategy`](https://reference.langchain.com/python/langchain/agents/structured_output/AutoStrategy)
+- [`ShellToolState`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellToolState)
+- [`CommandExecutionResult`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult)
+- [`ShellSession`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellSession)
+- [`ShellToolMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellToolMiddleware)
+- [`ModelRetryMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware)
+- [`BaseExecutionPolicy`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/BaseExecutionPolicy)
+- [`HostExecutionPolicy`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/HostExecutionPolicy)
+- [`CodexSandboxExecutionPolicy`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/CodexSandboxExecutionPolicy)
+- [`DockerExecutionPolicy`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy)
+- [`ModelRequest`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest)
+- [`ModelResponse`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelResponse)
+- [`ExtendedModelResponse`](https://reference.langchain.com/python/langchain/agents/middleware/types/ExtendedModelResponse)
+- [`OmitFromSchema`](https://reference.langchain.com/python/langchain/agents/middleware/types/OmitFromSchema)
+- [`AgentState`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentState)
+- [`InputAgentState`](https://reference.langchain.com/python/langchain/agents/middleware/types/InputAgentState)
+- [`OutputAgentState`](https://reference.langchain.com/python/langchain/agents/middleware/types/OutputAgentState)
+- [`AgentMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentMiddleware)
+- [`LLMToolEmulator`](https://reference.langchain.com/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator)
+- [`Todo`](https://reference.langchain.com/python/langchain/agents/middleware/todo/Todo)
+- [`PlanningState`](https://reference.langchain.com/python/langchain/agents/middleware/todo/PlanningState)
+- [`WriteTodosInput`](https://reference.langchain.com/python/langchain/agents/middleware/todo/WriteTodosInput)
+- [`TodoListMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/todo/TodoListMiddleware)
+- [`ContextEdit`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ContextEdit)
+- [`ClearToolUsesEdit`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit)
+- [`ContextEditingMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ContextEditingMiddleware)
+- [`ToolRetryMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware)
+- [`ToolCallLimitState`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitState)
+- [`ToolCallLimitExceededError`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitExceededError)
+- [`ToolCallLimitMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware)
+- [`LLMToolSelectorMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware)
+- [`InternalCallTransformer`](https://reference.langchain.com/python/langchain/agents/middleware/internal_call_transformer/InternalCallTransformer)
+- [`FilesystemFileSearchMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware)
+- [`PIIMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware)
+- [`TriggerClause`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/TriggerClause)
+- [`SummarizationMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware)
+- [`Action`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/Action)
+- [`ActionRequest`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ActionRequest)
+- [`ReviewConfig`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ReviewConfig)
+- [`HITLRequest`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HITLRequest)
+- [`ApproveDecision`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ApproveDecision)
+- [`EditDecision`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/EditDecision)
+- [`RejectDecision`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/RejectDecision)
+- [`RespondDecision`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/RespondDecision)
+- [`HITLResponse`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HITLResponse)
+- [`InterruptOnConfig`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig)
+- [`HumanInTheLoopMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware)
+- [`ToolErrorMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/ToolErrorMiddleware)
+- [`ModelFallbackMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/model_fallback/ModelFallbackMiddleware)
+- [`ProviderToolSearchMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/provider_tool_search/ProviderToolSearchMiddleware)
+- [`ModelCallLimitState`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitState)
+- [`ModelCallLimitExceededError`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitExceededError)
+- [`ModelCallLimitMiddleware`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware)
+- [`PIIMatch`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIMatch)
+- [`PIIDetectionError`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIDetectionError)
+- [`RedactionRule`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/RedactionRule)
+- [`ResolvedRedactionRule`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/ResolvedRedactionRule)
+- [`MCPElicitationFormRequest`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationFormRequest)
+- [`MCPElicitationUrlRequest`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationUrlRequest)
+- [`MCPElicitationInterrupt`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationInterrupt)
+- [`MCPElicitationAccept`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationAccept)
+- [`MCPElicitationDecline`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationDecline)
+- [`MCPElicitationCancel`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationCancel)
+- [`MCPElicitationResume`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationResume)
+- [`MCPToolArtifact`](https://reference.langchain.com/python/langchain/mcp/tools/MCPToolArtifact)
+- [`MCPAdapter`](https://reference.langchain.com/python/langchain/mcp/adapter/MCPAdapter)
+
+## Functions
+
+- [`init_embeddings()`](https://reference.langchain.com/python/langchain/embeddings/base/init_embeddings)
+- [`create_agent()`](https://reference.langchain.com/python/langchain/agents/factory/create_agent)
+- [`shell_tool()`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellToolMiddleware/__init__/shell_tool)
+- [`validate_retry_params()`](https://reference.langchain.com/python/langchain/agents/middleware/_retry/validate_retry_params)
+- [`default_retry_on()`](https://reference.langchain.com/python/langchain/agents/middleware/_retry/default_retry_on)
+- [`should_retry_exception()`](https://reference.langchain.com/python/langchain/agents/middleware/_retry/should_retry_exception)
+- [`calculate_delay()`](https://reference.langchain.com/python/langchain/agents/middleware/_retry/calculate_delay)
+- [`hook_config()`](https://reference.langchain.com/python/langchain/agents/middleware/types/hook_config)
+- [`before_model()`](https://reference.langchain.com/python/langchain/agents/middleware/types/before_model)
+- [`after_model()`](https://reference.langchain.com/python/langchain/agents/middleware/types/after_model)
+- [`before_agent()`](https://reference.langchain.com/python/langchain/agents/middleware/types/before_agent)
+- [`after_agent()`](https://reference.langchain.com/python/langchain/agents/middleware/types/after_agent)
+- [`dynamic_prompt()`](https://reference.langchain.com/python/langchain/agents/middleware/types/dynamic_prompt)
+- [`wrap_model_call()`](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_model_call)
+- [`wrap_tool_call()`](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_tool_call)
+- [`write_todos()`](https://reference.langchain.com/python/langchain/agents/middleware/todo/write_todos)
+- [`internal_call_metadata()`](https://reference.langchain.com/python/langchain/agents/middleware/internal_call_transformer/internal_call_metadata)
+- [`glob_search()`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/__init__/glob_search)
+- [`grep_search()`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/__init__/grep_search)
+- [`detect_email()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/detect_email)
+- [`detect_credit_card()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/detect_credit_card)
+- [`detect_ip()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/detect_ip)
+- [`detect_mac_address()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/detect_mac_address)
+- [`detect_url()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/detect_url)
+- [`apply_strategy()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/apply_strategy)
+- [`resolve_detector()`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/resolve_detector)
+- [`configure_trace_policy()`](https://reference.langchain.com/python/langchain/agents/middleware/_trace_policy/configure_trace_policy)
+- [`as_langchain_tool()`](https://reference.langchain.com/python/langchain/mcp/tools/as_langchain_tool)
+- [`armed()`](https://reference.langchain.com/python/langchain/mcp/adapter/MCPAdapter/__init__/armed)
+- [`init_chat_model()`](https://reference.langchain.com/python/langchain/chat_models/base/init_chat_model)
+
+## Modules
+
+- [`langchain`](https://reference.langchain.com/python/langchain/langchain)
+- [`tools`](https://reference.langchain.com/python/langchain/tools)
+- [`tool_node`](https://reference.langchain.com/python/langchain/tools/tool_node)
+- [`rate_limiters`](https://reference.langchain.com/python/langchain/rate_limiters)
+- [`embeddings`](https://reference.langchain.com/python/langchain/embeddings)
+- [`base`](https://reference.langchain.com/python/langchain/embeddings/base)
+- [`agents`](https://reference.langchain.com/python/langchain/agents)
+- [`structured_output`](https://reference.langchain.com/python/langchain/agents/structured_output)
+- [`factory`](https://reference.langchain.com/python/langchain/agents/factory)
+- [`middleware`](https://reference.langchain.com/python/langchain/agents/middleware)
+- [`shell_tool`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool)
+- [`model_retry`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry)
+- [`types`](https://reference.langchain.com/python/langchain/agents/middleware/types)
+- [`tool_emulator`](https://reference.langchain.com/python/langchain/agents/middleware/tool_emulator)
+- [`todo`](https://reference.langchain.com/python/langchain/agents/middleware/todo)
+- [`context_editing`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing)
+- [`tool_retry`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry)
+- [`tool_call_limit`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit)
+- [`tool_selection`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection)
+- [`internal_call_transformer`](https://reference.langchain.com/python/langchain/agents/middleware/internal_call_transformer)
+- [`file_search`](https://reference.langchain.com/python/langchain/agents/middleware/file_search)
+- [`pii`](https://reference.langchain.com/python/langchain/agents/middleware/pii)
+- [`summarization`](https://reference.langchain.com/python/langchain/agents/middleware/summarization)
+- [`human_in_the_loop`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop)
+- [`tool_error`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error)
+- [`model_fallback`](https://reference.langchain.com/python/langchain/agents/middleware/model_fallback)
+- [`provider_tool_search`](https://reference.langchain.com/python/langchain/agents/middleware/provider_tool_search)
+- [`model_call_limit`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit)
+- [`mcp`](https://reference.langchain.com/python/langchain/mcp)
+- [`elicitation`](https://reference.langchain.com/python/langchain/mcp/elicitation)
+- [`tools`](https://reference.langchain.com/python/langchain/mcp/tools)
+- [`adapter`](https://reference.langchain.com/python/langchain/mcp/adapter)
+- [`messages`](https://reference.langchain.com/python/langchain/messages)
+- [`chat_models`](https://reference.langchain.com/python/langchain/chat_models)
+- [`base`](https://reference.langchain.com/python/langchain/chat_models/base)
+
+## Types
+
+- [`ResponseFormat`](https://reference.langchain.com/python/langchain/agents/structured_output/ResponseFormat)
+- [`RetryOn`](https://reference.langchain.com/python/langchain/agents/middleware/_retry/RetryOn)
+- [`OnFailure`](https://reference.langchain.com/python/langchain/agents/middleware/_retry/OnFailure)
+- [`ModelCallResult`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelCallResult)
+- [`OnParsingFailure`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/OnParsingFailure)
+- [`ContextSize`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/ContextSize)
+- [`Decision`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/Decision)
+- [`ToolIdentifier`](https://reference.langchain.com/python/langchain/agents/middleware/provider_tool_search/ToolIdentifier)
+- [`MCPFormContent`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPFormContent)
+- [`MCPElicitationRequest`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationRequest)
+- [`MCPElicitationResponse`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationResponse)
+- [`ToolMessageContentBlock`](https://reference.langchain.com/python/langchain/mcp/tools/ToolMessageContentBlock)
+- [`MCPAdapterTarget`](https://reference.langchain.com/python/langchain/mcp/adapter/MCPAdapterTarget)
+
+## Constants
+
+- [`logger`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/logger)
+- [`name`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/SubagentRunStream/name)
+- [`cause`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/SubagentRunStream/cause)
+- [`name`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/AsyncSubagentRunStream/name)
+- [`cause`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/AsyncSubagentRunStream/cause)
+- [`supports_sync`](https://reference.langchain.com/python/langchain/agents/_subagent_transformer/SubagentTransformer/supports_sync)
+- [`SchemaT`](https://reference.langchain.com/python/langchain/agents/structured_output/SchemaT)
+- [`SchemaKind`](https://reference.langchain.com/python/langchain/agents/structured_output/SchemaKind)
+- [`ai_message`](https://reference.langchain.com/python/langchain/agents/structured_output/StructuredOutputError/ai_message)
+- [`tool_names`](https://reference.langchain.com/python/langchain/agents/structured_output/MultipleStructuredOutputsError/tool_names)
+- [`ai_message`](https://reference.langchain.com/python/langchain/agents/structured_output/MultipleStructuredOutputsError/ai_message)
+- [`tool_name`](https://reference.langchain.com/python/langchain/agents/structured_output/StructuredOutputValidationError/tool_name)
+- [`source`](https://reference.langchain.com/python/langchain/agents/structured_output/StructuredOutputValidationError/source)
+- [`ai_message`](https://reference.langchain.com/python/langchain/agents/structured_output/StructuredOutputValidationError/ai_message)
+- [`schema`](https://reference.langchain.com/python/langchain/agents/structured_output/_SchemaSpec/schema)
+- [`name`](https://reference.langchain.com/python/langchain/agents/structured_output/_SchemaSpec/name)
+- [`description`](https://reference.langchain.com/python/langchain/agents/structured_output/_SchemaSpec/description)
+- [`schema_kind`](https://reference.langchain.com/python/langchain/agents/structured_output/_SchemaSpec/schema_kind)
+- [`json_schema`](https://reference.langchain.com/python/langchain/agents/structured_output/_SchemaSpec/json_schema)
+- [`strict`](https://reference.langchain.com/python/langchain/agents/structured_output/_SchemaSpec/strict)
+- [`schema`](https://reference.langchain.com/python/langchain/agents/structured_output/ToolStrategy/schema)
+- [`schema_specs`](https://reference.langchain.com/python/langchain/agents/structured_output/ToolStrategy/schema_specs)
+- [`tool_message_content`](https://reference.langchain.com/python/langchain/agents/structured_output/ToolStrategy/tool_message_content)
+- [`handle_errors`](https://reference.langchain.com/python/langchain/agents/structured_output/ToolStrategy/handle_errors)
+- [`schema`](https://reference.langchain.com/python/langchain/agents/structured_output/ProviderStrategy/schema)
+- [`schema_spec`](https://reference.langchain.com/python/langchain/agents/structured_output/ProviderStrategy/schema_spec)
+- [`schema`](https://reference.langchain.com/python/langchain/agents/structured_output/OutputToolBinding/schema)
+- [`schema_kind`](https://reference.langchain.com/python/langchain/agents/structured_output/OutputToolBinding/schema_kind)
+- [`tool`](https://reference.langchain.com/python/langchain/agents/structured_output/OutputToolBinding/tool)
+- [`schema`](https://reference.langchain.com/python/langchain/agents/structured_output/ProviderStrategyBinding/schema)
+- [`schema_kind`](https://reference.langchain.com/python/langchain/agents/structured_output/ProviderStrategyBinding/schema_kind)
+- [`schema`](https://reference.langchain.com/python/langchain/agents/structured_output/AutoStrategy/schema)
+- [`model_response`](https://reference.langchain.com/python/langchain/agents/factory/_ComposedExtendedModelResponse/model_response)
+- [`commands`](https://reference.langchain.com/python/langchain/agents/factory/_ComposedExtendedModelResponse/commands)
+- [`STRUCTURED_OUTPUT_ERROR_TEMPLATE`](https://reference.langchain.com/python/langchain/agents/factory/STRUCTURED_OUTPUT_ERROR_TEMPLATE)
+- [`DYNAMIC_TOOL_ERROR_TEMPLATE`](https://reference.langchain.com/python/langchain/agents/factory/DYNAMIC_TOOL_ERROR_TEMPLATE)
+- [`FALLBACK_MODELS_WITH_STRUCTURED_OUTPUT`](https://reference.langchain.com/python/langchain/agents/factory/FALLBACK_MODELS_WITH_STRUCTURED_OUTPUT)
+- [`LOGGER`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/LOGGER)
+- [`DEFAULT_TOOL_DESCRIPTION`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/DEFAULT_TOOL_DESCRIPTION)
+- [`SHELL_TOOL_NAME`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/SHELL_TOOL_NAME)
+- [`session`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_SessionResources/session)
+- [`tempdir`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_SessionResources/tempdir)
+- [`policy`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_SessionResources/policy)
+- [`finalizer`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_SessionResources/finalizer)
+- [`shell_session_resources`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellToolState/shell_session_resources)
+- [`output`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/output)
+- [`exit_code`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/exit_code)
+- [`timed_out`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/timed_out)
+- [`truncated_by_lines`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/truncated_by_lines)
+- [`truncated_by_bytes`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/truncated_by_bytes)
+- [`total_lines`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/total_lines)
+- [`total_bytes`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/CommandExecutionResult/total_bytes)
+- [`command`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_ShellToolInput/command)
+- [`restart`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_ShellToolInput/restart)
+- [`runtime`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/_ShellToolInput/runtime)
+- [`state_schema`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellToolMiddleware/state_schema)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/shell_tool/ShellToolMiddleware/tools)
+- [`max_retries`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/max_retries)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/tools)
+- [`retry_on`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/retry_on)
+- [`on_failure`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/on_failure)
+- [`backoff_factor`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/backoff_factor)
+- [`initial_delay`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/initial_delay)
+- [`max_delay`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/max_delay)
+- [`jitter`](https://reference.langchain.com/python/langchain/agents/middleware/model_retry/ModelRetryMiddleware/jitter)
+- [`SHELL_TEMP_PREFIX`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/SHELL_TEMP_PREFIX)
+- [`command_timeout`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/BaseExecutionPolicy/command_timeout)
+- [`startup_timeout`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/BaseExecutionPolicy/startup_timeout)
+- [`termination_timeout`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/BaseExecutionPolicy/termination_timeout)
+- [`max_output_lines`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/BaseExecutionPolicy/max_output_lines)
+- [`max_output_bytes`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/BaseExecutionPolicy/max_output_bytes)
+- [`cpu_time_seconds`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/HostExecutionPolicy/cpu_time_seconds)
+- [`memory_bytes`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/HostExecutionPolicy/memory_bytes)
+- [`create_process_group`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/HostExecutionPolicy/create_process_group)
+- [`binary`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/CodexSandboxExecutionPolicy/binary)
+- [`platform`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/CodexSandboxExecutionPolicy/platform)
+- [`config_overrides`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/CodexSandboxExecutionPolicy/config_overrides)
+- [`binary`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/binary)
+- [`image`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/image)
+- [`remove_container_on_exit`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/remove_container_on_exit)
+- [`network_enabled`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/network_enabled)
+- [`extra_run_args`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/extra_run_args)
+- [`memory_bytes`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/memory_bytes)
+- [`cpu_time_seconds`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/cpu_time_seconds)
+- [`cpus`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/cpus)
+- [`read_only_rootfs`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/read_only_rootfs)
+- [`user`](https://reference.langchain.com/python/langchain/agents/middleware/_execution/DockerExecutionPolicy/user)
+- [`JumpTo`](https://reference.langchain.com/python/langchain/agents/middleware/types/JumpTo)
+- [`ResponseT`](https://reference.langchain.com/python/langchain/agents/middleware/types/ResponseT)
+- [`model`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/model)
+- [`system_message`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/system_message)
+- [`messages`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/messages)
+- [`tool_choice`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/tool_choice)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/tools)
+- [`response_format`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/response_format)
+- [`model_settings`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/model_settings)
+- [`state`](https://reference.langchain.com/python/langchain/agents/middleware/types/_ModelRequestOverrides/state)
+- [`model`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/model)
+- [`messages`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/messages)
+- [`system_message`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/system_message)
+- [`tool_choice`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/tool_choice)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/tools)
+- [`response_format`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/response_format)
+- [`state`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/state)
+- [`runtime`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/runtime)
+- [`model_settings`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/model_settings)
+- [`system_prompt`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelRequest/system_prompt)
+- [`result`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelResponse/result)
+- [`structured_response`](https://reference.langchain.com/python/langchain/agents/middleware/types/ModelResponse/structured_response)
+- [`model_response`](https://reference.langchain.com/python/langchain/agents/middleware/types/ExtendedModelResponse/model_response)
+- [`command`](https://reference.langchain.com/python/langchain/agents/middleware/types/ExtendedModelResponse/command)
+- [`input`](https://reference.langchain.com/python/langchain/agents/middleware/types/OmitFromSchema/input)
+- [`output`](https://reference.langchain.com/python/langchain/agents/middleware/types/OmitFromSchema/output)
+- [`OmitFromInput`](https://reference.langchain.com/python/langchain/agents/middleware/types/OmitFromInput)
+- [`OmitFromOutput`](https://reference.langchain.com/python/langchain/agents/middleware/types/OmitFromOutput)
+- [`PrivateStateAttr`](https://reference.langchain.com/python/langchain/agents/middleware/types/PrivateStateAttr)
+- [`messages`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentState/messages)
+- [`jump_to`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentState/jump_to)
+- [`structured_response`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentState/structured_response)
+- [`messages`](https://reference.langchain.com/python/langchain/agents/middleware/types/InputAgentState/messages)
+- [`messages`](https://reference.langchain.com/python/langchain/agents/middleware/types/OutputAgentState/messages)
+- [`structured_response`](https://reference.langchain.com/python/langchain/agents/middleware/types/OutputAgentState/structured_response)
+- [`StateT`](https://reference.langchain.com/python/langchain/agents/middleware/types/StateT)
+- [`StateT_co`](https://reference.langchain.com/python/langchain/agents/middleware/types/StateT_co)
+- [`StateT_contra`](https://reference.langchain.com/python/langchain/agents/middleware/types/StateT_contra)
+- [`state_schema`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentMiddleware/state_schema)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentMiddleware/tools)
+- [`trace_policy`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentMiddleware/trace_policy)
+- [`transformers`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentMiddleware/transformers)
+- [`name`](https://reference.langchain.com/python/langchain/agents/middleware/types/AgentMiddleware/name)
+- [`CallableT`](https://reference.langchain.com/python/langchain/agents/middleware/types/CallableT)
+- [`transformers`](https://reference.langchain.com/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator/transformers)
+- [`emulate_all`](https://reference.langchain.com/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator/emulate_all)
+- [`tools_to_emulate`](https://reference.langchain.com/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator/tools_to_emulate)
+- [`model`](https://reference.langchain.com/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator/model)
+- [`content`](https://reference.langchain.com/python/langchain/agents/middleware/todo/Todo/content)
+- [`status`](https://reference.langchain.com/python/langchain/agents/middleware/todo/Todo/status)
+- [`todos`](https://reference.langchain.com/python/langchain/agents/middleware/todo/PlanningState/todos)
+- [`todos`](https://reference.langchain.com/python/langchain/agents/middleware/todo/WriteTodosInput/todos)
+- [`WRITE_TODOS_TOOL_DESCRIPTION`](https://reference.langchain.com/python/langchain/agents/middleware/todo/WRITE_TODOS_TOOL_DESCRIPTION)
+- [`WRITE_TODOS_SYSTEM_PROMPT`](https://reference.langchain.com/python/langchain/agents/middleware/todo/WRITE_TODOS_SYSTEM_PROMPT)
+- [`state_schema`](https://reference.langchain.com/python/langchain/agents/middleware/todo/TodoListMiddleware/state_schema)
+- [`system_prompt`](https://reference.langchain.com/python/langchain/agents/middleware/todo/TodoListMiddleware/system_prompt)
+- [`tool_description`](https://reference.langchain.com/python/langchain/agents/middleware/todo/TodoListMiddleware/tool_description)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/todo/TodoListMiddleware/tools)
+- [`DEFAULT_TOOL_PLACEHOLDER`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/DEFAULT_TOOL_PLACEHOLDER)
+- [`TokenCounter`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/TokenCounter)
+- [`trigger`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit/trigger)
+- [`clear_at_least`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit/clear_at_least)
+- [`keep`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit/keep)
+- [`clear_tool_inputs`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit/clear_tool_inputs)
+- [`exclude_tools`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit/exclude_tools)
+- [`placeholder`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ClearToolUsesEdit/placeholder)
+- [`edits`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ContextEditingMiddleware/edits)
+- [`token_count_method`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ContextEditingMiddleware/token_count_method)
+- [`token_counter`](https://reference.langchain.com/python/langchain/agents/middleware/context_editing/ContextEditingMiddleware/token_counter)
+- [`max_retries`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/max_retries)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/tools)
+- [`retry_on`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/retry_on)
+- [`on_failure`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/on_failure)
+- [`backoff_factor`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/backoff_factor)
+- [`initial_delay`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/initial_delay)
+- [`max_delay`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/max_delay)
+- [`jitter`](https://reference.langchain.com/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware/jitter)
+- [`ExitBehavior`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ExitBehavior)
+- [`thread_tool_call_count`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitState/thread_tool_call_count)
+- [`run_tool_call_count`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitState/run_tool_call_count)
+- [`thread_count`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitExceededError/thread_count)
+- [`run_count`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitExceededError/run_count)
+- [`thread_limit`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitExceededError/thread_limit)
+- [`run_limit`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitExceededError/run_limit)
+- [`tool_name`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitExceededError/tool_name)
+- [`state_schema`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware/state_schema)
+- [`tool_name`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware/tool_name)
+- [`thread_limit`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware/thread_limit)
+- [`run_limit`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware/run_limit)
+- [`exit_behavior`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware/exit_behavior)
+- [`name`](https://reference.langchain.com/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware/name)
+- [`logger`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/logger)
+- [`DEFAULT_SYSTEM_PROMPT`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/DEFAULT_SYSTEM_PROMPT)
+- [`available_tools`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/_SelectionRequest/available_tools)
+- [`system_message`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/_SelectionRequest/system_message)
+- [`last_user_message`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/_SelectionRequest/last_user_message)
+- [`model`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/_SelectionRequest/model)
+- [`valid_tool_names`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/_SelectionRequest/valid_tool_names)
+- [`transformers`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/transformers)
+- [`system_prompt`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/system_prompt)
+- [`max_tools`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/max_tools)
+- [`always_include`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/always_include)
+- [`max_retries`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/max_retries)
+- [`on_parsing_failure`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/on_parsing_failure)
+- [`model`](https://reference.langchain.com/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware/model)
+- [`INTERNAL_CALL_METADATA_KEY`](https://reference.langchain.com/python/langchain/agents/middleware/internal_call_transformer/INTERNAL_CALL_METADATA_KEY)
+- [`before_builtins`](https://reference.langchain.com/python/langchain/agents/middleware/internal_call_transformer/InternalCallTransformer/before_builtins)
+- [`required_stream_modes`](https://reference.langchain.com/python/langchain/agents/middleware/internal_call_transformer/InternalCallTransformer/required_stream_modes)
+- [`root_path`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/root_path)
+- [`use_ripgrep`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/use_ripgrep)
+- [`max_file_size_bytes`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/max_file_size_bytes)
+- [`glob_search`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/glob_search)
+- [`grep_search`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/grep_search)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware/tools)
+- [`before_builtins`](https://reference.langchain.com/python/langchain/agents/middleware/pii/_PIIStreamTransformer/before_builtins)
+- [`required_stream_modes`](https://reference.langchain.com/python/langchain/agents/middleware/pii/_PIIStreamTransformer/required_stream_modes)
+- [`apply_to_input`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/apply_to_input)
+- [`apply_to_output`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/apply_to_output)
+- [`apply_to_tool_results`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/apply_to_tool_results)
+- [`pii_type`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/pii_type)
+- [`strategy`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/strategy)
+- [`detector`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/detector)
+- [`transformers`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/transformers)
+- [`name`](https://reference.langchain.com/python/langchain/agents/middleware/pii/PIIMiddleware/name)
+- [`logger`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/logger)
+- [`TokenCounter`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/TokenCounter)
+- [`DEFAULT_SUMMARY_PROMPT`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/DEFAULT_SUMMARY_PROMPT)
+- [`ContextFraction`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/ContextFraction)
+- [`ContextTokens`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/ContextTokens)
+- [`ContextMessages`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/ContextMessages)
+- [`tokens`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/TriggerClause/tokens)
+- [`messages`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/TriggerClause/messages)
+- [`fraction`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/TriggerClause/fraction)
+- [`transformers`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/transformers)
+- [`model`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/model)
+- [`trigger`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/trigger)
+- [`keep`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/keep)
+- [`token_counter`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/token_counter)
+- [`summary_prompt`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/summary_prompt)
+- [`trim_tokens_to_summarize`](https://reference.langchain.com/python/langchain/agents/middleware/summarization/SummarizationMiddleware/trim_tokens_to_summarize)
+- [`name`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/Action/name)
+- [`args`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/Action/args)
+- [`name`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ActionRequest/name)
+- [`args`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ActionRequest/args)
+- [`description`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ActionRequest/description)
+- [`DecisionType`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/DecisionType)
+- [`action_name`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ReviewConfig/action_name)
+- [`allowed_decisions`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ReviewConfig/allowed_decisions)
+- [`args_schema`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ReviewConfig/args_schema)
+- [`action_requests`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HITLRequest/action_requests)
+- [`review_configs`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HITLRequest/review_configs)
+- [`type`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/ApproveDecision/type)
+- [`type`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/EditDecision/type)
+- [`edited_action`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/EditDecision/edited_action)
+- [`type`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/RejectDecision/type)
+- [`message`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/RejectDecision/message)
+- [`type`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/RespondDecision/type)
+- [`message`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/RespondDecision/message)
+- [`decisions`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HITLResponse/decisions)
+- [`allowed_decisions`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig/allowed_decisions)
+- [`description`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig/description)
+- [`args_schema`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig/args_schema)
+- [`when`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig/when)
+- [`hitl_edited_tool_calls`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/_HumanInTheLoopState/hitl_edited_tool_calls)
+- [`state_schema`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware/state_schema)
+- [`edit_notice`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware/edit_notice)
+- [`interrupt_on`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware/interrupt_on)
+- [`description_prefix`](https://reference.langchain.com/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware/description_prefix)
+- [`OnError`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/OnError)
+- [`AOnError`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/AOnError)
+- [`trace_policy`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/ToolErrorMiddleware/trace_policy)
+- [`on_error`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/ToolErrorMiddleware/on_error)
+- [`aon_error`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/ToolErrorMiddleware/aon_error)
+- [`tools`](https://reference.langchain.com/python/langchain/agents/middleware/tool_error/ToolErrorMiddleware/tools)
+- [`logger`](https://reference.langchain.com/python/langchain/agents/middleware/model_fallback/logger)
+- [`models`](https://reference.langchain.com/python/langchain/agents/middleware/model_fallback/ModelFallbackMiddleware/models)
+- [`type`](https://reference.langchain.com/python/langchain/agents/middleware/provider_tool_search/_ServerToolSearchSpec/type)
+- [`name`](https://reference.langchain.com/python/langchain/agents/middleware/provider_tool_search/_ServerToolSearchSpec/name)
+- [`searchable_tool_names`](https://reference.langchain.com/python/langchain/agents/middleware/provider_tool_search/ProviderToolSearchMiddleware/searchable_tool_names)
+- [`thread_model_call_count`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitState/thread_model_call_count)
+- [`run_model_call_count`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitState/run_model_call_count)
+- [`thread_count`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitExceededError/thread_count)
+- [`run_count`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitExceededError/run_count)
+- [`thread_limit`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitExceededError/thread_limit)
+- [`run_limit`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitExceededError/run_limit)
+- [`state_schema`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware/state_schema)
+- [`thread_limit`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware/thread_limit)
+- [`run_limit`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware/run_limit)
+- [`exit_behavior`](https://reference.langchain.com/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware/exit_behavior)
+- [`RedactionStrategy`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/RedactionStrategy)
+- [`type`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIMatch/type)
+- [`value`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIMatch/value)
+- [`start`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIMatch/start)
+- [`end`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIMatch/end)
+- [`pii_type`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIDetectionError/pii_type)
+- [`matches`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/PIIDetectionError/matches)
+- [`Detector`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/Detector)
+- [`BUILTIN_DETECTORS`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/BUILTIN_DETECTORS)
+- [`pii_type`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/RedactionRule/pii_type)
+- [`strategy`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/RedactionRule/strategy)
+- [`detector`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/RedactionRule/detector)
+- [`pii_type`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/ResolvedRedactionRule/pii_type)
+- [`strategy`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/ResolvedRedactionRule/strategy)
+- [`detector`](https://reference.langchain.com/python/langchain/agents/middleware/_redaction/ResolvedRedactionRule/detector)
+- [`ELICITATION_INTERRUPT_TYPE`](https://reference.langchain.com/python/langchain/mcp/elicitation/ELICITATION_INTERRUPT_TYPE)
+- [`key`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationFormRequest/key)
+- [`message`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationFormRequest/message)
+- [`mode`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationFormRequest/mode)
+- [`requested_schema`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationFormRequest/requested_schema)
+- [`key`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationUrlRequest/key)
+- [`message`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationUrlRequest/message)
+- [`mode`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationUrlRequest/mode)
+- [`url`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationUrlRequest/url)
+- [`type`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationInterrupt/type)
+- [`tool_name`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationInterrupt/tool_name)
+- [`requests`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationInterrupt/requests)
+- [`action`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationAccept/action)
+- [`content`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationAccept/content)
+- [`action`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationDecline/action)
+- [`action`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationCancel/action)
+- [`responses`](https://reference.langchain.com/python/langchain/mcp/elicitation/MCPElicitationResume/responses)
+- [`content`](https://reference.langchain.com/python/langchain/mcp/tools/_ToolCallResult/content)
+- [`structured_content`](https://reference.langchain.com/python/langchain/mcp/tools/_ToolCallResult/structured_content)
+- [`is_error`](https://reference.langchain.com/python/langchain/mcp/tools/_ToolCallResult/is_error)
+- [`structured_content`](https://reference.langchain.com/python/langchain/mcp/tools/MCPToolArtifact/structured_content)
+- [`tool_content`](https://reference.langchain.com/python/langchain/mcp/tools/_MCPToolExecutionError/tool_content)
+- [`msg`](https://reference.langchain.com/python/langchain/mcp/adapter/msg)
+- [`client`](https://reference.langchain.com/python/langchain/mcp/adapter/MCPAdapter/client)
+- [`InputType`](https://reference.langchain.com/python/langchain/chat_models/base/_ConfigurableModel/InputType)

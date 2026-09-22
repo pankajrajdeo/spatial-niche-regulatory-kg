@@ -1,0 +1,108 @@
+---
+title: "Knowledge bases for Amazon Bedrock integration"
+description: "Integrate with the Knowledge bases for Amazon Bedrock retriever using LangChain JavaScript."
+source: "https://docs.langchain.com/oss/javascript/integrations/retrievers/bedrock-knowledge-bases"
+category: "docs"
+tags: [docs, javascript, integrations, retrievers, bedrock-knowledge-bases]
+---
+
+# Knowledge bases for Amazon Bedrock integration
+
+> Integrate with the Knowledge bases for Amazon Bedrock retriever using LangChain JavaScript.
+
+## Overview
+
+This will help you getting started with `AmazonKnowledgeBaseRetriever` [retrieval](../../deepagents/retrieval.md). For detailed documentation of all `AmazonKnowledgeBaseRetriever` features and configurations head to the [API reference](https://reference.langchain.com/javascript/langchain-aws/AmazonKnowledgeBaseRetriever).
+
+Knowledge Bases for Amazon Bedrock is a fully managed support for end-to-end RAG workflow provided by Amazon Web Services (AWS).
+It provides an entire ingestion workflow of converting your documents into embeddings (vector) and storing the embeddings in a specialized vector database.
+Knowledge Bases for Amazon Bedrock supports popular databases for vector storage, including vector engine for Amazon OpenSearch Serverless, Pinecone, Redis Enterprise Cloud, Amazon Aurora (coming soon), and MongoDB (coming soon).
+
+### Integration details
+
+| Retriever                                                                                                             | Self-host              | Cloud offering |     Package    | [Py support](https://python.langchain.com/docs/integrations/retrievers/bedrock/) |
+| :-------------------------------------------------------------------------------------------------------------------- | :--------------------- | :------------: | :------------: | :------------------------------------------------------------------------------: |
+| [AmazonKnowledgeBaseRetriever](https://reference.langchain.com/javascript/langchain-aws/AmazonKnowledgeBaseRetriever) | 🟠 (see details below) |        ✅       | @langchain/aws |                                         ✅                                        |
+
+> AWS Knowledge Base Retriever can be 'self hosted' in the sense you can run it on your own AWS infrastructure. However it is not possible to run on another cloud provider or on-premises.
+
+## Setup
+
+In order to use the AmazonKnowledgeBaseRetriever, you need to have an AWS account, where you can manage your indexes and documents. Once you've setup your account, set the following environment variables:
+
+```bash
+process.env.AWS_KNOWLEDGE_BASE_ID=your-knowledge-base-id
+process.env.AWS_ACCESS_KEY_ID=your-access-key-id
+process.env.AWS_SECRET_ACCESS_KEY=your-secret-access-key
+```
+
+If you want to get automated tracing from individual queries, you can also set your [LangSmith](../../../langsmith/observability.md) API key by uncommenting below:
+
+```typescript
+// process.env.LANGSMITH_API_KEY = "<YOUR API KEY HERE>";
+// process.env.LANGSMITH_TRACING = "true";
+```
+
+### Installation
+
+This retriever lives in the `@langchain/aws` package:
+
+**npm**
+
+```bash
+npm install @langchain/aws @langchain/core
+```
+
+**yarn**
+
+```bash
+yarn add @langchain/aws @langchain/core
+```
+
+**pnpm**
+
+```bash
+pnpm add @langchain/aws @langchain/core
+```
+
+## Instantiation
+
+Now we can instantiate our retriever:
+
+```typescript
+import { AmazonKnowledgeBaseRetriever } from "@langchain/aws";
+
+const retriever = new AmazonKnowledgeBaseRetriever({
+  topK: 10,
+  knowledgeBaseId: process.env.AWS_KNOWLEDGE_BASE_ID,
+  region: "us-east-2",
+  clientOptions: {
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+  },
+});
+```
+
+## Usage
+
+```typescript
+const query = "..."
+
+await retriever.invoke(query);
+```
+
+***
+
+## API reference
+
+For detailed documentation of all `AmazonKnowledgeBaseRetriever` features and configurations head to the [API reference](https://reference.langchain.com/javascript/langchain-aws/AmazonKnowledgeBaseRetriever).
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/javascript/integrations/retrievers/bedrock-knowledge-bases.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

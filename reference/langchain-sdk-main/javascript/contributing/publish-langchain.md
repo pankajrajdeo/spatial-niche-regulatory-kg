@@ -1,0 +1,111 @@
+---
+title: "Publish an integration"
+description: "Make your integration available to the community."
+source: "https://docs.langchain.com/oss/javascript/contributing/publish-langchain"
+category: "docs"
+tags: [docs, javascript, contributing, publish-langchain]
+---
+
+# Publish an integration
+
+**Make your integration available to the community.**
+
+> [!WARNING]
+> **Do not submit integration PRs to the LangChain or Deep Agents repositories.**
+>
+> New integrations should be published as **standalone npm packages** under your own GitHub organization or account (for example, `@your-org/langchain-yourservice`), not as PRs to the [`langchain-ai/langchainjs`](https://github.com/langchain-ai/langchainjs) repository.
+>
+> The main repository only contains a small subset of first-party integrations maintained by the LangChain team.
+
+Publish your package to npm, then follow [Make your integration discoverable](#make-your-integration-discoverable) below.
+
+## Make your integration discoverable
+
+After publishing, file an **Integration listing** issue in the [LangChain docs repository](https://github.com/langchain-ai/docs/issues/new?template=06-integration-submission.yml) so your package appears under the [integrations tab](../integrations/providers/overview.md).
+
+A maintainer reviews the issue and applies the `integration-run` label. That starts automation, which reads the form fields, applies the eligibility rules below, and opens a pull request that tags a maintainer and you for review. Prefer partner docs URLs in the form.
+
+Do **not** open a manual docs PR for a new listing unless a maintainer asks you to.
+
+### Eligibility for hosted guides
+
+LangChain hosts full integration guides in this docs repo only when **either**:
+
+* The package has at least **50,000 monthly downloads** on PyPI (or npm for TypeScript), **or**
+* Maintainers mark the integration as **featured**
+
+If you do not meet either criterion, the automation adds an **external listing** (YAML + downloads table + provider card) that links to your own docs. It does **not** add a hosted MDX page.
+
+### List in the download table (default)
+
+#### [File an Integration listing issue](https://github.com/langchain-ai/docs/issues/new?template=06-integration-submission.yml)
+Use the fixed form fields for display name, language, component, package name, docs URL, and a short provider description.
+
+The automation fills [`scripts/data/integration_external_docs.yaml`](https://github.com/langchain-ai/docs/blob/main/scripts/data/integration_external_docs.yaml) and related listing surfaces from your issue.
+
+Each listing needs at least:
+
+* **`name`**: LangChain class or display name (for example, `ChatAI21`).
+* **`pypi`** or **`npm`**: Registry package name used for the downloads badge.
+* **`docs_url`**: Link for the name column. Prefer partner docs, then the GitHub repo, then the PyPI or npm page.
+
+Optionally include component-specific capability flags in the issue form (for example, chat `stream` and `tool_calling`) so the table columns stay accurate.
+
+After merge, the refresh job regenerates the component table snippets so your row appears alongside hosted integrations.
+
+> [!NOTE]
+> This flow is for **listing metadata only**. Host your usage docs on your site or GitHub README. Your integration package itself should live in its own repository under your GitHub organization or account, published as a standalone package.
+
+### Hosted guide (50K+ or featured)
+
+If your package meets the [eligibility criteria](#eligibility-for-hosted-guides), the Integration listing automation can open a PR with a documentation page from one of the following templates. Maintainers may also ask you to author or revise hosted pages manually.
+
+Depending on the type of integration you have built, you will need to create different types of documentation pages. LangChain provides templates for different types of integrations to help you get started.
+
+#### [Chat models](https://github.com/langchain-ai/docs/blob/main/src/oss/javascript/integrations/chat/TEMPLATE.mdx)
+
+> [!TIP]
+> To reference existing documentation, you can look at the [list of integrations](../integrations/providers/overview.md) and find similar ones to yours.
+>
+> To view a given documentation page in raw markdown, use the dropdown button next to "Copy page" on the top right of the page and select "View as Markdown".
+
+If you are asked to edit a hosted page manually, fork the [LangChain docs repository](https://github.com/langchain-ai/docs) (not the main `langchain` repo), follow the matching template, and follow the [documentation guide](documentation.md).
+
+If your package was previously listed in [`integration_external_docs.yaml`](https://github.com/langchain-ai/docs/blob/main/scripts/data/integration_external_docs.yaml), remove that YAML entry in the same PR so the table does not show a duplicate row.
+
+Do not set `featured: true` in frontmatter unless a maintainer asks you to. Featured status is a maintainer decision.
+
+> [!NOTE]
+> Hosted-guide PRs are for **documentation only**. Your integration package itself should live in its own repository under your GitHub organization or account, published as a standalone package.
+
+> [!WARNING]
+> We may reject listing issues or PRs, or ask for modification, if:
+>
+> * The package does not meet the [hosted-guide eligibility criteria](#eligibility-for-hosted-guides) when a hosted page is requested
+> * CI checks fail
+> * Severe grammatical errors or typos are present
+> * [Mintlify components](documentation.md#mintlify-components) are used incorrectly
+> * Pages are missing a [frontmatter](documentation.md#page-structure)
+> * [Localization](documentation.md#localization) is missing (where applicable)
+> * [Code examples](documentation.md#in-code-documentation) do not run or have errors
+> * [Quality standards](documentation.md#quality-standards) are not met
+
+Please be patient as we handle a large volume of submissions. Review the automated PR when it opens. **Do not repeatedly tag maintainers about your issue or PR.**
+
+> [!NOTE]
+> If a PR includes AI-generated content, you must follow our [acceptable uses of LLMs](overview.md#acceptable-uses-of-llms) policy.
+
+## Next steps
+
+**Congratulations!** Your integration is published and listed for the LangChain community.
+
+#### [Co-marketing](comarketing.md)
+Get in touch with the LangChain marketing team to explore co-marketing opportunities.
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/contributing/publish-langchain.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

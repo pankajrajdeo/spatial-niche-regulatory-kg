@@ -1,0 +1,162 @@
+---
+title: "What's new in LangGraph v1"
+description: "LangGraph v1 is a stability-focused release for the agent runtime. It keeps the core graph APIs and execution model unchanged, while refining type safety, docs, and developer ergonomics."
+source: "https://docs.langchain.com/oss/javascript/releases/langgraph-v1"
+category: "docs"
+tags: [docs, javascript, releases, langgraph-v1]
+---
+
+# What's new in LangGraph v1
+
+**LangGraph v1 is a stability-focused release for the agent runtime.** It keeps the core graph APIs and execution model unchanged, while refining type safety, docs, and developer ergonomics.
+
+It's designed to work hand-in-hand with [LangChain v1](langchain-v1.md) (whose `createAgent` is built on LangGraph) so you can start high-level and drop down to granular control when needed.
+
+#### Stable core APIs
+Graph primitives (state, nodes, edges) and the execution/runtime model are unchanged, making upgrades straightforward.
+
+#### Reliability, by default
+Durable execution with checkpointing, persistence, streaming, and human-in-the-loop continues to be first-class.
+
+#### Seamless with LangChain v1
+LangChain's `createAgent` runs on LangGraph. Use LangChain for a fast start; drop to LangGraph for custom orchestration.
+
+To upgrade,
+
+**npm**
+
+```bash
+npm install @langchain/langgraph @langchain/core
+```
+
+**pnpm**
+
+```bash
+pnpm add @langchain/langgraph @langchain/core
+```
+
+**yarn**
+
+```bash
+yarn add @langchain/langgraph @langchain/core
+```
+
+**bun**
+
+```bash
+bun add @langchain/langgraph @langchain/core
+```
+
+For a complete list of changes, see the [migration guide](../migrate/langgraph-v1.md).
+
+## Deprecation of `createReactAgent`
+
+The LangGraph `createReactAgent` prebuilt has been deprecated in favor of LangChain's `createAgent`. It provides a simpler interface, and offers greater customization potential through the introduction of middleware.
+
+* For information on the new `createAgent` API, see the [LangChain v1 release notes](langchain-v1.md#createagent).
+* For information on migrating from `createReactAgent` to `createAgent`, see the [LangChain v1 migration guide](../migrate/langchain-v1.md#createagent).
+
+## Typed interrupts
+
+[`StateGraph`](https://reference.langchain.com/javascript/langchain-langgraph/index/StateGraph) now accepts a map of interrupt types in the constructor to more closely constrain the types of interrupts that can be used within a graph.
+
+```typescript
+import { StateGraph, MemorySaver, interrupt } from "@langchain/langgraph";
+import * as z from "zod";
+
+const stateSchema = z.object({
+  foo: z.string(),
+})
+
+const graphConfig = {
+  interrupts: {
+    // Define a simple interrupt that accepts a reason and returns messages
+    simple: interrupt<{ reason: string }, { messages: string[] }>, // [!code highlight]
+    // Define a complex interrupt with the same signature
+    complex: interrupt<{ reason: string }, { messages: string[] }>, // [!code highlight]
+  }
+}
+
+const checkpointer = new MemorySaver();
+
+const graph = new StateGraph(stateSchema, graphConfig)
+  .addNode("node", async (state, runtime) => {
+    // Trigger the simple interrupt with a reason
+    const response = runtime.interrupt.simple({ reason: "test" });
+    // Return the interrupt response as the new state
+    return { foo: response };
+  })
+  // Compile the graph with the checkpointer
+  .compile({ checkpointer });
+
+// Invoke the graph with initial state
+const result = await graph.invoke({ foo: "test" });
+
+// Access the interrupt data
+if (graph.isInterrupted(result)) {
+  console.log(result.__interrupt__.messages);
+}
+```
+
+For more information on interrupts, see the [Interrupts](../langgraph/interrupts.md) documentation.
+
+## Frontend SDK enhancements
+
+LangGraph v1 comes with a few enhancements when interacting with a LangGraph application from the frontend.
+
+### Event stream encoding
+
+The low-level `toLangGraphEventStream` helper has been removed. Streaming responses are now handled natively by the SDK, and you can select the wire format via passing in the `encoding` format to `graph.stream`. This makes switching between SSE and normal JSON responses straightforward without changing UI logic.
+
+See the [migration guide](../migrate/langgraph-v1.md#event-stream-encoding) for more information.
+
+### Custom transports in `useStream`
+
+The React `useStream` hook now supports pluggable transports so you can have more control over the network layer without changing UI code.
+
+```typescript
+const stream = useStream({
+  transport: new FetchStreamTransport({
+    apiUrl: "http://localhost:2024",
+  }),
+});
+```
+
+Learn how to integrate and customize the hook: [Integrate LangGraph into your React application](../langgraph/ui.md).
+
+## Reporting issues
+
+Please report any issues discovered with 1.0 on [GitHub](https://github.com/langchain-ai/langgraphjs/issues) using the [`'v1'` label](https://github.com/langchain-ai/langgraphjs/issues?q=state%3Aopen%20label%3Av1).
+
+## Additional resources
+
+#### [LangGraph 1.0](https://blog.langchain.com/langchain-langchain-1-0-alpha-releases/)
+Read the announcement
+
+#### [Overview](../langgraph/overview.md)
+What LangGraph is and when to use it
+
+#### [Graph API](../langgraph/graph-api.md)
+Build graphs with state, nodes, and edges
+
+#### [LangChain Agents](../langchain/agents.md)
+High-level agents built on LangGraph
+
+#### [Migration guide](../migrate/langgraph-v1.md)
+How to migrate to LangGraph v1
+
+#### [GitHub](https://github.com/langchain-ai/langgraphjs)
+Report issues or contribute
+
+## See also
+
+* [Versioning](../versioning.md) – Understanding version numbers
+* [Release policy](../release-policy.md) – Detailed release policies
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/javascript/releases/langgraph-v1.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

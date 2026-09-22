@@ -1,0 +1,66 @@
+---
+title: "Run"
+description: "Represents a single execution run."
+source: "https://reference.langchain.com/python/langgraph-sdk/schema/Run"
+category: "reference"
+tags: [reference, langgraph-sdk, schema, run]
+---
+
+# Run
+
+> **Class** in `langgraph_sdk`
+
+📖 [View in docs](https://reference.langchain.com/python/langgraph-sdk/schema/Run)
+
+Represents a single execution run.
+
+## Signature
+
+```python
+Run()
+```
+
+## Extends
+
+- `TypedDict`
+
+## Constructors
+
+```python
+__init__(
+    run_id: str,
+    thread_id: str,
+    assistant_id: str,
+    created_at: datetime,
+    updated_at: datetime,
+    status: RunStatus,
+    metadata: Json,
+    multitask_strategy: MultitaskStrategy,
+)
+```
+
+| Name | Type |
+|------|------|
+| `run_id` | `str` |
+| `thread_id` | `str` |
+| `assistant_id` | `str` |
+| `created_at` | `datetime` |
+| `updated_at` | `datetime` |
+| `status` | `RunStatus` |
+| `metadata` | `Json` |
+| `multitask_strategy` | `MultitaskStrategy` |
+
+## Properties
+
+- `run_id`
+- `thread_id`
+- `assistant_id`
+- `created_at`
+- `updated_at`
+- `status`
+- `metadata`
+- `multitask_strategy`
+
+---
+
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/d5f4b2aa960940effc8430165ab3604038e817af/libs/sdk-py/langgraph_sdk/schema.py#L362)

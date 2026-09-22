@@ -1,0 +1,155 @@
+---
+title: "LangSmith Observability"
+description: "As you build and run agents with LangChain, you need visibility into how they behave: which tools they call, what prompts they generate, and how they make decisions. LangChain agents built with..."
+source: "https://docs.langchain.com/oss/javascript/langchain/observability"
+category: "docs"
+tags: [docs, javascript, langchain, observability]
+---
+
+# LangSmith Observability
+
+As you build and run agents with LangChain, you need visibility into how they behave: which [tools](tools.md) they call, what prompts they generate, and how they make decisions. LangChain agents built with [`createAgent`](https://reference.langchain.com/javascript/langchain/index/createAgent) automatically support tracing through [LangSmith](../../langsmith/observability.md), a platform for capturing, debugging, evaluating, and monitoring LLM application behavior.
+
+[*Traces*](../../langsmith/observability-concepts.md#traces) record every step of your agent's execution, from the initial user input to the final response, including all tool calls, model interactions, and decision points. This execution data helps you debug issues, evaluate performance across different inputs, and monitor usage patterns in production.
+
+This guide shows you how to enable tracing for your LangChain agents and use LangSmith to analyze their execution.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+* **A LangSmith account**: Sign up (for free) or log in at [smith.langchain.com](https://smith.langchain.com?utm_source=docs\&utm_medium=cta\&utm_campaign=langsmith-signup\&utm_content=oss-langchain-observability).
+* **A LangSmith API key**: Follow the [Create an API key](../../langsmith/create-account-api-key.md) guide.
+
+## Enable tracing
+
+All LangChain agents automatically support LangSmith tracing. To enable it, set the following environment variables:
+
+```bash
+export LANGSMITH_TRACING=true
+export LANGSMITH_API_KEY=<your-api-key>
+```
+
+## Quickstart
+
+No extra code is needed to log a trace to LangSmith. Just run your agent code as you normally would:
+
+```ts
+import { createAgent } from "@langchain/agents";
+
+function sendEmail(to: string, subject: string, body: string): string {
+    // ... email sending logic
+    return `Email sent to ${to}`;
+}
+
+function searchWeb(query: string): string {
+    // ... web search logic
+    return `Search results for: ${query}`;
+}
+
+const agent = createAgent({
+    model: "gpt-5.5",
+    tools: [sendEmail, searchWeb],
+    systemPrompt: "You are a helpful assistant that can send emails and search the web."
+});
+
+// Run the agent - all steps will be traced automatically
+const response = await agent.invoke({
+    messages: [{ role: "user", content: "Search for the latest AI news and email a summary to john@example.com" }]
+});
+```
+
+By default, the trace will be logged to the project with the name `default`. To configure a custom project name, see [Log to a project](../../langsmith/log-traces-to-project.md).
+
+## Trace selectively
+
+You may opt to trace specific invocations or parts of your application using LangSmith's `tracing_context` context manager:
+
+```ts
+import { LangChainTracer } from "@langchain/core/tracers/tracer_langchain";
+
+// This WILL be traced
+const tracer = new LangChainTracer();
+await agent.invoke(
+  {
+    messages: [{role: "user", content: "Send a test email to alice@example.com"}]
+  },
+  { callbacks: [tracer] }
+);
+
+// This will NOT be traced (if LANGSMITH_TRACING is not set)
+await agent.invoke(
+  {
+    messages: [{role: "user", content: "Send another email"}]
+  }
+);
+```
+
+## Log to a project
+
+<details>
+<summary>Statically</summary>
+
+You can set a custom project name for your entire application by setting the `LANGSMITH_PROJECT` environment variable:
+
+```bash
+export LANGSMITH_PROJECT=my-agent-project
+```
+
+</details>
+
+<details>
+<summary>Dynamically</summary>
+
+You can set the project name programmatically for specific operations:
+
+```ts
+import { LangChainTracer } from "@langchain/core/tracers/tracer_langchain";
+
+const tracer = new LangChainTracer({ projectName: "email-agent-test" });
+await agent.invoke(
+  {
+    messages: [{role: "user", content: "Send a test email to alice@example.com"}]
+  },
+  { callbacks: [tracer] }
+);
+```
+
+</details>
+
+## Add metadata to traces
+
+You can annotate your traces with custom metadata and tags:
+
+```ts
+import { LangChainTracer } from "@langchain/core/tracers/tracer_langchain";
+
+const tracer = new LangChainTracer({ projectName: "email-agent-test" });
+await agent.invoke(
+  {
+    messages: [{role: "user", content: "Send a test email to alice@example.com"}]
+  },
+  {
+    tags: ["production", "email-assistant", "v1.0"],
+    metadata: {
+      userId: "user123",
+      sessionId: "session456",
+      environment: "production"
+    }
+  },
+);
+
+```
+
+This custom metadata and tags will be attached to the trace in LangSmith.
+
+> [!TIP]
+> To learn more about how to use traces to debug, evaluate, and monitor your agents, see the [LangSmith documentation](../../langsmith/observability.md).
+
+***
+
+> [!NOTE]
+> [Connect these docs](../../use-these-docs.md) to Claude, VSCode, and more via MCP for real-time answers.
+
+> [!NOTE]
+> [Edit this page on GitHub](https://github.com/langchain-ai/docs/edit/main/src/oss/langchain/observability.mdx) or [file an issue](https://github.com/langchain-ai/docs/issues/new/choose).

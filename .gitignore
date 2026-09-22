@@ -1,0 +1,30 @@
+# Local operating-system files
+.DS_Store
+._*
+
+# Credentials and local environment settings
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+
+# Python environments and generated caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.egg-info/
+/build/
+/dist/
+
+# Generated project artifacts; supplied inputs in files/ remain tracked
+/data/
+/reports/

@@ -1,0 +1,13 @@
+  9 | 39891210 | 2025 | Respir Res                 | Li D           | Targeting BRD4 ameliorates experimental emphysema by disrupting super-enhancer in polarized alveolar macrophage.
+  9 | 31884422 | 2019 | Aging (Albany NY)          | Namani A       | Genome-wide global identification of NRF2 binding sites in A549 non-small cell lung cancer cells by ChIP-Seq reveals NRF
+  9 | 42008506 | 2026 | J Vis Exp                  | Du M           | Genome-wide Mapping of Histone Modifications and Transcription Factor Binding Sites in Neuroendocrine Small Cell Lung Ca
+  8 | 28375666 | 2017 | Am J Respir Cell Mol Biol  | Sasse SK       | Glucocorticoid Receptor ChIP-Seq Identifies PLCD1 as a KLF15 Target that Represses Airway Smooth Muscle Hypertrophy.
+  7 | 33980985 | 2021 | Commun Biol                | Stuart WD      | CRISPRi-mediated functional analysis of NKX2-1-binding sites in the lung.
+  7 | 40530493 | 2025 | J Am Heart Assoc           | Zhang J        | Circ-myh8/KAT7 Affects PANoptosis in Pulmonary Arterial Smooth Muscle Cells: Involvement of Super-Enhancers in FOSL2 Exp
+  7 | 40241046 | 2025 | Respir Res                 | Zhang J        | The transcription factor PITX1 cooperates with super-enhancers to regulate the expression of DUSP4 and inhibit pyroptosi
+  7 | 40336475 | 2025 | Arterioscler Thromb Vasc B | Zhu X          | Super-Enhancer-Driven LncRNA UNC5B-AS1 Inhibits Inflammatory Phenotypic Transition in Pulmonary Artery Smooth Muscle Cel
+  7 | 39980707 | 2025 | Pulm Circ                  | Cai Y          | RNA-Seq and ChIP-Seq Identification of Unique and Overlapping Target Genes and Pathways Regulated by TBX4 in Human Pulmo
+  7 | 38490328 | 2024 | Cancer Lett                | Luo S          | Super-enhancer mediated upregulation of MYEOV suppresses ferroptosis in lung adenocarcinoma.
+  7 | 27924024 | 2017 | Nucleic Acids Res          | Yevshin I      | GTRD: a database of transcription factor binding sites identified by ChIP-seq experiments.
+  7 | 29140464 | 2018 | Nucleic Acids Res          | Kulakovskiy IV | HOCOMOCO: towards a complete collection of transcription factor binding models for human and mouse via large-scale ChIP-
+  7 | 31942977 | 2020 | Database (Oxford)          | Czipa E        | ChIPSummitDB: a ChIP-seq-based database of human transcription factor binding sites and the topological arrangements of 
