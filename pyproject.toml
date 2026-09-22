@@ -1,0 +1,57 @@
+[project]
+name = "regkg"
+version = "0.1.0"
+description = "Spatial NicheLinker regulatory evidence knowledge graph"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy==2.5.3",
+    "pandas==3.0.6",
+    "pyarrow==25.0.1",
+    "pydantic==2.13.5",
+    "PyYAML==6.0.3",
+    "python-dotenv==1.2.3",
+    "httpx==0.28.1",
+    "lxml==6.1.3",
+    "scipy==1.18.1",
+    "neo4j==6.3.1",
+    "rank-bm25==0.2.2",
+]
+
+[project.optional-dependencies]
+embeddings-sentence-transformers = [
+    "langchain-huggingface==1.2.2",
+    "sentence-transformers==6.1.0",
+]
+embeddings-ollama = [
+    "langchain-ollama==1.1.0",
+]
+chat = [
+    # OpenAI-compatible LangChain adapter; OpenRouter is reached through its base URL (plan 6.4.1).
+    "langchain-openai==1.6.3",
+]
+analysis = [
+    "decoupler==2.2.0",
+]
+test = [
+    "pytest==9.1.1",
+    "ruff==0.16.8",
+]
+pdf = [
+    "docling==2.129.0",
+    "openpyxl==3.1.5",
+]
+
+[build-system]
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

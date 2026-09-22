@@ -1,0 +1,494 @@
+# P3 scope closure: bounded source audit and validation selection (worker proposal, pending lead review).
+# Corpus artifact: litcorpus-68fea35a393fe816 (cache-identity repair, Habermann SM PDF, full-text retry). Every `span` must be an exact substring of the named
+# bundle's own parts; `regkg literature scope-closure` rejects the file otherwise. A dimension without a
+# span in the bundle parts is "unknown" even when the title or other sections suggest a value.
+schema_version: 1
+rule: p3-scope-closure-1
+status: proposed_pending_lead_review
+corpus_key: litcorpus-68fea35a393fe816
+# Audited bundles are re-found in the refreshed artifact by source provenance (PMID + anchor locator).
+carry_forward_from: litcorpus-301a27a43b316dd7
+
+# How the audit set was chosen (diagnostic, not recall):
+# - all 20 `direct_context_not_in_pool` associations of snapshot-p3-pilot-proposal-2 (17 bundles, 9 papers);
+# - up to six KRT and six activated-fibroblast bundles outside the earlier selection, from all 3,766 bundles
+#   with that lineage association: anchor/parts naming the cell class (ontology source_context), then lung
+#   tissue, then a named manuscript TF, then a source-result attribution, then readiness, then PMID order.
+#   No bundle names the exact KRT5-/KRT17+ or activated/fibrotic population, so all 12 are broad-class.
+audit_selection_rule: >-
+  direct_context_not_in_pool (all) + top six KRT5neg_KRT17pos and top six Activated_Fibrotic_FBs bundles by
+  (exact>broad cell mention, lung tissue, named TF, source_result_candidate, READY first, PMID)
+
+audit:
+  # ---- direct_context_not_in_pool: alveolar macrophages -------------------------------------------------
+  - payload_id: payload:c0a36d695f366ba4b512
+    pmid: '33872194'
+    source: direct_context_not_in_pool
+    species: [mouse and human (expression only), 'a subset of mouse and human alveolar macrophages']
+    cell: [alveolar macrophages, 'a subset of mouse and human alveolar macrophages']
+    attribution: [secondary account of another paper, 'Daniel and colleagues (pp. 1474–1492) identify EGR2 as a downstream regulator of STAT6']
+    assay: unknown
+    finding: commentary; EGR2 findings belong to Daniel et al., not to this publication
+  - payload_id: payload:a128f28b1f4cbce9f882
+    pmid: '34797692'
+    source: direct_context_not_in_pool
+    species: unknown  # "evolutionarily conserved" is not the experimental species
+    cell: [alveolar macrophages, 'cell-intrinsic EGR2 is indispensable for the tissue-specific identity of alveolar macrophages']
+    attribution: [own study (abstract), 'Here, we identify that the transcription factor EGR2 is an evolutionarily conserved feature of lung alveolar macrophages']
+    assay: unknown
+    finding: primary EGR2 study; its results sections are blocked (20 NEEDS_CONTEXT, 55 NEEDS_SCREENING_REVIEW bundles)
+  - payload_id: payload:af0f23fb130b2c18e8ef
+    pmid: '38937806'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: [monocyte-derived and tissue-resident alveolar macrophages, 'monocyte-derived alveolar macrophages and tissue-resident alveolar macrophages']
+    attribution: [own figure, 'Fig. 7 Footprinting Analysis of Transcription factors in Mo_AMs and TRMs']
+    assay: [TF footprinting (motif occupancy inference), 'Footprinting analysis of BACH2, SMARCC1, FOSL2, JUNB, JUND and SPIB']
+    finding: footprinting is a motif/accessibility association, not demonstrated regulation of targets
+  - payload_id: payload:dda4d134fb05b94645e2
+    pmid: '38937806'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: [Mo_AMs vs TRMs, 'showed stronger association with open chromatin of Mo_AMs than TRMs']
+    attribution: [own study (abstract), 'We identified three Mo_AMs clusters']
+    assay: [chromatin accessibility association, 'showed stronger association with open chromatin of Mo_AMs than TRMs']
+    finding: 'text writes "SPIB (PU.1)"; SPIB (HGNC:11242) and PU.1/SPI1 (HGNC:11241) are different genes, but the source annotation maps PU.1 to human SPI1 and the bundle marks HGNC:11241 consistent. Identity is ambiguous in the source text.'
+  - payload_id: payload:576ae764b51f21593afb
+    pmid: '39042472'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: [alveolar macrophages, 'we concluded that EGR2 is a direct DNA binding TF in AMs']
+    attribution: [own conclusion, 'Based on these results, we concluded that EGR2 is a direct DNA binding TF in AMs']
+    assay: unknown  # the preceding results (CUT&RUN) are outside this part
+    finding: author conclusion on EGR2 direct binding and chromatin openness in AMs; supporting data outside the part
+  - payload_id: payload:b68101c5acf00dffc0ca
+    pmid: '39042472'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: [alveolar macrophages, 'EGR2, a transcriptional and epigenomic regulator of alveolar macrophages']
+    attribution: [own study (abstract highlight), 'EGR2, a transcriptional and epigenomic regulator of alveolar macrophages controls late-stage markers']
+    assay: unknown
+    finding: summary sentence duplicated by the full abstract (d2b8ce56); inspected once
+  - payload_id: payload:d2b8ce560af2ad5925b9
+    pmid: '39042472'
+    source: direct_context_not_in_pool
+    species: unknown  # "in mice" refers to earlier work, not to these experiments
+    cell: [alveolar macrophages, 'we identified EGR2 as an epigenomic regulator and likely direct proximal transcriptional activator in AMs']
+    attribution: [own study (abstract); prior mouse finding attributed to earlier work, 'has been recently described as required for mature AMs in mice']
+    assay: ['RNA-seq, ATAC-seq and CUT&RUN; EGR2 deficiency', 'using epigenomic approaches (RNA sequencing, ATAC sequencing, and CUT&RUN)']
+    finding: predicted direct proximal targets (Clec7a, Atp6v0d2, Itgb2, Rhoc, Tmsb10) are predictions; EGR2 deficiency impaired zymosan internalization
+  - payload_id: payload:1cabb55155a192f9500c
+    pmid: '41116170'
+    source: direct_context_not_in_pool
+    species: [pig, 'primary porcine alveolar macrophages']
+    cell: [3D4/2 and 3D4/21 cell lines vs primary porcine AMs, '3D4/21 and 3D4/2 cells show a similar pattern of the expression of macrophage and respiratory epithelial stem cell marker genes']
+    attribution: [own figure, 'Figure 4 3D4/21 and 3D4/2 cells show a similar pattern']
+    assay: [qRT-PCR marker expression, 'quantitative real-time PCR']
+    finding: SPI1 is a measured marker, not a regulator in this experiment
+  - payload_id: payload:df1571626d53d200b97e
+    pmid: '41116170'
+    source: direct_context_not_in_pool
+    species: [pig, 'isolated primary porcine alveolar macrophages (PAM) from piglets']
+    cell: [3D4 cell lines misclassified as AMs, 'Our data strongly suggest that 3D4 cell lines were misclassified as myeloid cells and actually possess respiratory epithelial characteristics']
+    attribution: [own study (abstract), 'Our data strongly suggest that 3D4 cell lines were misclassified']
+    assay: [transcriptome comparison, 'analyzed the transcriptome of unstimulated or Kdo2-Lipid A-stimulated 3D4/21 cells compared with equally treated PAM']
+    finding: SPI1 and IRF8 low expression is a cell-identity marker result; no regulation by either TF is tested
+  - payload_id: payload:3dbb6578231777242a39
+    pmid: '41712459'
+    source: direct_context_not_in_pool
+    species: [mouse, 'Using mice with myeloid-specific deletion of the GATA2 DNA binding C-terminal zinc finger domain']
+    cell: [alveolar macrophages, 'GATA2 deficiency promotes enhanced inflammatory gene expression and metabolic dysfunction in AMs']
+    attribution: [own study (abstract), 'we show that GATA2 deficiency promotes enhanced inflammatory gene expression']
+    assay: [target-set enrichment for PU.1, 'enriched for targets of TFs previously demonstrated to interact with GATA2 in other cellular contexts, including PU.1']
+    finding: PU.1 appears only as an enrichment of previously reported targets; GATA2 is not a manuscript candidate here. Not selected.
+  - payload_id: payload:7f94213bdafc46c704b5
+    pmid: '41976096'
+    source: direct_context_not_in_pool
+    species: unknown  # "PAMs" is not expanded inside this part
+    cell: [PAMs, 'CREs bound by PU.1 in PAMs']
+    attribution: [own figure caption, 'KEGG enrichment results for the promoter-proximal and distal CREs bound by PU.1 in PAMs']
+    assay: [pathway enrichment of bound CREs, 'KEGG enrichment results']
+    finding: caption only; no target gene or effect is stated in this part
+  - payload_id: payload:bc61c6292043f8e492bf
+    pmid: '41976096'
+    source: direct_context_not_in_pool
+    species: [pig, 'Using porcine AMs (PAMs) as a model']
+    cell: [porcine alveolar macrophages, 'Using porcine AMs (PAMs) as a model']
+    attribution: [own study (abstract), 'we combined gene knockdown experiments with multiomic profiling']
+    assay: [SPI1 knockdown RNA-seq; CUT&Tag occupancy, 'By integrating the RNA-seq data before and after SPI1 knockdown']
+    finding: knockdown impairs immune gene expression; putative direct targets are an integrative prediction
+  - payload_id: payload:e3aee203282c8abda68d
+    pmid: '41976096'
+    source: direct_context_not_in_pool
+    species: [pig, 'Using porcine alveolar macrophages as a model']
+    cell: [porcine alveolar macrophages, 'Using porcine alveolar macrophages as a model']
+    attribution: [own study (lay abstract), 'this study elucidates the regulatory role of the core myeloid transcription factor PU.1']
+    assay: [SPI1 knockdown with multiomic profiling, 'By integrating SPI1 knockdown with multiomic profiling']
+    finding: restates bc61c629; inspected once, not selected
+  - payload_id: payload:e1c5b5c38aeaf74928a6
+    pmid: '42449369'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: [macrophages across niches incl. alveolar macrophages, 'Focused analysis of alveolar macrophages and microglia']
+    attribution: [meta-analysis of existing datasets, 'Meta-analysis defined 593 consistently age-altered genes']
+    assay: [computational TF activity inference, 'Transcription factor activity inference identified consistent age-associated activation of AP-1 (Fos, Jun), C/EBPβ, PU.1, and Egr1 across niches.']
+    finding: inferred activity from reused data; not an experiment and not regulation. Not selected (secondary control covered by 33872194).
+  - payload_id: payload:6af70611ab79096ba536
+    pmid: '42635130'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: [AMs vs BMDMs, 'predicted EGR, CEBP, KLF, and PU.1 elements in AMs (green) and BMDMs (blue)']
+    attribution: [own figure, 'Figure 2. DNA methylation-dependent cis-regulatory regions are enriched in alveolar macrophages.']
+    assay: [motif prediction and CpG density, 'predicted EGR, CEBP, KLF, and PU.1 elements']
+    finding: motif elements, not TF occupancy or regulation. Not selected (motif control covered by 38937806).
+  # ---- direct_context_not_in_pool: AT1 ----------------------------------------------------------------
+  - payload_id: payload:64cbedf1e2004c2e79a7
+    pmid: '34466790'
+    source: direct_context_not_in_pool
+    species: [mouse, 'We developed transgenic mice in which YAP was activated or deleted']
+    cell: [alveolar epithelial cells; AGER is an AT1 marker, 'YAP participated with KLF5, NFIB, and NKX2-1 to regulate AGER.']
+    attribution: [own study (abstract), 'We developed transgenic mice']
+    assay: unknown  # the assay behind the KLF5-AGER statement is not in this part
+    finding: KLF5 is a co-participant with YAP; KLF5 alone is not shown to regulate AGER in this part
+  - payload_id: payload:a6d0c0e6c8b121125a3d
+    pmid: '34466790'
+    source: direct_context_not_in_pool
+    species: unknown
+    cell: unknown
+    attribution: [own study (highlight), 'YAP, TEAD, NKX2-1, KLF5 and NFIB interact to increase expression of AGER']
+    assay: unknown
+    finding: '"TEAD" is a family; it must not become TEAD1'
+  # ---- KRT5neg_KRT17pos candidates (broad cell class only) ----------------------------------------------
+  - payload_id: payload:b0c4cc289e3f1d803354
+    pmid: '41075787'
+    source: krt_candidate
+    species: [human, 'Immunostaining and quantification of 11 pcw human fetal lung sections']
+    cell: [fetal lung organoids; basal cell fate, 'KLF4 and KLF5 promote basal and secretory cell fates downstream of the HIF pathway']
+    attribution: [own figure, 'Figure 6 KLF4 and KLF5 promote basal and secretory cell fates']
+    assay: ['CRISPRi knockdown, RT-qPCR and DamID', 'KLF5-KD (lower) by CRISPRi induction']
+    finding: >-
+      Repaired: the supplement was acquired under the named allowance, so the asset is no longer missing.
+      The bundle is now NEEDS_CONTEXT (oversized anchor; Figure S6 and Table S4 present locally but their link
+      to this figure is unverified), i.e. a permitted P4 local-context investigation. Adjacent (basal fate),
+      not KRT5-/KRT17+ cells.
+  - payload_id: payload:7803fc7fefa2ac32f99c
+    pmid: '41075787'
+    source: krt_candidate
+    species: [human, 'Human lungs experience dynamic oxygen tension during development']
+    cell: [fetal lung epithelial progenitors; basal fate, 'KLF4 and KLF5 are direct HIF targets that promote basal and secretory cell fates.']
+    attribution: [own study (abstract), 'Here, we show that hypoxia directly regulates human lung epithelial cell identity using tissue-derived organoids.']
+    assay: unknown
+    finding: aberrant basal-like cells are linked to hypoxia, not to KLF5, in this part
+  - payload_id: payload:6db5ecd40a1204520565
+    pmid: '34217701'
+    source: krt_candidate
+    species: [human cell lines, 'in the Calu-3 lung epithelial cell line']
+    cell: [airway epithelial cell lines, 'in both Calu-3 and 16HBE14o− lung epithelial cell lines']
+    attribution: [own study (abstract), 'Here we characterize the role of Krüppel-like factor 5 (KLF5)']
+    assay: [siRNA depletion RNA-seq; ChIP-seq, 'RNA-seq following siRNA-mediated depletion of KLF5']
+    finding: transferable airway-epithelial mechanism; no basaloid/fibrotic context. Not selected (paper cap).
+  - payload_id: payload:4e82c1ef5718195ab3fe
+    pmid: '34217701'
+    source: krt_candidate
+    species: [human cell lines, 'in both the Calu-3 and 16HBE14o− cell lines']
+    cell: [airway epithelial cell lines, 'The genome-wide occupancy of KLF5 in airway epithelial cells']
+    attribution: [own results, 'KLF5 ChIP-seq was performed in replicate']
+    assay: [ChIP-seq intersected with RNA-seq, 'we intersected the Calu-3 ChIP-seq dataset with the DEGs identified by RNA-seq']
+    finding: 'NEEDS_CONTEXT (Table S1, oversized anchor): permitted P4 investigation'
+  - payload_id: payload:33157e00b25d268e94b8
+    pmid: '34466790'
+    source: krt_candidate
+    species: [mouse, 'isolated from D14 YAPactive (N = 6) and controls (N = 4) mice']
+    cell: [EPCAM+ alveolar epithelial cells, 'RNA-seq analyses were performed on EPCAM+ cells']
+    attribution: [own figure, 'Figure 6 YAP activation increases expression of AT1 and proximal epithelial cell signature genes']
+    assay: [qRT-PCR, 'Realtime qRT-PCR analyses of isolated YAPactive epithelial cells demonstrate increased Ager, Aqp5, Elf3 and Klf5']
+    finding: Klf5 is a downstream DE gene of YAP activation (target, not regulator); KRT association is by query only
+  - payload_id: payload:9d6652a6d027e7aa9b00
+    pmid: '36777184'
+    source: krt_candidate
+    species: [human primary cells, 'HBECs from three donors were grown in ALI']
+    cell: ['airway epithelial cells (asthma; IL-13 treated)', 'HBECs from three donors']
+    attribution: [own results, 'we analyzed KLF5’s ability to bind to SPDEFe using cleavage under targets and tagmentation (CUT&Tag)']
+    assay: [CUT&Tag binding, 'CUT&Tag']
+    finding: binding to an IL-13-responsive enhancer; asthma airway context, not KRT5-/KRT17+. NEEDS_CONTEXT.
+  # ---- Activated_Fibrotic_FBs candidates (broad cell class only) -----------------------------------------
+  - payload_id: payload:c6de52f979e7954216f4
+    pmid: '38945958'
+    source: fibroblast_candidate
+    species: [mouse, 'Silencing of Prdx3 promotes pulmonary fibrosis in BLM-treated YAP1-cKI mice']
+    cell: unknown  # the experiment targets alveolar epithelium per the paper; not stated in this part
+    attribution: [own figure, 'Fig. 8 Silencing of Prdx3 promotes pulmonary fibrosis']
+    assay: [AAV shRNA in vivo, 'AAV5-sh-Prdx3']
+    finding: fibroblast association is by query only; TEAD1 is not measured in this part
+  - payload_id: payload:629a6af8ca00d246ed9e
+    pmid: '38945958'
+    source: fibroblast_candidate
+    species: [human and mouse, 'in the lung fibroblasts of patients with pulmonary fibrosis and in BLM-treated mice']
+    cell: [AT2 cells (YAP1/TEAD1-Prdx3 axis), 'YAP1/TEAD1 improved mitochondrial function by transcriptionally activating peroxiredoxin 3 (Prdx3), thereby suppressing the senescence of AT2 cells']
+    attribution: [introduction summary of own study, 'In this study, YAP1 expression was found to be increased']
+    assay: unknown
+    finding: 'fibroblast mention is YAP1 expression only; the TEAD1 mechanism is in AT2 cells. NEEDS_SCREENING_REVIEW.'
+  - payload_id: payload:cc236e4f733152b7c4fa
+    pmid: '34466790'
+    source: fibroblast_candidate
+    species: unknown  # prediction from published scRNA-seq; species not stated in the figure part
+    cell: [AT1 vs AT2 (predicted), 'The transcription factors Elf3, Klf5 and Tead1 were predicted as AT1 selective']
+    attribution: [own computational prediction, 'Prediction of alveolar epithelial cell transcriptional regulatory network (TRN) from previously published single cell RNA sequencing data']
+    assay: [network inference (SINCERA), 'as described in SINCERA']
+    finding: prediction, not regulation; fibroblast association by query only. NEEDS_CONTEXT (Figure S2).
+  - payload_id: payload:ec30a650b2c031cf9522
+    pmid: '38718468'
+    source: fibroblast_candidate
+    species: unknown
+    cell: [placental transmogrification lung tissue and stromal cells, 'Comparative transcriptomic assessment of PTL tissue and stromal cells']
+    attribution: [own study (PubMed abstract only), 'This functional study aimed to identify the molecular signatures']
+    assay: [transcriptome, 'Comparative transcriptomic assessment']
+    finding: FOSB upregulation (expression) in a rare non-fibrotic condition; abstract only
+  - payload_id: payload:787d25800f8e7edaefd4
+    pmid: '41212903'
+    source: fibroblast_candidate
+    species: unknown  # iHLFs not expanded in this part
+    cell: [immortalized lung fibroblasts on hydrogels, 'iHLFs cultured on 4kPa hydrogels']
+    attribution: [own figure, 'Fig 4 Silencing of the HOXA family of developmental factors is a defining genomic signature']
+    assay: [RNA-seq and ATAC-seq after Thy-1 knockout, 'ATAC-seq (top) and RNA-seq (bottom) read pileup at the HOXA5 locus']
+    finding: HOXA5 is a downstream DE gene of Thy-1 loss (target), not a tested regulator
+  - payload_id: payload:1f19d50f95340ff709ee
+    pmid: '38143920'
+    source: fibroblast_candidate
+    species: unknown
+    cell: [COPD vs healthy lung fibroblasts, 'Differential expression of genes after CSE stimulation resulted in significantly less changes in COPD lung fibroblasts']
+    attribution: [own study (abstract), 'At baseline, a difference in the expression of 17 genes was found']
+    assay: [expression response to cigarette smoke extract, 'CSE stimulation']
+    finding: KAT6A is a downregulated gene (and a histone acetyltransferase, not a sequence-specific TF); off-context
+
+  # ---- additional selected bundles audited here --------------------------------------------------------
+  - payload_id: payload:71200754b7ac9874ebf9
+    pmid: '34922464'
+    source: selection_audit
+    species: unknown  # the part does not state the species; the publication title does
+    cell: ['AT2 and AT1-like cells differentiated in vitro', 'Enrichment of tag density from center of the epigenetic mark for both AT2 (top) and AT1-like (bottom) cells']
+    attribution: [own figure, 'Fig. 2 Identification of FOX family, STAT family, TEAD family, and AP1 complex members']
+    assay: ['FAIRE-seq with HOMER motif enrichment', 'HOMER-computer enrichment of TFBS in AT1-like (X-axis, D6) or AT2 (y-axis, D0) cells']
+    finding: TEAD1 appears as a motif; the figure reports motif enrichment and expression clustering, not binding or regulation
+  - payload_id: payload:622a9b3ca96089c97de4
+    pmid: '38374140'
+    source: selection_audit
+    species: [mouse, 'TEAD1fl/fl and TEAD1fl/flcol1a2+ mice after 4 weeks sham or TAC']
+    cell: [cardiac fibroblasts, 'Knockout of TEAD1 in cardiac fibroblasts attenuates TAC-induced cardiac remodeling']
+    attribution: [own figure, 'Fig. 2 Knockout of TEAD1 in cardiac fibroblasts']
+    assay: ['fibroblast-targeted conditional knockout with echocardiography, histology, western blot and qRT-PCR', 'Western blot and quantification of α‑SMA and Galectin-3 protein levels']
+    finding: the source annotation maps TEAD1 to human while the part states mouse genotypes; identity consistency is not species
+  - payload_id: payload:70250267c91884986863
+    pmid: '38374140'
+    source: selection_audit
+    species: unknown
+    cell: [cardiac fibroblasts, 'TEAD1 promotes the fibroblast-to-myofibroblast transition']
+    attribution: [own summary schematic, 'This figure was drawn by using pictures from Servier Medical Art']
+    assay: unknown
+    finding: a model schematic restating the paper; not an additional experiment
+
+  # ---- gap-directed acquisition (P3 source-gap completion, item 4) --------------------------------------
+  - payload_id: payload:b6a5f6b0a5c727d52890
+    pmid: '42327275'
+    source: gap_directed_acquisition
+    species: [human, 'Using 3D organoid co-cultures with primary human fibroblasts']
+    cell: [AT2 to KRT5-/KRT17+ basaloid conversion, 'AT2 cells instead convert to KRT5-/KRT17+ basaloid cells via a non-age-dependent pathway that requires KLF5-SMAD2/3 complexing through TGFβ1 signaling']
+    attribution: [own study (abstract), 'we find that healthy human AT2 cell trans-differentiation into KRT5+/KRT17+ basal cells increases progressively with age']
+    assay: unknown
+    finding: >-
+      The first corpus evidence naming the exact manuscript population together with a named manuscript
+      regulator (KLF5). Abstract level only: the Europe PMC record holds no body text, so the supporting
+      experiments are not locally available and the identity of KLF5 is name-only here.
+
+# Validation selection: <= 10 papers / 20 bundles. `purpose`: genuine_evidence (extract with preserved
+# uncertainty), negative_control (a named interpretation must be rejected), abstention_test (no positive
+# regulatory extraction from this bundle as it stands). `coverage` of each association:
+# exact_population (the manuscript cell type is stated for it in the parts), adjacent_population (same
+# lineage family, not the manuscript state), transferable_other_tissue, or not_applicable (controls).
+selection:
+  - payload_id: payload:576ae764b51f21593afb
+    associations: [[Alveolar_Macrophages, HGNC:3239]]
+    purpose: genuine_evidence
+    coverage: exact_population
+    may_extract: [EGR2 described by the authors as a direct DNA-binding TF in AMs required for chromatin openness (author conclusion)]
+    must_remain_unknown: [experimental species, assay supporting the conclusion (outside this part), target genes]
+    must_reject: [resolved human EGR2 identity, target-gene regulation claims]
+  - payload_id: payload:d2b8ce560af2ad5925b9
+    associations: [[Alveolar_Macrophages, HGNC:3239]]
+    purpose: genuine_evidence
+    coverage: exact_population
+    may_extract: [EGR2 deficiency impairs zymosan internalization in AMs, EGR2 as likely direct proximal activator (abstract-level; RNA-seq/ATAC-seq/CUT&RUN)]
+    must_remain_unknown: [species of these experiments (the "in mice" sentence cites earlier work), per-target effect sizes]
+    must_reject: [predicted direct targets reported as verified regulation, attributing the earlier mouse finding to this study]
+  - payload_id: payload:a128f28b1f4cbce9f882
+    associations: [[Alveolar_Macrophages, HGNC:3239]]
+    purpose: genuine_evidence
+    coverage: exact_population
+    may_extract: [cell-intrinsic EGR2 is required for AM tissue-specific identity (abstract-level), EGR2 driven by TGF-beta and GM-CSF in a PPAR-gamma-dependent manner]
+    must_remain_unknown: [experimental species, assays, donor/animal counts]
+    must_reject: ['"evolutionarily conserved" as human experimental evidence', resolved human identity from the source annotation]
+  - payload_id: payload:bc61c6292043f8e492bf
+    associations: [[Alveolar_Macrophages, HGNC:11241]]
+    purpose: genuine_evidence
+    coverage: exact_population
+    may_extract: [SPI1 knockdown in porcine AMs impairs expression of immune-related genes, PU.1 occupies active CREs (CUT&Tag)]
+    must_remain_unknown: [specific target genes and effect sizes, human relevance]
+    must_reject: [human SPI1 evidence (species is pig), putative direct targets as verified regulation]
+  - payload_id: payload:7f94213bdafc46c704b5
+    associations: [[Alveolar_Macrophages, HGNC:11241]]
+    purpose: abstention_test
+    coverage: exact_population
+    may_extract: [at most that KEGG enrichment was computed for PU.1-bound CREs]
+    must_remain_unknown: [species (PAMs not expanded in the part), enriched terms, targets]
+    must_reject: [any regulatory finding or target from a caption without results]
+  - payload_id: payload:af0f23fb130b2c18e8ef
+    associations: [[Alveolar_Macrophages, HGNC:6206], [Alveolar_Macrophages, HGNC:3798]]
+    purpose: negative_control
+    control: motif_vs_regulation
+    coverage: exact_population
+    may_extract: [footprinting of JUND and FOSL2 was compared between Mo_AMs and TRMs]
+    must_remain_unknown: [direction and magnitude (not in the caption), species in the part]
+    must_reject: [JUND or FOSL2 regulating a target gene, FOSL2 (HGNC:3798) as resolved human identity (name only here)]
+  - payload_id: payload:dda4d134fb05b94645e2
+    associations: [[Alveolar_Macrophages, HGNC:11241], [Alveolar_Macrophages, HGNC:6206], [Alveolar_Macrophages, HGNC:3798]]
+    purpose: negative_control
+    control: identity_ambiguity
+    coverage: exact_population
+    may_extract: [JUND and FOSL2 show stronger association with open chromatin of Mo_AMs than TRMs (accessibility association)]
+    must_remain_unknown: [whether the text means SPIB or PU.1/SPI1]
+    must_reject: ['"SPIB (PU.1)" resolved to SPI1/HGNC:11241 despite the bundle flag; any regulation claim from accessibility association']
+  - payload_id: payload:df1571626d53d200b97e
+    associations: [[Alveolar_Macrophages, HGNC:11241], [Alveolar_Macrophages, HGNC:5358]]
+    purpose: negative_control
+    control: off_context_cell_identity
+    coverage: not_applicable
+    may_extract: [SPI1 and IRF8 are weakly expressed or absent in 3D4/21 cells compared with primary porcine AMs (marker expression)]
+    must_remain_unknown: [any regulatory role of SPI1 or IRF8]
+    must_reject: [3D4 cells as alveolar macrophages, SPI1/IRF8 regulation, human evidence]
+  - payload_id: payload:1cabb55155a192f9500c
+    associations: [[Alveolar_Macrophages, HGNC:11241]]
+    purpose: negative_control
+    control: expression_marker_not_regulation
+    coverage: not_applicable
+    may_extract: [SPI1 measured by qRT-PCR as a macrophage marker across 3D4 lines, PBMC and primary porcine AMs]
+    must_remain_unknown: [values (heatmap only)]
+    must_reject: [SPI1 regulating any gene in this experiment]
+  - payload_id: payload:c0a36d695f366ba4b512
+    associations: [[Alveolar_Macrophages, HGNC:3239]]
+    purpose: negative_control
+    control: secondary_attribution
+    coverage: not_applicable
+    may_extract: [a secondary account that Daniel and colleagues identified EGR2 downstream of STAT6]
+    must_remain_unknown: [primary assays and species of the cited work]
+    must_reject: [counting this commentary as an independent experiment or as this paper's finding]
+  - payload_id: payload:64cbedf1e2004c2e79a7
+    associations: [[AT1, HGNC:6349]]
+    purpose: genuine_evidence
+    coverage: adjacent_population
+    may_extract: [in transgenic mice, YAP participated with KLF5, NFIB and NKX2-1 to regulate AGER (abstract-level)]
+    must_remain_unknown: [assay behind the KLF5-AGER statement, whether KLF5 acts in AT1 cells specifically]
+    must_reject: [KLF5 alone regulating AGER, human evidence, AT1-cell-specific evidence]
+  - payload_id: payload:a6d0c0e6c8b121125a3d
+    associations: [[AT1, HGNC:6349]]
+    purpose: negative_control
+    control: family_vs_member
+    coverage: not_applicable
+    may_extract: [a highlight stating YAP, TEAD, NKX2-1, KLF5 and NFIB interact to increase AGER]
+    must_remain_unknown: [species, cell type, assay]
+    must_reject: ['"TEAD" mapped to TEAD1', a KLF5-specific finding from a highlight sentence]
+  - payload_id: payload:b6a5f6b0a5c727d52890
+    associations: [[KRT5neg_KRT17pos, HGNC:6349]]
+    purpose: genuine_evidence
+    coverage: exact_population
+    may_extract:
+      - human AT2 cells convert to KRT5-/KRT17+ basaloid cells by a pathway the authors state requires KLF5-SMAD2/3 complexing through TGF-beta1 (abstract-level claim)
+      - the age-dependent KRT5+/KRT17+ basal route is reported as distinct from this non-age-dependent one
+    must_remain_unknown: [assays, replicate and donor counts, whether KLF5 was perturbed, the KLF5 gene identity beyond the name]
+    must_reject:
+      - treating the abstract claim as a verified regulatory finding with experimental support in hand
+      - resolved human KLF5 identity from the name alone
+      - conflating KRT5+/KRT17+ basal cells with the manuscript KRT5-/KRT17+ population
+  - payload_id: payload:cc236e4f733152b7c4fa
+    associations: [[AT1, HGNC:11714]]
+    purpose: abstention_test
+    coverage: adjacent_population
+    may_extract: [Klf5 and Tead1 were computationally predicted as AT1-selective TRN nodes]
+    must_remain_unknown: [network details (Figure S2, outside the parts), species]
+    must_reject: [prediction reported as regulation; positive extraction while NEEDS_CONTEXT]
+  - payload_id: payload:622a9b3ca96089c97de4
+    associations: [[Activated_Fibrotic_FBs, HGNC:11714]]
+    purpose: genuine_evidence
+    coverage: transferable_other_tissue
+    may_extract: [fibroblast-specific (Col1a2-Cre) TEAD1 knockout attenuates TAC-induced cardiac remodeling and collagen deposition in mice]
+    must_remain_unknown: [lung or IPF relevance, direct targets]
+    must_reject: [human evidence despite the source annotation mapping TEAD1 to human, lung/IPF fibroblast evidence]
+  - payload_id: payload:70250267c91884986863
+    associations: [[Activated_Fibrotic_FBs, HGNC:11714]]
+    purpose: negative_control
+    control: schematic_model_not_experiment
+    coverage: not_applicable
+    may_extract: [the authors' proposed model TEAD1-BRD4-Wnt4 in cardiac fibroblast-to-myofibroblast transition]
+    must_remain_unknown: [experimental support (outside this part)]
+    must_reject: [counting the schematic as an additional experiment]
+  - payload_id: payload:7803fc7fefa2ac32f99c
+    associations: [[KRT5neg_KRT17pos, HGNC:6349], [KRT5neg_KRT17pos, HGNC:6348]]
+    purpose: genuine_evidence
+    coverage: adjacent_population
+    may_extract: [KLF4 and KLF5 are direct HIF targets that promote basal and secretory cell fates in human fetal lung organoids (abstract-level)]
+    must_remain_unknown: [assays, adult or fibrotic relevance of KLF5]
+    must_reject: [KLF5 regulating KRT5-/KRT17+ (aberrant basal-like) cells; the aberrant basal-like sentence is about hypoxia]
+  - payload_id: payload:b0c4cc289e3f1d803354
+    associations: [[KRT5neg_KRT17pos, HGNC:6349], [KRT5neg_KRT17pos, HGNC:6348]]
+    purpose: abstention_test
+    coverage: adjacent_population
+    may_extract: []
+    must_remain_unknown: [which experiment in Figure S6 and Table S4 supports this figure's claim]
+    must_reject:
+      - positive extraction while the bundle is NEEDS_CONTEXT (oversized anchor, link to the recovered supplement unverified)
+      - treating the acquired supplement as already linked to this figure without an investigation
+
+# The three needs this audit established are reconciled as task rows by `scope-closure` (audit_tasks),
+# linked to the work units they cover, so they are not repeated here as download requests.
+
+# Where the authorized supplement acquisition landed (PMID 41075787), for the investigation that will link it.
+supplement_recovery:
+  pmid: '41075787'
+  archive: EMS210609-supplement-Supplemental_information.zip
+  members_extracted: 7
+  table_s4:
+    member: 1-s2.0-S1934590925003388-mmc5.xlsx
+    locator: xlsx:sheet=Table_S4_venn_gene_lists
+    rows_found: ['row=369 KLF5 in column HIF1A_HIF2A_common_targets', 'row=192 KLF4 in column HIF1A_specific_targets']
+    parse_state: PARTIAL (2000 of 3307 rows; the xlsx reader still applies the sheet row limit, and both KLF rows fall inside it)
+  figure_s6:
+    member: 1-s2.0-S1934590925003388-mmc1.pdf
+    locator: docling:#/texts/45
+    caption: Figure S6. Expression patterns and hypoxic regulation of KLF4 and KLF5. Related to Figure 6.
+    experiment_context: >-
+      Sub-panels state bulk RNA-seq of normoxia+NTC vs hypoxia+NTC and HIF1A-KD, HIF2A knockdown, stabilised
+      HIF1a/HIF2a overexpression, organoid scRNA-seq, fetal lung atlas expression, immunostaining of 10 pcw human
+      fetal lung, and RT-qPCR of AT2 markers in KLF4/KLF5-CRISPRi organoids with donor and replicate counts.
+  not_claimed: Presence of these files does not establish which panel supports the bundle's claim; that link is a P4 investigation.
+
+# Established by the gap-directed search; nothing was acquired for it in this pass.
+new_acquisition_needs:
+  - request_id: gap:42327275-full-text
+    task: user_article_download_required
+    group: gap_established_full_text_missing
+    pmid: '42327275'
+    title: Epigenetic de-repression of basal cell metaplasia in aging AT2 cells is a risk factor for idiopathic pulmonary fibrosis (IPF).
+    item: 'full text PDF (both authorized JATS routes return front matter only)'
+    link: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13278176/
+    expected_path: data/papers/manual_inbox/42327275/article.pdf
+    why: >-
+      The only corpus source naming the exact KRT5-/KRT17+ population together with a named manuscript regulator
+      (KLF5). The bounded retry (rule p3-full-text-retry-1) fetched the PMC OA dataset copy as well: 9,861 bytes
+      with no usable body, after the Europe PMC copy gave 6,548 bytes, also front matter only. No authorized route
+      serves the body, so the claim stays abstract-level until a copy is supplied.
+    affected_manuscript_questions: '["KRT5neg_KRT17pos", "AT1"]'
+    affected_regulators: '["HGNC:6349"]'
+    disposition: required_acquisition_or_parse_repair_before_extraction
+    established_by: gap_directed_search_then_bounded_full_text_retry
+    kind: gap:full_text_missing
+    routes_attempted: 'europepmc_fulltextxml (6,548 bytes, no body); pmc_oa_dataset_jats (9,861 bytes, no body); pubtator_biocjson (abstract only)'
+    user_action_required: true

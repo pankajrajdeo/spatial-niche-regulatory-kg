@@ -1,0 +1,135 @@
+# Project-data ingestion (package P1). Relative paths resolve against the repository root.
+# Unknown fields are rejected.
+schema_version: 1
+input_mode: real
+data_root: data
+ingest_chunk_rows: 2000   # performance only; excluded from the artifact key
+
+dataset:
+  name: Yale
+  species: Homo sapiens
+  ncbi_taxon_id: 9606
+  tissue: lung
+  # Niches were clustered from Control and IPF lung tissue sections (final synthesis,
+  # "Authoritative project-data update" §1); no cultured or engineered model is involved.
+  model_system: primary tissue
+  conditions:
+    Control:
+      disease: null        # experimental control condition; no diagnosis is asserted
+    IPF:
+      disease: idiopathic pulmonary fibrosis
+
+chromlinker:
+  path: files/Yale_IPF_with_Niches_tf_to_gene_connection_scores_log10.csv
+  delimiter: ","
+  tf_column: TF
+  target_column: Gene
+  # Name taken from the source filename. Transform, zero meaning, and aggregation are unconfirmed.
+  score_label: tf_to_gene_connection_score_log10
+
+expression:
+  path: files/spatial_niche_pseudobulk_CPTT.txt
+  delimiter: "\t"          # tab separated despite the .txt extension
+  gene_column: gene
+  value_unit: CPTT
+
+niche_expression_signatures:
+  path: files/Yale_pooled_niche_expression_signatures.tsv
+  delimiter: "\t"
+
+# One condition-pooled niche definition run per focal cell type. k and resolution are stated
+# here explicitly and cross-checked against each filename.
+niche_definitions:
+  - focal_cell_type: AT1
+    neighborhood_path: files/Neighbour_celltypes/AT1_knn_25_res0.08_neighbor_mean_counts_by_niche.tsv
+    delimiter: "\t"
+    niche_column: spatial_niche
+    k_neighbors: 25
+    clustering_resolution: 0.08
+    conditions_pooled: [Control, IPF]
+    method: knn_neighbor_celltype_composition_clustering
+  - focal_cell_type: Activated_Fibrotic_FBs
+    neighborhood_path: files/Neighbour_celltypes/Activated_Fibrotic_FBs_knn_25_res0.1_neighbor_mean_counts_by_niche.tsv
+    delimiter: "\t"
+    niche_column: spatial_niche
+    k_neighbors: 25
+    clustering_resolution: 0.1
+    conditions_pooled: [Control, IPF]
+    method: knn_neighbor_celltype_composition_clustering
+  - focal_cell_type: Alveolar_Macrophages
+    neighborhood_path: files/Neighbour_celltypes/Alveolar_Macrophages_knn_25_res0.08_neighbor_mean_counts_by_niche.tsv
+    delimiter: "\t"
+    niche_column: spatial_niche
+    k_neighbors: 25
+    clustering_resolution: 0.08
+    conditions_pooled: [Control, IPF]
+    method: knn_neighbor_celltype_composition_clustering
+  - focal_cell_type: KRT5neg_KRT17pos
+    neighborhood_path: files/Neighbour_celltypes/KRT5neg_KRT17pos_knn_25_res0.15_neighbor_mean_counts_by_niche.tsv
+    delimiter: "\t"
+    niche_column: spatial_niche
+    k_neighbors: 25
+    clustering_resolution: 0.15
+    conditions_pooled: [Control, IPF]
+    method: knn_neighbor_celltype_composition_clustering
+
+# Curated display names for every source cell-type label. Raw labels are preserved as the
+# stable project labels; ontology IDs are not yet mapped.
+cell_types:
+  AT1: {display_name: AT1 cells}
+  AT2: {display_name: AT2 cells}
+  Activated_Fibrotic_FBs: {display_name: Activated fibrotic fibroblasts}
+  Adventitial_FBs: {display_name: Adventitial fibroblasts}
+  Alveolar_FBs: {display_name: Alveolar fibroblasts}
+  Alveolar_Macrophages: {display_name: Alveolar macrophages}
+  Arteriole: {display_name: Arteriole}
+  B: {display_name: B cells}
+  Basal: {display_name: Basal cells}
+  Basophils: {display_name: Basophils}
+  CD4pos_T: {display_name: CD4+ T cells}
+  CD8pos_T: {display_name: CD8+ T cells}
+  Capillary: {display_name: Capillary}
+  Goblet: {display_name: Goblet cells}
+  Inflammatory_FBs: {display_name: Inflammatory fibroblasts}
+  Interstitial_Macrophages: {display_name: Interstitial macrophages}
+  KRT5neg_KRT17pos: {display_name: KRT5−/KRT17+ cells}
+  Langerhans: {display_name: Langerhans cells}
+  Lymphatic: {display_name: Lymphatic}
+  Macrophages_IFN_activated: {display_name: IFN-activated macrophages}
+  Mast: {display_name: Mast cells}
+  Mesothelial: {display_name: Mesothelial cells}
+  Migratory_DCs: {display_name: Migratory dendritic cells}
+  Monocytes_MDMs: {display_name: Monocytes and monocyte-derived macrophages}
+  Multiciliated: {display_name: Multiciliated cells}
+  Myofibroblasts: {display_name: Myofibroblasts}
+  NK_NKT: {display_name: NK and NKT cells}
+  Neutrophils: {display_name: Neutrophils}
+  PNEC: {display_name: Pulmonary neuroendocrine cells}
+  Plasma: {display_name: Plasma cells}
+  Proliferating_AT2: {display_name: Proliferating AT2 cells}
+  Proliferating_Airway: {display_name: Proliferating airway cells}
+  Proliferating_B: {display_name: Proliferating B cells}
+  Proliferating_FBs: {display_name: Proliferating fibroblasts}
+  Proliferating_Myeloid: {display_name: Proliferating myeloid cells}
+  Proliferating_NK_NKT: {display_name: Proliferating NK and NKT cells}
+  Proliferating_T: {display_name: Proliferating T cells}
+  RASC: {display_name: RASC}
+  SMCs_Pericytes: {display_name: Smooth muscle cells and pericytes}
+  SPP1pos_Macrophages: {display_name: SPP1+ macrophages}
+  Secretory: {display_name: Secretory cells}
+  Subpleural_FBs: {display_name: Subpleural fibroblasts}
+  Transitional_AT2: {display_name: Transitional AT2 cells}
+  Tregs: {display_name: Regulatory T cells}
+  Venous: {display_name: Venous}
+  cDCs: {display_name: Conventional dendritic cells}
+  pDCs: {display_name: Plasmacytoid dendritic cells}
+
+at1_scope:
+  cell_type: AT1
+  # Fixed manuscript TFs; seed order is not a scientific ranking.
+  tf_seeds: [TEAD1, KLF5, GATA6, FOXA2, ETV1]
+
+tolerances:
+  signature_effect_abs: 1.0e-8
+  signature_effect_rel: 1.0e-6
+  neighborhood_row_sum: 1.0e-6

@@ -1,0 +1,151 @@
+# Literature settings. P2 defines only the deterministic retrieval queue; P3 adds search,
+# fetch, and embedding settings. Unknown fields are rejected.
+schema_version: 1
+retrieval_queue:
+  query_version: p2-queue-1
+  max_live_queries: 20
+  max_aliases_per_gene: 3
+  assay_terms:
+    - ChIP
+    - chromatin immunoprecipitation
+    - CUT&RUN
+    - binding site
+    - EMSA
+    - luciferase
+    - reporter assay
+    - knockdown
+    - knockout
+    - siRNA
+    - shRNA
+    - CRISPR
+    - overexpression
+  # Null/negative phrasing so retrieval does not favor positive regulation reports.
+  null_terms:
+    - no effect
+    - did not affect
+    - not required
+    - independent of
+    - unaffected
+    - no change
+  # "AT1" alone is omitted: it also names the angiotensin II type 1 receptor.
+  context_terms:
+    - lung
+    - pulmonary
+    - alveolar
+    - alveolar type 1
+    - alveolar type I
+    - alveolar epithelial
+    - pulmonary fibrosis
+    - idiopathic pulmonary fibrosis
+# P3 bounded literature acquisition, parsing, and passage retrieval.
+search:
+  max_queries: 20            # executed from the P2 queue's initial live slice, in priority order
+  max_results_per_query: 10  # retained publications per query (each source requests this many)
+  max_papers: 10
+  sources: [pubmed, europepmc]
+  timeout_seconds: 30
+  max_retries: 2
+  contact_tool: spatial-niche-regulatory-kg
+  include_advisor_seed_metadata: true
+  context_terms: [lung, pulmonary, alveolar, alveolus, "type 1 alveolar", "alveolar type 1", "alveolar type I",
+                  "alveolar epithelial", AT1 cell, pneumocyte, "pulmonary fibrosis", IPF]
+  assay_terms: [ChIP, chromatin immunoprecipitation, CUT&RUN, luciferase, reporter, knockdown, knockout,
+                siRNA, shRNA, CRISPR, overexpression, EMSA, binding site, motif]
+fetch:
+  # Open-access JATS full text via Europe PMC; otherwise the PubMed abstract. No PDF processing.
+  full_text_source: europepmc_fulltextxml
+  pubtator_annotations: true
+  pdf_enabled: false
+retrieval:
+  hits_per_query: 10
+  rrf_k: 60                  # conventional reciprocal-rank-fusion constant, not tuned
+  bm25_k1: 1.5
+  bm25_b: 0.75
+bundles:
+  max_bundles: 20
+  max_passages: 3
+  max_chars: 6000
+  max_per_paper: 4
+  max_per_candidate_tf: 4
+# LLM-assisted paper screening (user-authorized). .env SCREENING_MODEL overrides screening.model;
+# the run allowance is enforced per run and a run stops cleanly when any bound is reached.
+screening:
+  model: null                       # null inherits LLM_MODEL through the screener role
+  rule: p3-llm-screening-1
+  window_input_tokens: 9000         # per call, source text only; overhead is budgeted separately
+  prompt_overhead_tokens: 1200      # instruction, manuscript scope and schema
+  max_output_tokens: 5000          # this model's reasoning tokens are mandatory and share the output budget
+  window_overlap_sections: 1        # section-level overlap between consecutive windows
+  supplement_preview_chars: 400     # bounded, source-grounded preview per supplement
+  max_supplements_listed: 40
+  max_table_rows_per_section: 8   # in-article table rows shown per section; the rest stay in the corpus
+  chars_per_token: 4
+  max_attempts_per_call: 3
+  concurrency: 4
+  allowance:
+    # User-set for the acquired-pool run (2026-09-22). The run stops cleanly at the first bound reached.
+    max_calls: 700
+    max_input_tokens: 6000000
+    max_output_tokens: 1200000
+    max_usd: 1.0                    # enforced from OpenRouter's reported usage cost; unknown price is not spent blind
+embeddings:
+  # .env EMBEDDINGS_ENABLED / EMBEDDING_MODEL override these values.
+  enabled: false
+  model: null
+  revision: null
+  max_chunk_chars: 1000
+  batch_size: 32
+# P3 corpus readiness: whole advisor corpus plus the manuscript discovery queue. Batch sizes are
+# per batch, not corpus caps; every unprocessed item stays in an explicit pending queue.
+corpus:
+  version: p3-corpus-1
+  audit_batch_size: 10          # publications per acquisition batch
+  discovery_batch_size: 20      # queued queries per discovery batch
+  acquisition_batch_size: 10
+  # Accessible OA supplements larger than this stay inventoried as deferred, never silently dropped.
+  supplement_max_bytes: 30000000
+  # Named allowances for specific oversized open-access supplements (lead-authorized, bounded);
+  # everything else stays under supplement_max_bytes.
+  supplement_size_exceptions:
+    - pmid: '41075787'
+      filename: EMS210609-supplement-Supplemental_information.zip
+      max_bytes: 67108864          # 64 MiB compressed
+      max_expanded_bytes: 536870912 # 512 MiB expanded, archive guards unchanged
+      reason: Table S4 and Figure S6 are required by the KLF4/KLF5 basal-fate evidence (P3 source-gap completion)
+    - pmid: '32832598'
+      filename: aba1972_SM.pdf
+      max_bytes: 67108864          # 64 MiB compressed
+      max_expanded_bytes: 536870912
+      reason: Supplementary materials PDF holding the Table S5 legend needed for the DE table semantics (P3 source-gap review)
+  supplement_extensions: [pdf, xlsx, xlsm, csv, tsv, txt, docx, zip, xls]
+  pdf_validation_articles: 3
+  pdf: {max_bytes: 60000000, max_pages: 80, timeout_seconds: 900, ocr: false}
+  spreadsheet: {max_sheets: 20, max_rows_per_sheet: 2000, max_columns: 60}
+  corpus_hits_per_query: 10     # retrieval frontier per query; further exact-TF passages are reported as deferred
+  ready_batch: {max_papers: 10, max_bundles: 20, max_scheduled_calls: 40}
+  # Planning assumptions only (no tokenizer or prompt exists yet); P4 repeats a no-inference dry run.
+  budget:
+    chars_per_token: 3.5              # conservative for gene symbols/numbers; English prose is ~4
+    extractor_overhead_tokens: 2500   # system prompt + JSON schema, assumed until P4 prompts exist
+    verifier_overhead_tokens: 2000
+    extractor_output_tokens_typical: 700
+    extractor_output_tokens_cap: 2000
+    verifier_output_tokens_typical: 400
+    verifier_output_tokens_cap: 1500
+    reasoning_tokens_typical: 400     # billable reasoning at OPENROUTER_REASONING=low
+    reasoning_tokens_cap: 2000
+    max_attempts_per_call: 3          # 1 + 2 retries
+    schema_preflight_calls: 2         # one extractor + one verifier schema check per batch
+    planning_reserve: 0.25            # a planning margin, not an enforced ceiling
+    illustrative_rates:               # USD per million tokens (input, output); not verified quotes
+      openrouter_morph_snapshot: [0.08, 0.28]
+      openrouter_configured_ceiling: [0.15, 0.50]
+      higher_tier_illustration: [1.0, 5.0]
+    # Evidence assembly per investigation (docs/assignments/P4-evidence-assembly-agent.md): at most
+    # 4 model calls, 8,000 input tokens and 1,000 output tokens per call; history is re-sent each call.
+    assembly:
+      input_tokens_cap_per_call: 8000
+      preflight_calls_per_batch: 1
+      low: {calls: 1, first_call_input_tokens: 3000, history_growth_per_call_tokens: 0, output_tokens_per_call: 400}
+      typical: {calls: 2, first_call_input_tokens: 3500, history_growth_per_call_tokens: 2500, output_tokens_per_call: 600}
+      conservative: {calls: 4, first_call_input_tokens: 4000, history_growth_per_call_tokens: 2000, output_tokens_per_call: 1000}

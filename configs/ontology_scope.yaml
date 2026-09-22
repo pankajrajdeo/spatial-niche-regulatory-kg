@@ -1,0 +1,47 @@
+# Ontology mappings for manuscript context screening (P3). STATUS: proposed by the worker from the
+# pinned releases below; pending lead review. Matching uses labels and EXACT synonyms only (of the
+# listed terms and their is_a/part_of descendants). RELATED/BROAD synonyms (e.g. "AT1", "AM") are
+# never matched: they name other things too. A grouping parent groups evidence; it does not
+# establish the manuscript cell type.
+schema_version: 1
+mapping_version: p3-ontology-map-2
+status: proposed_pending_lead_review
+# Exact pinned releases: `version` is the file's data-version date (cache directory), `release` the OBO
+# PURL release directory, `sha256` the verified bytes. `regkg literature ontology-setup` fetches exactly
+# these and refuses any other bytes; it never falls back to a newer "latest" release.
+releases:
+  cl: {version: "2026-06-08", release: "2026-06-08", file: cl-basic.obo,
+       sha256: 73996c6349283e7a8cbd8183367a1cb810d0077e9c291ae0c72bd31e869f8c1c}
+  uberon: {version: "2026-06-19", release: "2026-06-23", file: uberon-basic.obo,
+           sha256: b27618d347df171d0dbbfc6178217487b98b96424641b8c8b4ece77256e67a14}
+  mondo: {version: "2026-09-01", release: "2026-09-01", file: mondo.obo,
+          sha256: 50c8367f9bd9978321eedf84d4e2e79cb757efbed514c81effb00b9ad2e49994}
+cell_types:
+  AT1:
+    exact_cl: [CL:0002062]                 # pulmonary alveolar type 1 cell
+    grouping_parents: [CL:0000082]         # epithelial cell of lung
+    manuscript_label_phrases: []
+  Alveolar_Macrophages:
+    exact_cl: [CL:0000583]                 # alveolar macrophage (includes cycling alveolar macrophage)
+    grouping_parents: [CL:0000235]         # macrophage
+    manuscript_label_phrases: [airspace macrophage, airspace macrophages]
+  KRT5neg_KRT17pos:
+    exact_cl: []                           # no CL class for KRT5-/KRT17+ (aberrant basaloid) cells
+    grouping_parents: [CL:0000082, CL:0002633]   # epithelial cell of lung; respiratory basal cell
+    manuscript_label_phrases: [aberrant basaloid, aberrant basaloid cell, aberrant basaloid cells,
+                               KRT5-/KRT17+, KRT5−/KRT17+, KRT17+/KRT5-]
+    # "basaloid" alone also names basaloid carcinoma cells: grouping-level only.
+    grouping_phrases: [basaloid cell, basaloid cells]
+  Activated_Fibrotic_FBs:
+    exact_cl: []                           # no CL class for activated fibrotic fibroblasts
+    grouping_parents: [CL:0002553, CL:0002241, CL:0000186]  # fibroblast of lung; pulmonary interstitial fibroblast; myofibroblast cell
+    manuscript_label_phrases: [activated fibroblast, activated fibroblasts, fibrotic fibroblast, fibrotic fibroblasts,
+                               CTHRC1+ fibroblast, CTHRC1+ fibroblasts]
+    # Grouping-level phrases: lung/IPF context, but not established as the activated fibrotic state.
+    grouping_phrases: [lung fibroblast, lung fibroblasts, pulmonary fibroblast, pulmonary fibroblasts,
+                       IPF fibroblast, IPF fibroblasts]
+anatomy:
+  lung: [UBERON:0002048]                   # lung and its part_of/is_a descendants
+diseases:
+  pulmonary_fibrosis: [MONDO:0800504, MONDO:0002771, MONDO:0015925]  # IPF; pulmonary fibrosis; interstitial lung disease
+  cancer: [MONDO:0008903]                  # lung cancer (other cancers keep the existing phrase rule)

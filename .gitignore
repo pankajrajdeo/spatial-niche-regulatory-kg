@@ -2,6 +2,9 @@
 .DS_Store
 ._*
 
+# Local planning and reference material
+/reference/
+
 # Credentials and local environment settings
 .env
 .env.*
@@ -20,10 +23,32 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
+.ipynb_checkpoints/
+.hypothesis/
+.tox/
+.nox/
 *.egg-info/
 /build/
 /dist/
+
+# Local runtime caches, logs, and temporary files
+/.cache/
+/logs/
+/tmp/
+*.swp
+*.swo
+*~
+
+# Large local model assets and caches (models are served by Ollama or downloaded by an assigned package)
+/models/
+*.gguf
+*.safetensors
+*.onnx
+*.pt
+*.pth
 
 # Generated project artifacts; supplied inputs in files/ remain tracked
 /data/

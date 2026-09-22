@@ -1,0 +1,53 @@
+# Manuscript regulatory cases (P2.11). Source: docs/manuscript_scope.md, derived from the
+# Spatial NicheLinker draft supplied 2026-09-22. Seeds are fixed manuscript regulators, included
+# regardless of score; their order is not a ranking. Draft interpretations are claims to assess,
+# never inputs to scoring, filtering, or direction. Unknown fields are rejected.
+schema_version: 1
+scope_version: manuscript-scope-1
+source: docs/manuscript_scope.md (Spatial NicheLinker draft, 2026-09-22)
+lineages:
+  - cell_type: AT1
+    tf_seeds: [TEAD1, KLF5, GATA6, FOXA2, ETV1]
+    primary_conditions: [Control, IPF]
+    # Same phrases as the accepted AT1 baseline queue. "AT1" alone is omitted: it also names
+    # the angiotensin II type 1 receptor.
+    context_terms: [lung, pulmonary, alveolar, alveolar type 1, alveolar type I, alveolar epithelial,
+                    pulmonary fibrosis, idiopathic pulmonary fibrosis]
+    draft_interpretation: >-
+      Niche1 structural program; ETV1-associated remodeling; condition-dependent FOXA2 pattern.
+  - cell_type: Alveolar_Macrophages
+    tf_seeds: [SPI1, EGR2, BHLHE41, TFEC, IRF8, CEBPB]
+    primary_conditions: [Control, IPF]
+    # "AM" alone is omitted as ambiguous.
+    context_terms: [lung, pulmonary, alveolar macrophage, alveolar macrophages, lung macrophage,
+                    pulmonary macrophage, resident macrophage, pulmonary fibrosis,
+                    idiopathic pulmonary fibrosis]
+    draft_interpretation: >-
+      Resident macrophage program, its attenuation/redistribution, and a condition-dependent
+      CEBPB pattern.
+  - cell_type: KRT5neg_KRT17pos
+    tf_seeds: [TEAD1, KLF5, RFX2]
+    # No Control niche ChromLinker contexts are supplied; Control signatures stay observation-only.
+    primary_conditions: [IPF]
+    context_terms: [lung, pulmonary, aberrant basaloid, basaloid cells, KRT5-/KRT17+, KRT17+ epithelial,
+                    pulmonary fibrosis, idiopathic pulmonary fibrosis]
+    draft_interpretation: >-
+      Junction/adhesion and epithelial regulatory redistribution; no required focal Niche2 gain.
+  - cell_type: Activated_Fibrotic_FBs
+    tf_seeds: [FOSB, TEAD1]
+    # No Control niche ChromLinker contexts are supplied; Control signatures stay observation-only.
+    primary_conditions: [IPF]
+    context_terms: [lung, pulmonary, fibroblast, fibroblasts, myofibroblast, activated fibroblast,
+                    fibrotic fibroblast, lung fibroblast, pulmonary fibrosis, idiopathic pulmonary fibrosis]
+    draft_interpretation: >-
+      Cytoskeletal/adhesion/stromal program attenuation or redistribution.
+# Reconciliation targets stated by the manuscript scope; loading fails if the lineages disagree.
+expected:
+  primary_comparisons: 6
+  lineage_tf_memberships: 16
+  unique_named_tfs: 13
+schedule:
+  # Round-robin across lineages with a rotating first lineage, so no lineage has standing
+  # priority and none waits behind another's full queue.
+  rule_version: p2-schedule-1
+  batch_size: 20

@@ -1,0 +1,230 @@
+# Habermann (PMID 32832598) supplementary DE table semantics, recovered from the paper's own methods and
+# its versioned analysis code (P3 source-gap completion, item 3). Nothing here re-runs or re-derives the
+# authors' statistics, and none of it turns expression into regulation. Fields that the sources do not
+# document stay unknown and keep an interpretation blocker.
+schema_version: 1
+rule: p3-table-semantics-3  # 3: Table S5 legend recovered from the acquired supplementary PDF
+status: proposed_pending_lead_review
+pmid: '32832598'
+publication: Habermann et al., Science Advances 2020 (eaba1972); supplementary Table S5 (aba1972_Table_S5.zip)
+
+sources:
+  - id: methods_de
+    kind: local_parsed_article
+    locator: /article/body/sec[4]/sec[9]/p
+    quote: >-
+      To identify differentially expressed genes between cell types, we used a negative binomial model as
+      implemented in the Seurat FindMarkers function, comparing each individual cell type to all other cells
+      within the major cell type cluster (immune, epithelial, endothelial, and mesenchymal).
+  - id: methods_seurat_version
+    kind: local_parsed_article
+    locator: /article/body/sec[4]/sec[7]/p
+    quote: Seurat v3 was used to perform dimensionality reduction, clustering, and visualization for the scRNA-seq data
+  - id: methods_krt_control_cells
+    kind: local_parsed_article
+    locator: /article/body/sec[4]/sec[15]/p
+    quote: >-
+      excluding Perilipin 2 (PLIN2+) fibroblasts and KRT5−/KRT17+ epithelial cells, which did not contain
+      sufficient numbers of control cells for differential expression testing
+  - id: code_availability
+    kind: local_parsed_article
+    locator: /article/body/sec[4]/sec[17]/p
+    quote: The code used to analyze the data can be found at https://github.com/tgen/banovichlab/.
+  - id: code_disease_vs_control
+    kind: versioned_analysis_code
+    repository: https://github.com/tgen/banovichlab
+    path: pulmonary_fibrosis/10x_scRNA-Seq_2019/supplemental/Fig_S4.R
+    commit: 62afd69ca325fcf17dd65f83cc0ea97881baeed6   # last commit touching this path, 2020-03-16
+    url: https://raw.githubusercontent.com/tgen/banovichlab/62afd69ca325fcf17dd65f83cc0ea97881baeed6/pulmonary_fibrosis/10x_scRNA-Seq_2019/supplemental/Fig_S4.R
+    file_sha256: 3c9e17b5578a7f1d68eb5dfcac25b0bbcedb4047f47354acf8f4d86e5b4ed470
+    retrieved_at: '2026-09-22'
+    quote: >-
+      FindMarkers(xx, group.by = "Status", ident.1 = "Control", ident.2 = "ILD", test.use = "negbinom")
+      ... write.table(disease_vs_control[[i]], paste(gsub("/", "", unique(ild_list[[i]]@meta.data$celltype)),
+      "_disease_vs_control", ".csv"), sep =",", quote = F)
+  - id: code_figure1_counts
+    kind: versioned_analysis_code
+    repository: https://github.com/tgen/banovichlab
+    path: pulmonary_fibrosis/10x_scRNA-Seq_2019/Fig1_DEF.R
+    commit: 12efa74a38fe2763ed313da92e22b5cf85d7d725   # last commit touching this path, 2019-09-05
+    url: https://raw.githubusercontent.com/tgen/banovichlab/12efa74a38fe2763ed313da92e22b5cf85d7d725/pulmonary_fibrosis/10x_scRNA-Seq_2019/Fig1_DEF.R
+    file_sha256: 19611155d65027753dab926fdc4ff88c54822c5ecf04c7e29783e570de0497e5
+    retrieved_at: '2026-09-22'
+    quote: FindMarkers(xx, group.by = "Status", ident.1 = "ILD", ident.2 = "Control", test.use = "negbinom")
+  - id: seurat_columns
+    kind: tool_documentation
+    url: https://satijalab.org/seurat/reference/findmarkers
+    retrieved_at: '2026-09-22'
+    quote: >-
+      avg_log2FC: log fold-chage of the average expression between the two groups. Positive values indicate
+      that the gene is more highly expressed in the first group. pct.1: The percentage of cells where the gene
+      is detected in the first group. pct.2: The percentage of cells where the gene is detected in the second
+      group. p_val_adj: Adjusted p-value, based on bonferroni correction using all genes in the dataset.
+  - id: legend_table_s5
+    kind: local_parsed_supplement
+    asset: aba1972_SM.pdf (acquired under the named size allowance; docling, PARSED, 105 passages)
+    locator: docling:#/texts/2918
+    quote: >-
+      Mesenchymal: Differential expression analysis between each cell type against all cell types in Mesenchymal
+      population (IPF samples only) and between each diagnosis against control for individual cell types in
+      Mesenchymal population. KRT5/KRT17_DEG: Differential expression analysis between KRT5-/KRT17+ cell type
+      against AT1, AT2, Basal, Trans_AT2, Fibroblast, HAS1 High, Myofibroblast and PLIN2+ (Figure S3).
+      IPF_vs_NonIPF: Differential expression analysis between IPF and non IPF samples in all cell types (with >
+      50 cells). Disease_vs_Control: Differential expression analysis between disease and control for all cell
+      types (with > 50 cells; Figure 1). Control_only_CT_vs_all: Differential expression analysis between each
+      cell type against all cell types in control samples only. IPF_only: Differential expression analysis
+      between HAS1 and KRT5-/KRT17+ cell type vs all mesenchymal cells, fibroblast, mesothelial cells,
+      myofibroblast and PLIN2+ for only IPF samples. CT_vs_all_per_group: Differential expression analysis
+      between each cell type against cell type sub groups in control samples only.
+  - id: legend_table_s7
+    kind: local_parsed_supplement
+    asset: aba1972_SM.pdf
+    locator: docling:#/texts/2919
+    quote: Table S7. Differentially expressed genes in KRT5-/KRT17+ cells compared to all epithelial cells, basal cells, AT1 and AT2 cells.
+  - id: seurat_log_base
+    kind: tool_documentation
+    url: https://satijalab.org/seurat/news/index.html
+    retrieved_at: '2026-09-22'
+    quote: 'Seurat 4.0.0: Default fold change in FindMarkers() changed from ln to log2'
+
+resolved:
+  gene_column:
+    value: The unnamed first column holds the gene symbol (FindMarkers row names, written without a row-name header).
+    evidence: [code_disease_vs_control]
+    note: write.table(..., sep=",", quote=F) writes row names with no header cell, which is why the header line starts at p_val.
+  statistical_test:
+    value: Negative binomial test via Seurat FindMarkers (test.use = "negbinom"); the cell is the unit of analysis.
+    evidence: [methods_de, code_disease_vs_control]
+  log_base:
+    value: Natural log. The column is avg_logFC and the paper used Seurat v3, whose FindMarkers default was ln (log2 only from Seurat 4.0.0).
+    evidence: [methods_seurat_version, seurat_log_base]
+  column_meanings:
+    value: pct.1 and pct.2 are the fractions of cells with detected expression in the first and second group; p_val_adj is Bonferroni-corrected across all genes in the dataset; a positive fold change means higher in the first group.
+    evidence: [seurat_columns]
+  direction_disease_vs_control_family:
+    value: >-
+      Supported only for the *_disease_vs_control_.csv family, which the pinned Fig_S4.R writes by that exact
+      filename pattern: ident.1 = "Control", ident.2 = "ILD", so a positive avg_logFC means higher in CONTROL.
+    scope: files whose names end in _disease_vs_control_.csv; this direction is NOT propagated to any other family
+    evidence: [code_disease_vs_control]
+    caution: >-
+      Fig1_DEF.R uses the reverse assignment for the figure 1D counts, so direction follows the script that
+      writes a given file, never the filename and never another table family.
+  population_label_disease_vs_control_family:
+    value: The cell-type label is the Seurat celltype annotation of the subset, with "/" removed, taken from the filename stem.
+    evidence: [code_disease_vs_control]
+
+  comparator_families_table_s5:
+    value: >-
+      The Table S5 legend names each family: Control_only_CT_vs_all is each cell type against all cell types in
+      CONTROL SAMPLES ONLY (the *_vsall_control_.csv files); KRT5/KRT17_DEG is KRT5-/KRT17+ against AT1, AT2,
+      Basal, Trans_AT2, Fibroblast, HAS1 High, Myofibroblast and PLIN2+ (the krt5_vs_*.csv files, comparator in
+      the filename stem); IPF_vs_NonIPF is the *_ipf_vs_non_.csv family; Disease_vs_Control covers cell types
+      with more than 50 cells; IPF_only covers HAS1 and KRT5-/KRT17+ within IPF samples.
+    evidence: [legend_table_s5]
+  comparator_vs_allepi:
+    value: Table S7 compares KRT5-/KRT17+ cells with all epithelial cells, basal cells, AT1 and AT2 cells (the *_vs_allepi.csv files).
+    evidence: [legend_table_s7]
+
+unresolved:
+  - field: explicit_numerator_of_the_cell_type_vs_all_families
+    status: supported_with_residual_uncertainty
+    why: >-
+      The legend phrases each comparison as "X against Y", which reads as X first, and Seurat reports a positive
+      fold change for the first group. The legend does not state ident.1/ident.2 and no script for these families
+      is public, so the sign is a supported reading rather than a documented fact.
+    consequence: >-
+      The KRT rows may be reported as "higher in KRT5-/KRT17+ under the legend's reading", always with that
+      qualifier, never as a bare up/down fact.
+  - field: direction_conflict_in_the_disease_vs_control_family
+    status: unknown
+    why: >-
+      The legend reads "between disease and control", while the pinned script writing those exact filenames uses
+      ident.1 = "Control", ident.2 = "ILD". Legend phrasing and code disagree.
+    consequence: For that family the code's direction is used and this conflict is reported; no claim is made without it.
+  - field: biological_caveat_of_the_KRT5-KRT17+_control_only_file
+    status: resolved_but_caveated
+    why: >-
+      The legend shows this file is a control-samples-only comparison, yet KRT5-/KRT17+ cells are reported as
+      emerging in fibrotic lungs and the methods note too few control cells for disease testing. Both TEAD1 and
+      KLF5 rows carry p_val_adj = 1.
+    consequence: These rows are weak control-sample observations, not evidence of expression in the disease population.
+  - field: donor_or_sample_aware_statistics
+    status: not_used_as_documented
+    why: The documented model tests cells, with processing site and flow cell only checked as latent variables; no donor-level test is reported.
+
+# One example whose interpretation IS established, for later P4 validation (evaluation-only; never model input).
+validation_example:
+  document_name: Myofibroblasts_disease_vs_control_.csv
+  locator: delimited:row=46
+  row_text: FOSB | 6.36418309701759e-21 | 0.808113323487624 | 0.588 | 0.301 | 1.67868057550033e-16
+  header_text: p_val | avg_logFC | pct.1 | pct.2 | p_val_adj
+  established_reading: >-
+    In myofibroblasts, FOSB has a natural-log average fold change of 0.808 with the first group being Control
+    and the second ILD, so detected expression is HIGHER IN CONTROL myofibroblasts (58.8% of control cells vs
+    30.1% of ILD cells), Bonferroni-adjusted p 1.68e-16, negative binomial test on cells.
+  must_reject:
+    - reading the filename as "disease versus control" and reporting FOSB as increased in fibrosis
+    - treating log fold change as log2
+    - any statement that FOSB regulates a gene, or that this is a donor-level or causal result
+    - counting this table row as an experiment independent of the paper's other analyses
+
+# Adams (PMID 32832599) data S2-S10: documented by that paper's own methods, recovered while repairing the
+# row-limit truncation. Its headers are self-describing (cellType, gene, log1p_FC, pct.inGroup/pct.outGroup).
+additional_publications:
+  - pmid: '32832599'
+    publication: Adams et al., Science Advances 2020 (eaba1983)
+    sources:
+      - id: adams_marker_lists
+        kind: local_parsed_article
+        locator: /article/body/sec[4]/sec[8]/p[1]
+        quote: >-
+          Cell type marker lists were generated with two separate approaches. In the first approach, we sought to
+          adjust for unbalanced representation of different cell types across subjects and reduce the zero inflation
+          in the data to generate a more reliable P value from a differential expression test. We collapsed the gene
+          expression matrix values to one where each column represents average gene expression for a given subject
+          and for a given cell type.
+      - id: adams_disease_comparisons
+        kind: local_parsed_article
+        locator: /article/body/sec[4]/sec[10]/p[2]
+        quote: >-
+          For each subject and each cell type, the gene expression for each gene was averaged to create a single
+          "sample" representative of an individual. We then applied a Wilcoxon rank sum test between within each cell
+          type and average values from subjects of each disease condition for a total of three comparisons (IPF
+          versus control, COPD versus control, and IPF versus COPD; data S8, S9, and S10, respectively). Cell types
+          with less than five subjects representative of a particular disease condition were not included its analysis.
+      - id: adams_de_limitation
+        kind: local_parsed_article
+        locator: /article/body/sec[4]/sec[10]/p[1]
+        quote: >-
+          A major limitation that persists in scRNA-seq analysis is the lack of a differential expression model that
+          can account for cellular population differences while ultimately testing differences at the level of the
+          subject, rather than treating each individual cell as an independent sample. While we were unable to design
+          a model capable of handling the complex sample hierarchy scRNA-seq, we nonetheless applied a crude method
+          of differential expression.
+    resolved:
+      table_families:
+        value: data S2-S6 are cell-type marker lists (a cell type against the other cell types of its group); data S8, S9 and S10 are IPF vs control, COPD vs control and IPF vs COPD.
+        evidence: [adams_marker_lists, adams_disease_comparisons]
+      statistical_unit:
+        value: Gene expression is averaged per subject and per cell type first, then compared with a Wilcoxon rank sum test; cell types with fewer than five subjects in a condition are excluded.
+        evidence: [adams_disease_comparisons]
+      author_caution:
+        value: The authors describe their differential expression as a crude method that does not model the subject hierarchy.
+        evidence: [adams_de_limitation]
+      columns:
+        value: The header names the fields (cellType, gene, log1p_FC, pct.inGroup, pct.outGroup, wilcox.p, wilcox.fdr, wilcox.bonferroni), so the population label travels with each row.
+        evidence: [adams_marker_lists]
+    unresolved:
+      - field: sign_convention_of_log1p_FC
+        status: unknown
+        why: The file documents the column name but not which group is the numerator; the methods do not state it either.
+        consequence: Direction may not be asserted for these rows; only membership of the marker list and the reported magnitudes may be recorded.
+    recovered_by_this_repair:
+      document_name: aba1983_Data_S2.txt
+      locator: delimited:row=4713
+      row_text: 4712 | Aberrant Basaloid | TEAD1 | 0.394639728620689 | 1 | 0.917647058823529 | 9.95786158858326e-08 | 1.44761864503633e-07 | 6.5723384862455e-05
+      note: >-
+        The corpus's first row joining the exact KRT5-/KRT17+ (aberrant basaloid) population to a named manuscript
+        regulator. It lay past the old 2,000-row parse limit. It is cell-type marker expression, not regulation, and
+        its direction stays unread until the sign convention is documented.

@@ -1,0 +1,30 @@
+# Candidate generation (package P2). Later packages add their own sections; unknown fields are
+# rejected. These are provisional, versioned engineering rules, not calibrated biology.
+schema_version: 1
+candidate_generation:
+  rule_version: p2-candidates-2
+  cell_types: [AT1]
+  resources:
+    hgnc:
+      # Dated, immutable HGNC monthly archive (verified against its object-store MD5).
+      archive_date: "2026-09-04"
+    collectri:
+      # CollecTRI regulons v2.0 (CC-BY-4.0); the export decoupler.op.collectri() documents.
+      zenodo_record: "8192729"
+      filename: CollecTRI_regulons.csv
+      # Documented CollecTRI complexes; kept as complex regulators, never split into members.
+      complex_regulators: [AP1, NFKB]
+    seed_publication_lists:
+      tf_target_disease: files/TF_target_disease_literature/lung_TF_target_disease_papers.csv
+      experimental_edges: files/TF_target_disease_literature/lung_experimental_edge_papers.csv
+    expected_unique_pmids: 110
+  concordance:
+    min_targets: 5
+    # Primary policy "literature_or_regulon_sign" (a project analysis choice, not the standard
+    # CollecTRI benchmark): signs from references or regulon-majority inference. Regulon-inferred
+    # signs are not edge-specific experimental evidence. "default_activation" records carry an
+    # assumed +1 and appear only in the "sensitivity_collectri_assigned_weights" output.
+    primary_sign_bases: [pmid_evidence, tf_regulon_majority]
+    sensitivity_sign_bases: [pmid_evidence, tf_regulon_majority, default_activation]
+  extra_tfs_per_comparison: 5
+  targets_per_candidate: 3

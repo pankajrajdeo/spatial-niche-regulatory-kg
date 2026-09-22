@@ -1,0 +1,61 @@
+# Bounded gap-directed queue for the two lineages with no exact-population evidence in the corpus
+# (P3 source-gap completion, item 4). Separate from the accepted P2 queue, which is not modified.
+# Terms are exact population synonyms (ontology labels/EXACT synonyms and manuscript spellings) crossed
+# with the named regulator of that lineage. A query that returns nothing means missing literature
+# support in these sources, never biological absence.
+schema_version: 1
+rule: p3-gap-queries-1
+status: proposed_pending_lead_review
+acquisition_cap: 20
+queries:
+  - query_id: gap-KRT5neg_KRT17pos-HGNC:11714
+    cell_type: KRT5neg_KRT17pos
+    tf_hgnc_id: HGNC:11714
+    terms:
+      tf: [TEAD1, TCF13, TEF-1]
+      target: []
+      qualifiers: [aberrant basaloid, KRT5-/KRT17+, KRT17+/KRT5-, aberrant basal-like, basaloid cell]
+  - query_id: gap-KRT5neg_KRT17pos-HGNC:6349
+    cell_type: KRT5neg_KRT17pos
+    tf_hgnc_id: HGNC:6349
+    terms:
+      tf: [KLF5, BTEB2]
+      target: []
+      qualifiers: [aberrant basaloid, KRT5-/KRT17+, KRT17+/KRT5-, aberrant basal-like, basaloid cell]
+  - query_id: gap-KRT5neg_KRT17pos-HGNC:9983
+    cell_type: KRT5neg_KRT17pos
+    tf_hgnc_id: HGNC:9983
+    terms:
+      tf: [RFX2]
+      target: []
+      qualifiers: [aberrant basaloid, KRT5-/KRT17+, KRT17+/KRT5-, aberrant basal-like, basaloid cell]
+  - query_id: gap-Activated_Fibrotic_FBs-HGNC:3797
+    cell_type: Activated_Fibrotic_FBs
+    tf_hgnc_id: HGNC:3797
+    terms:
+      tf: [FOSB]
+      target: []
+      qualifiers: [activated fibroblast, fibrotic fibroblast, CTHRC1+ fibroblast, CTHRC1, myofibroblast]
+  - query_id: gap-Activated_Fibrotic_FBs-HGNC:11714
+    cell_type: Activated_Fibrotic_FBs
+    tf_hgnc_id: HGNC:11714
+    terms:
+      tf: [TEAD1, TCF13, TEF-1]
+      target: []
+      qualifiers: [activated fibroblast, fibrotic fibroblast, CTHRC1+ fibroblast, CTHRC1, myofibroblast]
+  # The two lineage questions without a regulator term, to see whether any regulatory study of the
+  # exact populations exists that the TF-anchored queries miss.
+  - query_id: gap-KRT5neg_KRT17pos-regulation
+    cell_type: KRT5neg_KRT17pos
+    tf_hgnc_id: HGNC:11714
+    terms:
+      tf: [transcription factor, transcriptional regulation, gene regulatory network, ChIP-seq, CUT&RUN, ATAC-seq]
+      target: []
+      qualifiers: [aberrant basaloid, KRT5-/KRT17+, KRT17+/KRT5-, aberrant basal-like]
+  - query_id: gap-Activated_Fibrotic_FBs-regulation
+    cell_type: Activated_Fibrotic_FBs
+    tf_hgnc_id: HGNC:3797
+    terms:
+      tf: [transcription factor, transcriptional regulation, gene regulatory network, ChIP-seq, CUT&RUN, ATAC-seq]
+      target: []
+      qualifiers: [CTHRC1+ fibroblast, fibrotic fibroblast, activated fibroblast]
