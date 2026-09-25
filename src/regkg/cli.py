@@ -192,7 +192,15 @@ def cmd_corpus(args: argparse.Namespace) -> int:
         from regkg.workflows.screening import run_screening_command
 
         result = run_screening_command(
-            loaded, args.run, path, args.corpus, args.limit, args.pmids.split(",") if args.pmids else None, args.label
+            loaded,
+            args.run,
+            path,
+            args.corpus,
+            args.limit,
+            args.pmids.split(",") if args.pmids else None,
+            args.label,
+            args.pool,
+            args.repair_failed,
         )
     elif args.action == "screen-dry-run":
         from regkg.workflows.screening import run_screening_dry_run
@@ -247,9 +255,53 @@ def cmd_verify_config(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_extract(args: argparse.Namespace) -> int:
+    import fcntl
+
+    from regkg.workflows.extraction import run
+
+    root = _package_repo_root()
+    path = root / "data/work/p4.lock"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        result = run(
+            root,
+            args.run,
+            args.limit,
+            args.live,
+            args.assembly,
+            args.retry_failed,
+            batch_index=args.batch,
+            assembly_repair=args.assembly_repair,
+        )
+    print(json.dumps(result, indent=2))
+    return 1 if result["status"] in {"PREFLIGHT_FAILED", "PARTIAL_WORKFLOW"} else 0
+
+
+def cmd_verify_evidence(args: argparse.Namespace) -> int:
+    from regkg.workflows.extraction import verify_evidence
+
+    print(json.dumps(verify_evidence(_package_repo_root(), args.run), indent=2))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="regkg", description="Spatial NicheLinker regulatory evidence KG")
     commands = parser.add_subparsers(dest="command", required=True)
+
+    extract = commands.add_parser("extract", help="prepare or validate P4 against a verified P3 selection")
+    extract.add_argument("--run", required=True, help="p3selection-* source artifact")
+    choice = extract.add_mutually_exclusive_group()
+    choice.add_argument("--limit", type=int, default=8, help="representative validation bundles, maximum 20")
+    choice.add_argument("--batch", type=int, default=None, help="consume one complete numbered P3 ready batch")
+    execution = extract.add_mutually_exclusive_group()
+    execution.add_argument("--dry-run", action="store_true", help="pin and verify inputs without model calls (default)")
+    execution.add_argument("--live", action="store_true")
+    extract.add_argument("--assembly", action="store_true", help="also validate one source-context investigation")
+    extract.add_argument("--assembly-repair", default=None, help="named repair of a stopped, reconciled assembly case")
+    extract.add_argument("--retry-failed", action="store_true", help="retry known failures within remaining allowance")
+    extract.set_defaults(handler=cmd_extract)
 
     ingest = commands.add_parser("ingest", help="audit and ingest all supplied project data")
     ingest.add_argument("--config", type=Path, required=True, help="project configuration YAML")
@@ -358,7 +410,13 @@ def build_parser() -> argparse.ArgumentParser:
     dry.add_argument("--literature", type=Path, default=None)
     dry.set_defaults(handler=cmd_corpus)
 
-    live = actions.add_parser("screen-run", help="run LLM screening over the acquired pool within the allowance")
+    live = actions.add_parser("screen-run", help="screen frozen acquired/discovered pools within the allowance")
+    live.add_argument("--pool", choices=["all", "acquired", "discovery"], default="all")
+    live.add_argument(
+        "--repair-failed",
+        action="store_true",
+        help="repair failed windows in separate provenance-linked caches; reuse valid windows",
+    )
     live.add_argument("--run", required=True, help="accepted manuscript candidate key (mcandidates-*)")
     live.add_argument("--corpus", required=True, help="published corpus artifact key (litcorpus-*)")
     live.add_argument("--limit", type=int, default=None, help="screen at most N papers in this invocation")
@@ -381,6 +439,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     verify = commands.add_parser("verify", help="verify a stage artifact or configuration")
     targets = verify.add_subparsers(dest="target", required=True)
+    evidence_check = targets.add_parser("evidence", help="verify P4 file hashes, joins and exact source spans")
+    evidence_check.add_argument("--run", required=True)
+    evidence_check.set_defaults(handler=cmd_verify_evidence)
     project_data = targets.add_parser("project-data", help="verify an ingest artifact")
     project_data.add_argument("--run", required=True, help="ingest key printed by 'regkg ingest'")
     project_data.add_argument(

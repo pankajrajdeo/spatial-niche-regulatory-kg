@@ -10,7 +10,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 from urllib.parse import urlsplit
 
 import yaml
@@ -249,6 +249,7 @@ SUPPORTED_ENV_NAMES = SECRET_ENV_NAMES | {
     "EMBEDDING_MODEL",
     "OLLAMA_BASE_URL",
     "LITELLM_BASE_URL",
+    "LITELLM_API_BASE",
     "NEO4J_URI",
     "NEO4J_USERNAME",
     "NEO4J_DATABASE",
@@ -276,8 +277,15 @@ def load_environment(env_file: Path | None, process_env: Mapping[str, str] | Non
         file_values = {
             key: value for key, value in dotenv_values(env_file, interpolate=False).items() if value is not None
         }
-    merged = dict(file_values)
-    merged.update(os.environ if process_env is None else process_env)
+
+    def with_alias(values):
+        values = dict(values)
+        if "LITELLM_BASE_URL" not in values and "LITELLM_API_BASE" in values:
+            values["LITELLM_BASE_URL"] = values["LITELLM_API_BASE"]
+        return values
+
+    merged = with_alias(file_values)
+    merged.update(with_alias(os.environ if process_env is None else process_env))
     return merged
 
 
@@ -797,6 +805,7 @@ class ScreeningAllowance(StrictModel):
 
 class ScreeningConfig(StrictModel):
     model: str | None = None
+    litellm_reasoning_effort: Literal["low", "high", "max"] | None = None
     rule: str
     window_input_tokens: int = Field(ge=500)
     prompt_overhead_tokens: int = Field(ge=0)

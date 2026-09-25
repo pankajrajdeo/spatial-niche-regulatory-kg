@@ -218,3 +218,18 @@ def test_real_project_config_is_valid_and_covers_scope():
     assert config.at1_scope.tf_seeds == ["TEAD1", "KLF5", "GATA6", "FOXA2", "ETV1"]
     assert {d.focal_cell_type for d in config.niche_definitions} <= set(config.cell_types)
     assert config.dataset.conditions["Control"].disease is None
+
+
+def test_litellm_api_base_alias_respects_process_precedence_and_preserves_file(tmp_path):
+    path = tmp_path / ".env"
+    original = "LITELLM_API_BASE=https://proxy.example/v1\nLLM_MODEL=litellm:team/model\n"
+    path.write_text(original)
+    env = load_environment(path, {})
+    assert env["LITELLM_BASE_URL"] == "https://proxy.example/v1"
+    assert load_environment(path, {"LITELLM_BASE_URL": ""})["LITELLM_BASE_URL"] == ""
+    path.write_text("LITELLM_BASE_URL=https://file.example\n")
+    assert (
+        load_environment(path, {"LITELLM_API_BASE": "https://process.example"})["LITELLM_BASE_URL"]
+        == "https://process.example"
+    )
+    assert path.read_text() == "LITELLM_BASE_URL=https://file.example\n"

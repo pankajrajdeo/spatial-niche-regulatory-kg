@@ -71,23 +71,25 @@ bundles:
 # the run allowance is enforced per run and a run stops cleanly when any bound is reached.
 screening:
   model: null                       # null inherits LLM_MODEL through the screener role
+  litellm_reasoning_effort: low      # explicit LiteLLM setting; never inherited from OpenRouter env fields
   rule: p3-llm-screening-1
   window_input_tokens: 9000         # per call, source text only; overhead is budgeted separately
   prompt_overhead_tokens: 1200      # instruction, manuscript scope and schema
-  max_output_tokens: 5000          # this model's reasoning tokens are mandatory and share the output budget
+  max_output_tokens: 12000         # LiteLLM smoke exhausted 5000 on reasoning; leave room for structured output
   window_overlap_sections: 1        # section-level overlap between consecutive windows
   supplement_preview_chars: 400     # bounded, source-grounded preview per supplement
   max_supplements_listed: 40
   max_table_rows_per_section: 8   # in-article table rows shown per section; the rest stay in the corpus
   chars_per_token: 4
-  max_attempts_per_call: 3
+  max_attempts_per_call: 2
   concurrency: 4
   allowance:
-    # User-set for the acquired-pool run (2026-09-22). The run stops cleanly at the first bound reached.
-    max_calls: 700
-    max_input_tokens: 6000000
-    max_output_tokens: 1200000
-    max_usd: 1.0                    # enforced from OpenRouter's reported usage cost; unknown price is not spent blind
+    # User confirmed unlimited LiteLLM GLM quota on 2026-09-22. This finite-corpus
+    # runaway guard replaces the old OpenRouter allowance; at most two attempts/window.
+    max_calls: 10000
+    max_input_tokens: null
+    max_output_tokens: null
+    max_usd: null                    # proxy cost is unknown, not zero
 embeddings:
   # .env EMBEDDINGS_ENABLED / EMBEDDING_MODEL override these values.
   enabled: false
@@ -107,6 +109,16 @@ corpus:
   # Named allowances for specific oversized open-access supplements (lead-authorized, bounded);
   # everything else stays under supplement_max_bytes.
   supplement_size_exceptions:
+    - pmid: '33320836'
+      filename: jciinsight-6-144294-s076.zip
+      max_bytes: 67108864
+      max_expanded_bytes: 536870912
+      reason: Final P3 selected MUC5B evidence references this 31.9 MB supplement; inspect existing reported context only
+    - pmid: '42549055'
+      filename: MCO2-7-e70887-s001.docx
+      max_bytes: 67108864
+      max_expanded_bytes: 536870912
+      reason: Final P3 selected alveolar macrophage evidence references this 62.9 MB supplement; parse text and captions only
     - pmid: '41075787'
       filename: EMS210609-supplement-Supplemental_information.zip
       max_bytes: 67108864          # 64 MiB compressed

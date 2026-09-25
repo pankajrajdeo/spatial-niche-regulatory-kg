@@ -2,7 +2,7 @@
 
 A biomedical evidence knowledge graph for investigating transcriptional regulation in spatial lung niches, across the epithelial, immune, and mesenchymal regulatory cases in the Spatial NicheLinker IPF manuscript.
 
-**Continue here:** [current migration checkpoint](docs/CONTINUE_HERE.md) and [restore/setup instructions](docs/RESUME.md). The user stopped local OpenRouter screening and is continuing on another laptop via LiteLLM quota. Code and plan are tracked; the complete data/report/reference snapshot is in private Git LFS parts under `transfer/`. Run `git lfs pull` and restore it before resuming. P4–P6 remain unfinished.
+**Continue here:** [current checkpoint](docs/CONTINUE_HERE.md) and [restore/setup instructions](docs/RESUME.md). P4 extraction is paused for architecture review after bounded GLM/Kimi diagnostics; scientific accuracy and manuscript completion remain unvalidated. Code, configuration, tests and the plan are tracked. The Git LFS snapshot under `transfer/` captures the earlier 2026-09-22 migration state, not subsequent runtime results or reference additions. This laptop already has restored sources; follow the restore instructions only when preparing another checkout. P4–P6 remain unfinished.
 
 ## Repository contents
 
@@ -11,7 +11,7 @@ A biomedical evidence knowledge graph for investigating transcriptional regulati
 - [Final synthesis](reference/chatgpt/chatgpt_final_synthesis.md): scientific design and project-data interpretation.
 - [LangChain synthesis](reference/chatgpt/chatgpt_langchain_synthesis.md): literature-processing and integration design.
 - `files/`: supplied ChromLinker scores, pseudobulk expression, pooled niche-expression signatures, neighborhood profiles, and literature seed material. Legacy literature scripts require adaptation before use.
-- `reference/`: design conversations, earlier research notes, and a local LangChain documentation mirror. The mirror is reference material, not the application SDK.
+- `reference/`: design conversations and earlier research notes. The current local implementation references are `reference/GitHub/openwiki/`, `reference/GitHub/graphrag/`, and `reference/GitHub/langchain-sdk-main/`. These ignored local directories are not included by a code push; the LangChain mirror is documentation, not an installable SDK.
 
 ## Planned workflow
 
@@ -24,13 +24,13 @@ A biomedical evidence knowledge graph for investigating transcriptional regulati
 
 Working files remain the source of truth. Neo4j is a rebuildable query representation. The pooled niche-expression signatures are descriptive; they are not sample-aware differential-expression results. Predictions, experimental findings, and nominations retain distinct meanings.
 
-Planned LLM integrations are LiteLLM proxy, OpenRouter, and Groq. Optional retrieval embeddings use Ollama or Sentence Transformers. Models are configured as `provider:model_name`; see the plan for environment variables and exact contracts. Credentials belong in local environment settings and must not be committed.
+LLM adapters support LiteLLM proxy, OpenRouter, and Groq. Optional retrieval embeddings use Ollama or Sentence Transformers. Models are configured as `provider:model_name`; see the plan for environment variables and exact contracts. Credentials belong in local environment settings and must not be committed.
 
 ## Local model configuration
 
-For the destination laptop use its existing LiteLLM configuration as described in CONTINUE_HERE.md. The OpenRouter defaults below describe the original laptop; do not spend OpenRouter credit unintentionally.
+Use the existing LiteLLM configuration as described in CONTINUE_HERE.md. The extractor inherits `LLM_MODEL` from the local environment, currently `litellm:prescient.glm-5.3-flash`; [configs/extraction.yaml](configs/extraction.yaml) selects `litellm:prescient.kimi-k3` for verification. Preserve the local `.env`. The OpenRouter defaults below describe the original laptop's example file.
 
-Root [.env.example](.env.example) contains the current nonsecret selections. A local `.env` has the same initial settings and is ignored by Git; add your own `OPENROUTER_API_KEY` there. On a fresh clone, copy `.env.example` to `.env` only if `.env` does not already exist.
+Root [.env.example](.env.example) contains historical OpenRouter defaults and empty credential placeholders. On a fresh clone, copy it to `.env` only if `.env` does not already exist, then explicitly configure the selected provider. LiteLLM uses `LITELLM_BASE_URL` (or `LITELLM_API_BASE`) and `LITELLM_API_KEY`; do not configure another provider merely because it appears in the example.
 
 - LLM: `openrouter:z-ai/glm-5.3-flash`; verification inherits this model by default.
 - Embeddings: `ollama:pankajrajdeo/biomed-embeddings-16l-fp16:latest`.
@@ -39,7 +39,7 @@ Root [.env.example](.env.example) contains the current nonsecret selections. A l
 
 Both extraction and verification share these OpenRouter settings when using `openrouter:`. LiteLLM and Groq do not use this host ordering, latency sorting, or other OpenRouter request options.
 
-The plan specifies how workers will implement env loading and request mapping. Direct API smoke checks passed for Ollama embeddings (384 dimensions) and GLM extraction/verification. GLM requires reasoning `low` on the tested route. LangChain integration and scientific validation remain pending.
+Environment loading, provider-specific request mapping, LangChain structured extraction/verification, and bounded local evidence assembly are implemented. Live diagnostics and fixture tests are recorded in [the P4 handoff](docs/handoffs/P4.md); they do not establish extraction precision or recall. The current checkpoint governs execution status and subsequent validation.
 
 ## Setup
 
@@ -80,4 +80,4 @@ Tests use tiny synthetic inputs only: `.venv/bin/python -m pytest -q`.
 
 ## Starting implementation
 
-Read the current manuscript scope and plan §16. Preserve the accepted AT1 baseline. The P2 manuscript extension is accepted ([review](docs/reviews/P2-manuscript.md)); proceed with P3 corpus readiness using `mcandidates-c278c6625ff7c537` and retain the accepted P3 repair chain as a regression baseline. Advisor metadata/full-text audit can proceed independently. Workers submit evidence for lead review before advancing; implementation checkboxes remain unchecked until accepted. Generated artifacts, environments, and caches are ignored by Git. Supplied inputs and reference material are retained with their existing provenance and any applicable upstream terms; this repository does not grant new rights to third-party material.
+Read the current checkpoint, manuscript scope and plan §16. Preserve completed P1–P3 work and the paused P4 diagnostics. The P2 manuscript extension is accepted ([review](docs/reviews/P2-manuscript.md)); extraction validation, corpus expansion and manuscript-wide graph integration remain pending. Workers submit evidence for lead review before advancing; implementation checkboxes remain unchecked until accepted. Generated artifacts, environments, and caches are ignored by Git. Supplied inputs and reference material are retained with their existing provenance and any applicable upstream terms; this repository does not grant new rights to third-party material.

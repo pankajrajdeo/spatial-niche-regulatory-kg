@@ -1,10 +1,12 @@
+Current authorized P4 context limit: eight selected source parts and 16,000 serialized characters; the earlier three-part payload examples below are historical. Preserve frozen P3 inputs and all source/experiment-link checks. See [current automation](../P4_CRITIQUE_AUTOMATION.md).
+
 # P4 evidence-assembly agent: implementation contract
 
-Design: 2026-09-22. Status: **SPECIFIED; NOT IMPLEMENTED OR ACCEPTED**.
+Design: 2026-09-22. Implementation checkpoint: 2026-09-23. Status: **IMPLEMENTATION/OFFLINE VALIDATION PRESENT; LIVE ACCEPTANCE PENDING**. See [P4 handoff](../handoffs/P4.md) for tested coverage and limitations.
 Read with [P3 corpus readiness](P3-corpus-readiness.md),
 [file readiness](P3-file-readiness.md), AGENTS.md and plan §10.
 This document narrowly supersedes the old blanket ban on a runtime agent.
-It does not authorize P4 development/live calls before the existing user checkpoint.
+The 2026-09-23 user assignment now authorizes implementation and bounded validation on the verified available source subset (plan §16); comprehensive expansion remains required afterward.
 
 ## 1. Scope and location in the pipeline
 
@@ -277,6 +279,14 @@ only after verifying the selected model's tool calling; the final schema-respons
 tool is not a data-access tool. Any host repair attempt uses the same four-call
 allowance. Provider-native structured output is an alternative only if tested
 with ordinary tools simultaneously; never silently change models/strategies.
+2026-09-23 repair decision: live tool calling succeeded, but a malformed final schema
+response stopped the initial `handle_errors=False` path. Use an explicit host callback
+that handles only `StructuredOutputValidationError` and permits at most one correction
+within the same four-model-call/eight-tool-call allowance. Every raw response and known
+usage is retained; a second malformed response stops. This is not a general tool/network
+retry loop. Reopening an already stopped case requires a named repair invocation with
+its parent ledger checksum and the unchanged cumulative budget; never erase its ledger.
+
 Count all emitted tool calls, including the final structured response, against
 the tool-call ceiling (or make the host total stricter than the framework count).
 
@@ -303,8 +313,9 @@ history each turn; tool execution itself is local but tool results incur input
 tokens when sent back to the model. Exact tokenizer support is required for an
 exact token claim; otherwise use a conservative documented estimate and label it.
 
-The host additionally requires a batch/corpus USD cap, model-attempt cap and
-selected provider rates. Reserve conservatively at configured maximum rates;
+For the selected LiteLLM proxy, the user's unlimited-quota instruction permits the current bounded validation with finite attempt/input/output reservations and unknown dollar price; never report unknown price as zero. This is the current provider-specific exception to the original USD-cap prerequisite. The 24,000-byte conservative input bound in `configs/extraction.yaml` includes actual tool schemas/history; live GLM output/cap compatibility still needs validation.
+
+For other priced-provider live runs, the host additionally requires a batch/corpus USD cap, model-attempt cap and selected provider rates. Reserve conservatively at configured maximum rates;
 refund only known unused allowance. Unknown usage after a timeout remains
 reserved/unknown, not zero. Serialize reservations or use atomic locking.
 

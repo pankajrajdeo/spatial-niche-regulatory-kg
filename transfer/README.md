@@ -5,3 +5,5 @@ This snapshot was requested for migration to the user's second laptop on 2026-09
 Read docs/CONTINUE_HERE.md and docs/RESUME.md. Run `git lfs pull`, then `.venv/bin/python scripts/restore_snapshot.py`. Loose data/report/reference files remain ignored to avoid accidental duplicate storage. Future snapshots should be deliberate checkpoints, not part of every code commit.
 
 Source provenance, historical artifacts, and recorded source access/reuse metadata are preserved. Credentials must be configured privately on the destination. This is a resume snapshot, not a public dataset release.
+
+On the current laptop, the snapshot is already restored and all 31,110 files were reverified on 2026-09-22. To save 3.2 GB, the redundant archive parts in this working directory were returned to Git LFS pointers. Their verified objects remain in the local LFS store. Normal P3 work needs no restoration; `git lfs checkout transfer/` can rehydrate the archive locally if a deliberate restore is needed. Do not rerun `git lfs pull` merely to continue processing.

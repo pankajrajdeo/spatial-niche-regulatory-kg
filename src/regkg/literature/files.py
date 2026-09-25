@@ -533,14 +533,18 @@ def inspect_zip(
 
 
 def docling_assets() -> dict:
-    """Installed Docling versions and cached model revisions (local Hugging Face cache refs)."""
+    """Installed Docling versions and revisions of the models its PDF pipeline uses."""
     import importlib.metadata as metadata
 
     versions = {p: metadata.version(p) for p in ("docling", "docling-core", "docling-ibm-models")}
     cache = Path.home() / ".cache" / "huggingface" / "hub"
     models = {}
-    for repo in ("docling-project--docling-layout-heron", "docling-project--docling-models"):
-        ref = cache / f"models--{repo}" / "refs" / "main"
+    # The pinned Docling 2.129.0 TableStructureModel requests v2.3.0, not main.
+    for repo, revision in (
+        ("docling-project--docling-layout-heron", "main"),
+        ("docling-project--docling-models", "v2.3.0"),
+    ):
+        ref = cache / f"models--{repo}" / "refs" / revision
         models[repo.replace("--", "/")] = ref.read_text().strip() if ref.is_file() else None
     return {**versions, "models": models}
 

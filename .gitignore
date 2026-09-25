@@ -13,6 +13,7 @@
 *.pem
 *.key
 *.p12
+certs/
 
 # Python environments and generated caches
 .venv/

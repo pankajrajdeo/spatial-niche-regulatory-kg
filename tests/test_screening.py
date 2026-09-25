@@ -108,16 +108,92 @@ def test_one_negative_window_never_excludes_a_paper_and_unread_windows_force_unc
     assert only_negative["AT1"]["decision"] == "needs_full_text_or_context"
 
 
-def test_allowance_stops_the_run_at_the_first_bound():
-    budget = Budget(Allowance(max_calls=2, max_input_tokens=None, max_output_tokens=None, max_usd=0.5))
-    assert budget.check() is None
-    budget.spend({"input_tokens": 100, "output_tokens": 10, "usd": 0.1})
-    assert budget.check() is None
-    budget.spend({"input_tokens": 100, "output_tokens": 10, "usd": None})
-    assert budget.check() == "max_calls" and budget.price_unknown_calls == 1
-    spent = Budget(Allowance(max_calls=None, max_input_tokens=None, max_output_tokens=None, max_usd=0.2))
-    spent.spend({"input_tokens": 1, "output_tokens": 1, "usd": 0.25})
-    assert spent.check() == "max_usd"
+def test_concurrent_attempts_and_repairs_cannot_exceed_allowance(tmp_path):
+    from concurrent.futures import ThreadPoolExecutor
+
+    budget = Budget(Allowance(2, 250, 30, None), tmp_path / "budget.json")
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        outcomes = list(pool.map(lambda _: budget.reserve(100, 10), range(20)))
+    allowed = [reservation for reservation, stop in outcomes if stop is None]
+    assert len(allowed) == 2
+    for reservation in allowed:
+        budget.settle(reservation, {"input_tokens": 80, "output_tokens": 8, "usd": None})
+    assert budget.used == {"calls": 2, "input_tokens": 160, "output_tokens": 16, "usd": None}
+    resumed = Budget(Allowance(2, 250, 30, None), tmp_path / "budget.json")
+    assert resumed.reserve(1, 1)[1] == "max_calls"
+    assert resumed.price_unknown_calls == 2
+
+
+def test_crashed_or_failed_requests_keep_reservation_and_unknown_usage(tmp_path):
+    path = tmp_path / "budget.json"
+    budget = Budget(Allowance(10, 110, 20, None), path)
+    reservation, _ = budget.reserve(100, 10)
+    resumed = Budget(Allowance(10, 110, 20, None), path)
+    assert resumed.reserve(20, 1)[1] == "max_input_tokens"
+    budget.settle(reservation, {"input_tokens": None, "output_tokens": None, "usd": None})
+    assert budget.used["input_tokens"] == 100 and budget.unknown_token_calls == 1
+    assert budget.used["usd"] is None
+    assert Budget(Allowance(1, None, None, 1)).reserve(1, 1)[1] == "cost_reservation_unavailable"
+
+
+def test_invalid_json_retry_is_counted_and_cannot_bypass_call_limit(monkeypatch, tmp_path):
+    from regkg.workflows import screening as workflow
+
+    calls = []
+
+    def invalid(*args):
+        calls.append(1)
+        return None, {"input_tokens": 10, "output_tokens": 5, "usd": None}, "not JSON"
+
+    monkeypatch.setattr(workflow, "call_window", invalid)
+    paper = _paper([sl.Section("s", "body", "results", [("p1", "A source result.")])])
+    window = sl.Window("w1", 1, 1, ["s"], "[p1] A source result.", ["p1"])
+    result = workflow._call_with_repair(
+        paper,
+        window,
+        "scope",
+        None,
+        {"max_output_tokens": 100, "max_attempts_per_call": 2},
+        Budget(Allowance(1, None, None, None)),
+        "prompt",
+    )
+    assert len(calls) == 1 and result["calls"] == 1
+    assert result["state"] == "allowance_reached:max_calls"
+    assert result["usage"]["usd"] is None
+
+
+def test_oversized_sections_keep_every_passage_and_bound_windows():
+    text = "A long source passage. " * 500
+    paper = _paper([sl.Section("s", "body", "results", [("p1", text), ("p2", "Other source text.")])])
+    windows = sl.make_windows(paper, 1000, 1, "none")
+    assert len(windows) > 5 and all(len(w.text) < 1100 for w in windows)
+    assert {pid for w in windows for pid in w.passage_ids} == {"p1", "p2"}
+    fragments = []
+    for w in windows:
+        for line in w.text.splitlines():
+            if line.startswith("[p1] "):
+                fragments.append(line[5:])
+    assert "".join(fragments) == text
+
+
+def test_ungrounded_inclusion_and_unassessed_questions_stay_uncertain():
+    result = sl.WindowScreening(
+        assessments=[sl.QuestionAssessment(question="AT1", decision="include_for_extraction", rationale="r")]
+    )
+    assert sl.validate_citations(result, {})[0]["problem"] == "ungrounded_positive_decision"
+    merged = sl.merge_windows([], [])
+    assert set(merged) == set(sl.QUESTIONS)
+    assert all(q["decision"] == "needs_full_text_or_context" for q in merged.values())
+
+
+def test_source_hash_changes_with_text_and_declared_missingness():
+    paper = _paper([sl.Section("s", "body", "results", [("p1", "Original source.")])])
+    original = paper.source_hash()
+    paper.sections[0].passages[0] = ("p1", "Changed source.")
+    assert paper.source_hash() != original
+    changed = paper.source_hash()
+    paper.missing_sections.append("methods")
+    assert paper.source_hash() != changed
 
 
 def test_supplement_rendering_lists_files_without_dumping_numbers():
@@ -137,3 +213,132 @@ def test_supplement_rendering_lists_files_without_dumping_numbers():
     )
     assert "table_s5.csv" in rendered and "p_val | avg_logFC" in rendered
     assert "TEAD1 | 0." in rendered and len(rendered.split("preview: ")[1].split(" blocker")[0]) <= 10
+
+
+def test_discovery_deduplicates_source_linked_doi_against_acquired_and_keeps_no_tf(tmp_path):
+    import pandas as pd
+
+    from regkg.literature.publications import publication_id
+    from regkg.provenance import write_json
+    from regkg.workflows.screening import discovery_inputs, discovery_pool
+
+    pid = publication_id({"pmid": "1"})
+    pd.DataFrame(
+        [
+            {"publication_id": pid, "pmid": "1", "doi": "10.1/a", "pmcid": None},
+            {"publication_id": "old-doi-id", "pmid": None, "doi": "10.1/a", "pmcid": None},
+            {"publication_id": publication_id({"pmid": "2"}), "pmid": "2", "doi": None, "pmcid": None},
+        ]
+    ).to_parquet(tmp_path / "discovery_coverage.parquet")
+    fresh = discovery_pool(tmp_path, pd.DataFrame([{"publication_id": pid, "pmid": "1"}]))
+    assert fresh.pmid.tolist() == ["2"]
+    write_json(
+        tmp_path / "discovery" / "batch-000.json",
+        {
+            "results": [
+                {
+                    "records": [
+                        {
+                            "source": "pubmed",
+                            "rank": 1,
+                            "cache_key": "synthetic",
+                            "pmid": "2",
+                            "title": "Lung neighborhoods",
+                            "abstract": "No exact TF seed is needed to retain this abstract.",
+                        }
+                    ]
+                }
+            ]
+        },
+    )
+    prepared = discovery_inputs(tmp_path)[fresh.iloc[0].publication_id]
+    assert prepared.version_read.startswith("cached_pubmed_metadata")
+    assert prepared.sections[1].passages[0][1].startswith("No exact TF")
+    assert prepared.missing_sections == ["main_text(introduction/methods/results/discussion)"]
+
+
+def test_litellm_adapter_never_forwards_openrouter_options(monkeypatch):
+    import langchain_openai
+
+    from regkg.config import ModelRole, parse_model_selector
+    from regkg.workflows.screening import build_chat
+
+    calls = []
+    monkeypatch.setattr(langchain_openai, "ChatOpenAI", lambda **kw: calls.append(kw) or kw)
+    build_chat(
+        parse_model_selector("litellm:team/model:revision", ModelRole.CHAT),
+        {
+            "LITELLM_BASE_URL": "https://example.test",
+            "LITELLM_API_KEY": "dummy",
+            "OPENROUTER_PROVIDER_ORDER": "should,not,leak",
+            "OPENROUTER_REASONING": "invalid",
+        },
+        {"max_output_tokens": 5000},
+    )
+    assert calls[0]["model"] == "team/model:revision"
+    assert calls[0]["base_url"] == "https://example.test"
+    assert "extra_body" not in calls[0] and calls[0]["max_retries"] == 0
+
+
+def test_targeted_repair_preserves_originals_and_replays_without_calls(monkeypatch, tmp_path):
+    from regkg.workflows import screening as workflow
+
+    paper = _paper([sl.Section("s", "body", "results", [("p1", "Exact source statement.")])])
+    windows = [
+        sl.Window("valid", 1, 2, ["s"], "[p1] Exact source statement.", ["p1"]),
+        sl.Window("failed", 2, 2, ["s"], "[p1] Exact source statement.", ["p1"]),
+    ]
+    calls = []
+
+    def fake_call(paper, window, scope, chat, settings, budget, prompt_sha, repair_record=None):
+        calls.append((window.window_id, repair_record is not None))
+        valid = window.window_id == "valid" or repair_record is not None
+        return {
+            "window_id": window.window_id,
+            "state": "valid" if valid else "invalid_needs_review",
+            "result": {"assessments": []} if valid else None,
+            "usage": {"input_tokens": 10, "output_tokens": 5, "usd": None},
+            "calls": 1,
+            "attempts": [],
+        }
+
+    monkeypatch.setattr(workflow, "_call_with_repair", fake_call)
+    budget = Budget(Allowance(10, None, None, None))
+    first = workflow.screen_paper(paper, windows, "scope", None, {}, budget, tmp_path, "prompt")
+    assert first["state"] == "partial"
+    originals = {p.name: p.read_bytes() for p in tmp_path.glob("*.json")}
+    repaired = workflow.screen_paper(paper, windows, "scope", None, {}, budget, tmp_path, "prompt", True)
+    assert repaired["state"] == "screened"
+    assert calls == [("valid", False), ("failed", False), ("failed", True)]
+    assert originals == {p.name: p.read_bytes() for p in tmp_path.glob("*.json")}
+    workflow.screen_paper(paper, windows, "scope", None, {}, budget, tmp_path, "prompt", True)
+    assert len(calls) == 3
+
+
+def test_pointer_repair_requires_unique_unchanged_quote_in_shown_source():
+    from regkg.workflows.screening import repair_citation_ids
+
+    result = sl.WindowScreening(
+        assessments=[
+            sl.QuestionAssessment(
+                question="AT1",
+                decision="background",
+                rationale="source context",
+                citations=[
+                    sl.EvidenceCitation(
+                        passage_id="wrong", exact_span="Exact source statement.", evidence_category="background"
+                    )
+                ],
+            )
+        ]
+    )
+    fixed, changes = repair_citation_ids(result, {"p1": "Exact source statement."}, "Exact source statement.")
+    assert fixed.assessments[0].citations[0].passage_id == "p1" and len(changes) == 1
+    assert result.assessments[0].citations[0].passage_id == "wrong"
+    for passages, shown in [
+        ({"p1": "Exact source statement.", "p2": "Exact source statement."}, "Exact source statement."),
+        ({"p1": "Exact source statement."}, "Different shown text."),
+        ({"p1": "A paraphrase of that statement."}, "Exact source statement."),
+    ]:
+        fixed, changes = repair_citation_ids(result, passages, shown)
+        assert not changes and fixed.assessments[0].citations[0].passage_id == "wrong"

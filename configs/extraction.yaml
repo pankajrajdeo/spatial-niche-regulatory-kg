@@ -1,0 +1,28 @@
+# Bounded implementation validation, not authorization for all current/future batches.
+extractor:
+  model: null
+verifier:
+  model: litellm:prescient.kimi-k3
+runtime:
+  structured_method: json_schema
+  max_output_tokens: 16000
+  max_input_tokens: 60000
+  reasoning_effort: high
+  timeout_seconds: 120
+  attempts_per_call: 1
+  max_calls: 500
+  max_input_tokens_total: 6000000
+  max_output_tokens_total: 2500000
+  max_usd: null  # selected LiteLLM quota; monetary price remains unknown
+  max_papers: 10
+  max_bundles: 20
+assembly:
+  reasoning_effort: low
+  max_model_calls: 4
+  max_tool_calls: 8
+  max_input_tokens: 24000  # conservative byte bound includes six tool schemas and accumulated history
+  max_output_tokens: 2500
+  max_tool_chars: 6000
+  model_timeout_seconds: 60
+  tool_timeout_seconds: 10
+  max_runtime_seconds: 300

@@ -1,0 +1,18 @@
+version: grounded-trial-1
+selection: p3selection-89efefdd214ee16e
+models: [prescient.kimi-k3, prescient.glm-5.3-flash]
+reasoning_effort: high
+scope: Bounded paired source trial; no production or gold-benchmark claim.
+cases:
+  - {id: joint_gene_loss, split: development, bundle_id: 'payload:025ce8ef0eaae0a425a9'}
+  - {id: knockout_direction, split: development, bundle_id: 'payload:054265fafae5a519d569'}
+  - {id: organoid_endpoints, split: development, bundle_id: 'payload:0103d6c661cafcbf25c3'}
+  - {id: survival_hazard, split: development, bundle_id: 'payload:0128fb209ab89c89f74b'}
+  - {id: atlas_no_relation, split: development, bundle_id: 'payload:0ce78a9b1882f351b78e'}
+  - {id: enrichment_not_activity, split: development, bundle_id: 'payload:014eea376f8a8818bbc9'}
+  - {id: motif_family_complex, split: evaluation, bundle_id: 'payload:62a979fed5bb024da538'}
+  - {id: macrophage_prediction, split: evaluation, bundle_id: 'payload:5d17779724c202fe73d5'}
+  - {id: epithelial_treatment, split: evaluation, bundle_id: 'payload:1196dd153142938ca76e'}
+  - {id: fibroblast_perturbation, split: evaluation, bundle_id: 'payload:65ab3fd6915d76604bd1'}
+  - {id: expression_table, split: evaluation, bundle_id: 'payload:0b3a507bd9e43a4d6aaa'}
+  - {id: explicit_null, split: evaluation, bundle_id: 'payload:378c698c90b8dd62b5ec'}

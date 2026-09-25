@@ -1,0 +1,99 @@
+version: spatial-nichelinker-kg-2
+sources:
+  - reference/chatgpt/chatgpt_kg_schema.md
+  - reference/chatgpt/chatgpt_final_synthesis.md
+nodes:
+  Gene: Species-qualified gene identity; a TF is a Gene with source-supported is_tf, never a separate node type.
+  CellType: Canonical cell population; source marker qualifiers must survive normalization.
+  SpatialNicheState: Dataset/run/focal-cell-qualified, condition-pooled neighborhood state.
+  NeighborhoodProfile: Neighborhood composition with k, method and source provenance.
+  BiologicalContext: Species, tissue, cell population, disease, condition and experimental model; missing values remain unknown.
+  GeneProgram: Source-qualified gene set derived from a project signature, not invented by a literature model.
+  Pathway: Resolved pathway identity and mapping provenance.
+  BiologicalProcess: Resolved biological process identity and mapping provenance.
+  NicheExpressionSignature: Descriptive niche comparison with original contrast and units, not invented DE statistics.
+  ExpressionObservation: Project expression measurement with its context and source.
+  ChromLinkerObservation: Original project prediction with raw values including zeros; unresolved transform remains unresolved.
+  Dataset: Identified source dataset, never an invented accession.
+  AnalysisRun: Versioned deterministic analysis and input provenance.
+  RegulatoryClaim: Context-qualified gene-to-gene proposition; binding, association, prediction and regulation stay distinct.
+  EvidenceAssertion: Source finding with evidence classification and outcome, separate from claim-relative polarity.
+  Passage: Exact source span with document identity and locator.
+  Publication: Resolved publication identity and version.
+  Experiment: Independently resolved experiment identity; never fabricated from PMID or a free-text label.
+  Study: Independently resolved study grouping; a paper is not automatically an independent study.
+  TFNomination: Deterministic, versioned prioritization output with missingness, not a causal probability.
+relationships:
+  OF_CELL_TYPE: [[SpatialNicheState, CellType], [BiologicalContext, CellType]]
+  HAS_NICHE_STATE: [[CellType, SpatialNicheState]]
+  DEFINED_BY: [[SpatialNicheState, NeighborhoodProfile]]
+  HAS_NEIGHBOR: [[NeighborhoodProfile, CellType]]
+  CASE_STATE: [[NicheExpressionSignature, SpatialNicheState]]
+  REFERENCE_STATE: [[NicheExpressionSignature, SpatialNicheState]]
+  FOR_STATE: [[ExpressionObservation, SpatialNicheState], [ChromLinkerObservation, SpatialNicheState], [TFNomination, SpatialNicheState]]
+  IN_CONTEXT: [[NicheExpressionSignature, BiologicalContext], [ExpressionObservation, BiologicalContext], [ChromLinkerObservation, BiologicalContext], [RegulatoryClaim, BiologicalContext], [TFNomination, BiologicalContext]]
+  OF_GENE: [[ExpressionObservation, Gene]]
+  HAS_GENE_EFFECT: [[NicheExpressionSignature, Gene]]
+  HAS_PROGRAM: [[SpatialNicheState, GeneProgram]]
+  DERIVED_FROM: [[GeneProgram, NicheExpressionSignature]]
+  CONTAINS_GENE: [[GeneProgram, Gene]]
+  ENRICHED_FOR: [[GeneProgram, Pathway], [GeneProgram, BiologicalProcess]]
+  PREDICTS_TF: [[ChromLinkerObservation, Gene]]
+  PREDICTS_TARGET: [[ChromLinkerObservation, Gene]]
+  REGULATOR_OF_CLAIM: [[Gene, RegulatoryClaim]]
+  TARGET_GENE: [[RegulatoryClaim, Gene]]
+  HAS_EVIDENCE: [[RegulatoryClaim, EvidenceAssertion]]
+  SUPPORTED_BY_PASSAGE: [[EvidenceAssertion, Passage]]
+  PART_OF: [[Passage, Publication], [Experiment, Study]]
+  FROM_EXPERIMENT: [[EvidenceAssertion, Experiment]]
+  REPORTED_IN: [[Study, Publication]]
+  USES_DATASET: [[AnalysisRun, Dataset]]
+  GENERATED_BY: [[NeighborhoodProfile, AnalysisRun], [NicheExpressionSignature, AnalysisRun], [ExpressionObservation, AnalysisRun], [ChromLinkerObservation, AnalysisRun], [GeneProgram, AnalysisRun], [TFNomination, AnalysisRun]]
+  NOMINATES_TF: [[TFNomination, Gene]]
+  BASED_ON_PROGRAM: [[TFNomination, GeneProgram]]
+  USES_CLAIM: [[TFNomination, RegulatoryClaim]]
+  USES_CHROMLINKER: [[TFNomination, ChromLinkerObservation]]
+evidence_fields:
+  evidence_type:
+    description: >-
+      Source-supported category; null is correct when none applies, including primary non-TF
+      perturbation/phenotype results. TF_BINDING requires binding of a source-identified TF;
+      TF_PERTURBATION requires manipulation of a source-identified TF, not any deleted gene.
+      TF_BINDING_PLUS_PERTURBATION requires independently linked compatible experiments and is
+      withheld by this extractor. REPORTER_ASSAY measures a regulatory reporter, not a lineage
+      tracer; CRE_PERTURBATION manipulates a cis-regulatory element. EXPRESSION_ASSOCIATION is
+      observational expression association; COMPUTATIONAL_NETWORK is predicted network evidence;
+      PROTEIN_INTERACTION is physical protein interaction evidence. CURATED_LITERATURE is an
+      explicitly attributed pre-existing curated assertion/resource, not a fallback for anything
+      read in a paper or for our own extraction. Preserve unclassified primary findings with null;
+      do not relabel them secondary or speculative merely to fill this field.
+    values: [TF_BINDING, TF_PERTURBATION, TF_BINDING_PLUS_PERTURBATION, REPORTER_ASSAY, CRE_PERTURBATION, EXPRESSION_ASSOCIATION, COMPUTATIONAL_NETWORK, CURATED_LITERATURE, PROTEIN_INTERACTION]
+  directness:
+    description: DIRECT requires demonstrated direct regulatory mechanism, FUNCTIONAL an intervention response, ASSOCIATIVE correlation, PREDICTED computational inference; use UNCLEAR if unresolved. Binding alone does not establish direct regulation.
+    values: [DIRECT, FUNCTIONAL, ASSOCIATIVE, PREDICTED, UNCLEAR]
+  experimental_outcome:
+    description: Observed experimental result, separate from validity and claim support. Distinguish no measured change from no binding; unknown or association-only is UNCLEAR.
+    values: [INCREASE, DECREASE, NO_DETECTED_EFFECT, BINDING_DETECTED, NO_BINDING_DETECTED, UNCLEAR]
+  statement_status:
+    description: Whether the source statement is affirmed, negated, speculative or unclear; distinct from primary versus cited attribution and experimental outcome.
+    values: [AFFIRMED, NEGATED, SPECULATIVE, UNCLEAR]
+  measured_or_inferred:
+    description: Whether the stated result was measured or inferred; unknown when unsupported.
+    values: [measured, inferred, unknown]
+  regulatory_direction:
+    description: Source-explicit regulatory sign, only for REGULATES. Never invert a knockout response into normal regulatory function. Other predicates use UNKNOWN.
+    values: [POSITIVE, NEGATIVE, UNKNOWN]
+relative_fields:
+  polarity: [SUPPORTS, CONTRADICTS, INCONCLUSIVE]
+  context_match: [EXACT, CLOSE, PARTIAL, MISMATCHED, UNKNOWN]
+extraction_boundary:
+  - Literature models emit mentions and evidence observations, never project measurements, niche identities, programs, rankings or graph writes.
+  - Biological extraction predicates are properties of claim/evidence records, never generated Neo4j relationship types.
+  - Only resolved gene-to-gene eligible findings can project to RegulatoryClaim. Families, complexes, joint groups, chemicals, phenotypes and prognostic outcomes remain lossless file observations without being forced into Gene nodes.
+  - Protein mentions require explicit verified gene-product mapping before gene-level projection; the current bridge conservatively withholds them.
+  - Acceptance of a finding is separate from eligibility for the core regulatory graph and from eligibility for scoring or training.
+  - Source attribution, statement status, experimental outcome, directness, extraction validity, claim-relative polarity and nomination-relative context match are separate dimensions.
+  - Claim polarity and context match need an explicit reference claim/nomination and deterministic comparison; extraction does not assign them globally.
+  - Negative/null findings are preserved. No detected effect is not universal contradiction or evidence that no relation exists.
+  - Experiment and study IDs stay null until independently resolved. An experiment label or PMID does not establish independence.
+  - Disease remains separate from experimental condition. Never fill missing context from the project or another experiment.

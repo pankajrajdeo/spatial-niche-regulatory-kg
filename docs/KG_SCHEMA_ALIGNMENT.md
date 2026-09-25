@@ -1,0 +1,26 @@
+# Final KG schema alignment — 2026-09-23
+
+Both requested inputs were read completely: [final synthesis](../reference/chatgpt/chatgpt_final_synthesis.md) (3,359 lines) and [final KG schema](../reference/chatgpt/chatgpt_kg_schema.md) (1,086 lines). This is a P4 contract correction, not completion of the P5 graph exporter or an accuracy result.
+
+## Canonical contract and source precedence
+
+[configs/kg_schema.yaml](../configs/kg_schema.yaml) records the final 20 node labels, 29 relationship names, endpoint pairs, evidence dimensions and extraction boundary. The detailed KG relationship list controls names; the final synthesis supplies evidence semantics. Current manuscript/user invariants override illustrative scores or older data assumptions. For example, ChromLinker values remain raw with unresolved transform, Yale effects remain descriptive, and niche identity remains condition-pooled. OF_CELL_TYPE endpoint pairs are an explicit implementation mapping for state/context to population; no new label is introduced. GENERATED_BY includes NeighborhoodProfile provenance.
+
+The graph evidence path is `Gene → RegulatoryClaim → EvidenceAssertion → Passage → Publication`, with independently resolved Experiment/Study links when available. A TF is a Gene, not another node type. Project signatures, expression observations, ChromLinker observations, programs and nominations come from deterministic project processing; a literature extractor cannot manufacture them.
+
+The extraction vocabulary is deliberately broader: a source can mention a protein, complex, family, joint gene group, chemical, phenotype or clinical outcome. Those mentions/findings remain in lossless artifacts. They do not automatically become gene-specific regulatory claims or new core graph labels. Protein-to-gene projection requires a verified product mapping that this bridge does not yet implement. This limitation is explicit rather than a silent cast or deletion.
+
+## Corrections now implemented
+
+- `grounded-observations-3` loads the KG contract and includes its boundary and field definitions in both models' system instructions. Pydantic generates enum-constrained evidence classification and requires disease as a separate nullable source-context field.
+- `evidence_classification` separates evidence type, directness, experimental outcome, affirmed/negated/speculative statement status, measured/inferred status and explicit regulatory direction. Legacy `statement_status` continues to mean source attribution in intermediate observations; the projection explicitly names it `source_attribution`. Legacy mechanistic directness is cross-checked against canonical evidence directness. The verifier has eleven required named checks, including classification.
+- Host checks reject inconsistent outcome/sign, binding-null conflation and unlinked composite binding-plus-perturbation classification. Unknown classifications remain unknown. Biological predicates remain properties, not graph relationship labels.
+- Persistence no longer writes every accepted phenotype/group/chemical finding to `claims.parquet`. All accepted findings remain in artifacts, with nullable canonical claim IDs and explicit projection reasons. Legacy findings without the new classification remain file-only. Provisional proposition IDs remain recorded separately; old trial outputs are not rewritten or relabeled.
+- A gene-level null finding retains its outcome without an invented regulatory sign or global support/contradiction label. Polarity needs a reference proposition; context match needs a nomination. Experiment/study identities remain null until independently resolved. Core-claim eligibility is not scoring or training eligibility.
+- Plan graph names now match the canonical schema. The former USES_EVIDENCE shortcut is replaced by USES_CLAIM → HAS_EVIDENCE, with nomination/assertion-specific assessment in file-first application records. The wider reviewed ontology work remains planned P5 work.
+
+The full contract participates in extraction identity/cache hashes. These changes require new-schema bounded validation before scientific acceptance; passing synthetic tests does not establish entity or relation accuracy. P4.7/P4.8 acceptance is reopened for the changed contracts. P5 materialization, relative evidence assessment, experiment/study resolution and the graph itself remain pending. No acquisition, parsing, embedding, model calls or graph writes were performed for this alignment.
+
+## Implemented critique and repair
+
+The [research update](P4_ACCURACY_RESEARCH.md#agentic-critique-research-update--2026-09-23) informed the subsequent user-authorized [automated correction workflow](P4_CRITIQUE_AUTOMATION.md). Version `grounded-observations-4` introduced required mention/fact coverage criticism, one semantic repair, bounded local context recovery and fresh verification. Version `grounded-observations-6` and `spatial-nichelinker-kg-2` clarify evidence category meanings and local molecular-form typing; they retain all 20 labels and 29 relationship names. Null evidence type remains an explicitly allowed unclassified state, not rejection of a primary finding. Scientific accuracy still requires source evaluation; unresolved defects remain withheld and full-corpus extraction remains stopped.

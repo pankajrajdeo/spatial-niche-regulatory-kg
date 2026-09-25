@@ -163,7 +163,12 @@ def source_identity(
     return UNRESOLVED, None, None, "no_identifier"
 
 
-def pubtator_mentions(document: Document, pubtator: dict, human_gene_of_ncbi: dict[str, str]) -> list[Mention]:
+def pubtator_mentions(
+    document: Document,
+    pubtator: dict,
+    human_gene_of_ncbi: dict[str, str],
+    entity_types: set[str] | None = None,
+) -> list[Mention]:
     canonical = document.canonical_text
     starts = [p.start for p in document.passages]
     mentions = []
@@ -174,10 +179,15 @@ def pubtator_mentions(document: Document, pubtator: dict, human_gene_of_ncbi: di
         passage, passage_start = _locate(document, normalized) if normalized else (None, None)
         for annotation in bioc.get("annotations", []):
             infons = annotation.get("infons") or {}
-            if infons.get("type") != "Gene":
+            entity_type = infons.get("type")
+            if entity_type not in (entity_types if entity_types is not None else {"Gene"}):
                 continue
             identifier = str(infons.get("identifier") or "") or None
-            resolution, hgnc_id, taxon, evidence = source_identity(identifier, human_gene_of_ncbi)
+            resolution, hgnc_id, taxon, evidence = (
+                source_identity(identifier, human_gene_of_ncbi)
+                if entity_type == "Gene"
+                else ("external_annotation_only", None, None, NOT_ASSESSED)
+            )
             for location in annotation.get("locations", []):
                 offset, length = int(location["offset"]), int(location["length"])
                 relative = offset - base
@@ -214,7 +224,7 @@ def pubtator_mentions(document: Document, pubtator: dict, human_gene_of_ncbi: di
                         end,
                         text,
                         "pubtator",
-                        "Gene",
+                        entity_type,
                         candidate_hgnc_id=None,
                         hgnc_id=record[1],
                         resolution=record[0],

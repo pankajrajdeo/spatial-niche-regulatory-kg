@@ -143,8 +143,13 @@ class PaperInput:
             {
                 "publication": self.publication_id,
                 "asset": self.source_asset_sha256,
-                "sections": [[s.section_id, [p for p, _ in s.passages]] for s in self.sections],
-                "supplements": [s.get("sha256") or s.get("filename") for s in self.supplements],
+                "title": self.title,
+                "version": self.version_read,
+                "document_id": self.document_id,
+                "sections": [[s.section_id, s.heading, s.kind, s.passages] for s in self.sections],
+                "supplements": self.supplements,
+                "missing": self.missing_sections,
+                "parse_problems": self.parse_problems,
             }
         )
         return hashlib.sha256(body.encode()).hexdigest()
@@ -251,8 +256,24 @@ def make_windows(paper: PaperInput, max_chars: int, overlap_sections: int, suppl
     """Section-aware windows with local overlap; every retained main-text section lands in some window."""
     blocks: list[tuple[Section, str]] = []
     for section in paper.sections:
-        body = "\n".join(f"[{pid}] {text}" for pid, text in section.passages)
-        blocks.append((section, f"## {section.kind.upper()} — {section.heading}\n{body}"))
+        # Split oversized sections by source passage, and oversized passages by exact text slices.
+        prefix = f"## {section.kind.upper()} — {section.heading}\n"
+        pieces = []
+        for pid, text in section.passages:
+            width = max(1, max_chars - len(prefix) - len(pid) - 4)
+            pieces.extend((pid, text[start : start + width]) for start in range(0, len(text), width))
+        current_passages, length = [], len(prefix)
+        for pid, text in pieces:
+            rendered = f"[{pid}] {text}\n"
+            if current_passages and length + len(rendered) > max_chars:
+                part = Section(f"{section.section_id}:{len(blocks)}", section.kind, section.heading, current_passages)
+                blocks.append((part, prefix + "\n".join(f"[{p}] {t}" for p, t in current_passages)))
+                current_passages, length = [], len(prefix)
+            current_passages.append((pid, text))
+            length += len(rendered)
+        if current_passages:
+            part = Section(f"{section.section_id}:{len(blocks)}", section.kind, section.heading, current_passages)
+            blocks.append((part, prefix + "\n".join(f"[{p}] {t}" for p, t in current_passages)))
     groups: list[list[int]] = []
     current: list[int] = []
     size = 0
@@ -261,6 +282,9 @@ def make_windows(paper: PaperInput, max_chars: int, overlap_sections: int, suppl
             groups.append(current)
             current = current[-overlap_sections:] if overlap_sections else []
             size = sum(len(blocks[i][1]) for i in current)
+            while current and size + len(rendered) > max_chars:
+                current.pop(0)
+                size = sum(len(blocks[i][1]) for i in current)
         current.append(index)
         size += len(rendered)
     if current:
@@ -339,6 +363,8 @@ def validate_citations(result: WindowScreening, window_passages: dict[str, str])
     problems = []
     by_key = {_passage_key(pid): text for pid, text in window_passages.items()}
     for assessment in result.assessments:
+        if assessment.decision in ("include_for_extraction", "background") and not assessment.citations:
+            problems.append({"problem": "ungrounded_positive_decision", "value": assessment.question})
         if assessment.question not in QUESTIONS:
             problems.append({"problem": "unknown_question", "value": assessment.question})
         if assessment.decision not in DECISIONS:
@@ -387,6 +413,17 @@ def merge_windows(results: list[tuple[Window, WindowScreening]], unread: list[st
                 {**citation.model_dump(), "window_id": window.window_id} for citation in assessment.citations
             ]
     merged = {}
+    for question in QUESTIONS:
+        if question not in per_question:
+            merged[question] = {
+                "question": question,
+                "decision": "needs_full_text_or_context",
+                "decisions_by_window": [],
+                "citations": [],
+                "rationales": [],
+                "windows": [],
+                "missing_information": ["No explicit assessment was returned for this question."],
+            }
     for question, entry in per_question.items():
         decisions = set(entry["decisions"])
         if "include_for_extraction" in decisions:
